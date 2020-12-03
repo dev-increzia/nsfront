@@ -1,0 +1,82 @@
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+                <ion-title> Changer super administrateur </ion-title>
+            </ion-col>
+            <ion-col col-2>
+                <div class="item" text-right>
+
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-content class="no-padding">
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <div class="div-center div-margin-top">
+        <div padding>
+            <ion-grid class="padding-horizontal">
+                <ion-row>
+                    <ion-col col-12 text-left>
+                        Pour supprimer votre compte , veuillez associer le rôle super administrateur de vos
+                        associations et commerçants à un autre utilisateur de nous ensemble.
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <div class="form-item">
+                        <p class="error" *ngFor="let error of errors">{{error}}</p>
+                    </div>
+                </ion-row>
+            </ion-grid>
+
+        </div>
+        <form class="form" #suAdminEdit="ngForm">
+            <ion-row>
+
+                <ion-col col-12 text-center>
+                    <div text-center class="full-width-s">
+                        <button ion-button color="white-color" round class="button-white" text-center no-padding>
+                            <div class="block-image" text-center>
+                                <img *ngIf="account.imageURL" class="block-button-img" src="{{account.imageURL}}" />
+                                <img *ngIf="!account.imageURL" class="block-button-img" src="assets/imgs/icons/user_default.png" />
+                            </div>
+                            <div class="block-name">{{account.name}}</div>
+                            <div class="block-icon"></div>
+                        </button>
+
+                        <!-- -->
+
+                        <ion-item class="item-input-white item-input-white-custom" [class.formError]="email.invalid && (email.dirty || submited || email.touched)">
+                            <ion-input name="email" type="email" autocapitalize="none" [(ngModel)]="newSuAdmin" #email="ngModel"
+                                (mouseout)="onBlurEmail()" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                                placeholder="Email du nouveau super administrateur" required></ion-input>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="email.invalid && (email.dirty || submited || email.touched)">
+                            <span class="error">Champs adresse mail obligatoire</span>
+                        </div>
+                        <!-- -->
+
+                        <div class="form-item">
+                            <button (click)="changeSuAdmin(suAdminEdit.invalid)" ion-button full class="button-valid res">Suivant</button>
+                        </div>
+
+                    </div>
+                </ion-col>
+
+
+
+
+            </ion-row>
+        </form>
+    </div>
+    <div class="div-right"></div>
+</ion-content>

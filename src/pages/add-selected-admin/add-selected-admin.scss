@@ -1,0 +1,18 @@
+page-add-selected-admin {
+    .popin {
+        background: color($colors, white-color);
+        position: absolute;
+        margin: auto;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 250px;
+        height: 250px;
+        padding: 15px;
+        border-radius: 25px;
+        -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.41);
+        -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.41);
+        box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.41);
+    }
+}

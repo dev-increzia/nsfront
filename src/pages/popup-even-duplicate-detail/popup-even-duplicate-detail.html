@@ -1,0 +1,157 @@
+<!--
+  Generated template for the PublishPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+--> 
+<ion-header> 
+  <ion-row class="header-popin" no-padding>
+      <ion-col class="no-padding " text-left>
+          <button ion-button clear small type="button" color="primary" no-margin no-padding>
+              <ion-icon name="ios-create-outline"></ion-icon>
+          </button> 
+      </ion-col>
+      <ion-col class="no-padding " text-center>
+          <h5 class="primary-color title-popin" no-margin>Modifier</h5>
+      </ion-col>
+      <ion-col class="no-padding " text-right>
+          <button ion-button clear small color="primary" icon-start no-margin no-padding (click)="goBack()">
+              <img class="icon-heart" src="assets/imgs/icons/image3.png">
+          </button>
+      </ion-col>
+  </ion-row>
+</ion-header>
+
+<ion-content padding>
+      <ion-col col-12 text-centre class="padding-top">
+      <form [formGroup]="fromGroup">
+        <ion-grid margin-top>
+          <ion-row text-center>
+              <ion-col col-12 text-center no-padding>
+                  <div>
+                      <ion-slides (ionSlideDidChange)="slideChanged()" *ngIf="deleteAll" class="image home-card-slides"
+                          loop="true" pager>
+                          <ion-slide *ngIf="event.imageURL">
+                              <img data-src="{{event.imageURL}}">
+                              <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhoto(-1, 0);"
+                                  *ngIf="event.imageURL || eventImgs.eventPhoto"></ion-icon> 
+                          </ion-slide>
+                          <div *ngFor="let img of event.images; let i = index">
+                              <ion-slide *ngIf="img.url">
+                                  <img src="{{img.url}}" *ngIf="img.url">
+                                  <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhoto(i, img.id);"
+                                      *ngIf="img.url"></ion-icon>
+
+                              </ion-slide>
+                          </div>
+                          <div *ngFor="let item of eventImgs.photos let i = index">
+                              <ion-slide *ngIf="item">
+
+                                  <img src="{{item}}" *ngIf="item">
+                                  <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhoto(i, '');"
+                                      *ngIf="item"></ion-icon>
+
+                              </ion-slide>
+                          </div>
+                      </ion-slides>
+                  </div>
+                  <div *ngIf="event.thirdPhoto;">
+                      <div>
+                          <img src="{{event.thirdPhoto}}" *ngIf="event.thirdPhoto">
+                          <ion-icon name="trash" class="icon-delete" (click)="deletePhoto(3);" *ngIf="event.thirdPhoto"></ion-icon>
+                      </div>
+
+                  </div>
+                  <div>
+                      <div class="center" *ngIf="eventImgs.eventSecondPhoto">
+                          <img src="{{eventImgs.eventSecondPhoto}}" class="width-100" *ngIf="eventImgs.eventSecondPhoto">
+                          <ion-icon name="trash" class="icon-delete" (click)="deleteEditedPhoto(2);"></ion-icon>
+                      </div>
+                      <div class="center" *ngIf="eventImgs.eventThirdPhoto">
+                          <img src="{{eventImgs.eventThirdPhoto}}" class="width-100" *ngIf="eventImgs.eventThirdPhoto">
+                          <ion-icon name="trash" class="icon-delete" (click)="deleteEditedPhoto(3);"></ion-icon>
+                      </div>
+
+                  </div>
+                  <ion-col col-12 text-center>
+                      <img class="button-img" src="assets/imgs/icons/button.png" (click)="presentActionSheet()">
+                  </ion-col>
+                  <div *ngIf="event.videoFile" style="position: relative;">
+                            <img class="button-img" src="assets/imgs/icons/video.png">
+                              <ion-icon name="trash" 
+                                class="icon-delete delete-icon" 
+                                (click)="deleteVideo();"
+                                  *ngIf="event.videoFile">
+                              </ion-icon>
+                  </div>
+              </ion-col>
+          </ion-row>
+
+      </ion-grid>
+      <ion-grid class="margin-top-grid padding-horizontal">
+        <ion-list>
+
+          <ion-col col-12 text-center class="margin-top select-not-ie">
+          <ion-item [class.formError]="(fromGroup.controls['titre'].errors?.required && fromGroup.controls['titre'].touched) || invalidTitre ">
+            <ion-input type="text" formControlName="titre" placeholder="Titre" [(ngModel)]="event.title" required (change)="capitalize($event.target.value, 'title')"></ion-input>
+          </ion-item>
+
+          <div style="width: 90%;
+          text-align: right;">
+              <button style="position: absolute;
+              top: 65%;
+              left: 1%;" ion-button clear icon-only (click)="toggled = !toggled"
+              [(emojiPickerIf)]="toggled" [emojiPickerDirection]="'top'"
+              (emojiPickerSelect)="handleSelection($event)">
+              😃
+              </button>
+          </div>
+
+          <div *ngIf="(fromGroup.controls['titre'].errors?.required && fromGroup.controls['titre'].touched) || invalidTitre">
+                  <span class="error">Champs titre obligatoire</span>
+          </div>
+          </ion-col>
+          <div style="width: 100%; height: 5px;"></div>
+
+          <ion-col col-12 text-center class="margin-top select-not-ie">
+          <ion-item style="padding-top: 15px;" [class.formError]="(fromGroup.controls['description'].errors?.required && fromGroup.controls['description'].touched) || invalidDesc ">
+              <ion-textarea  formControlName="description"  placeholder="Description" [(ngModel)]="event.description" required (change)="capitalize($event.target.value, 'description')"></ion-textarea>
+          </ion-item >
+
+          <div style="width: 90%;
+          text-align: right;">
+              <button style="position: absolute;
+              top: 75%;
+              left: 1%;" ion-button clear icon-only (click)="toggledDes= !toggledDes"
+              [(emojiPickerIf)]="toggledDes" [emojiPickerDirection]="'top'"
+              (emojiPickerSelect)="handleDescription($event)">
+              😃
+              </button>
+          </div>
+          <div *ngIf="(fromGroup.controls['description'].errors?.required && fromGroup.controls['description'].touched) || invalidDesc ">
+                  <span class="error">Champs description obligatoire</span>
+          </div>
+          </ion-col>
+          <div style="width: 100%; height: 5px;"></div>
+
+          <ion-col col-12 text-center class="margin-top select-not-ie">
+              <ion-item class="item-grey no-padding-left" [class.formError]="(fromGroup.controls['city'].errors?.required && fromGroup.controls['city'].touched) || invalidCity ">
+                  <ion-input  (click)="SelectCity()" formControlName="city"  readonly autocomplete="off" autocorrect="on"  type="text"  placeholder="Ville" [(ngModel)]="event.cityName"></ion-input>
+              </ion-item>
+              <div *ngIf="(fromGroup.controls['city'].errors?.required && fromGroup.controls['city'].touched) || invalidCity ">
+                  <span class="error">Champs ville obligatoire</span>
+              </div>
+              </ion-col>
+               
+        </ion-list>
+        <ion-col col-12 text-center>
+        <button ion-button color="primary" type="submit" (click)="saveEvent(fromGroup.invalid, titre, description)" class="button-publish" round>Publier</button>
+        </ion-col>
+
+        </ion-grid>
+      </form>
+      
+      
+  </ion-col>
+        
+</ion-content>

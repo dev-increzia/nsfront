@@ -1,0 +1,77 @@
+page-empty-news {
+  @media (max-width: 1022px) {
+
+  .empty{
+    background-color: color($colors, white-color);
+  }
+  .hand{
+    width: 40px;
+    margin-bottom: 50px;
+    margin-left: 45%;
+    margin-top: 8px;
+    display: block;
+  }
+  .emptyCommunity{
+    width: 210px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .emptyText{
+    font-family: "Montserrat Bold";
+    font-size: 30px;
+    line-height: 36px;
+    color: #b3b3b3;
+  }
+}
+@media (min-width: 1023px) {
+  .empty{
+    background-color: color($colors, white-color);
+
+  }
+  .hand{
+    display: none;
+  }
+  .emptyCommunity{
+    width: 210px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .emptyText{
+    font-family: "Montserrat Bold";
+    font-size: 30px;
+    line-height: 36px;
+    color: #b3b3b3;
+  }
+  .img-container{
+    margin-top: 50px;
+
+  }
+}
+.registred-new-user {
+    position: absolute;
+    padding: 20px;
+    background: color($colors, white-color);
+    z-index: 999;
+    top: 50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 180px;
+    width: 280px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: $medium;
+    text-align: center;
+
+    .close-btn {
+        float: right;
+    }
+
+    .app-title {
+        font-size: 20px;
+        color: color($colors, primary);
+    }
+}
+
+
+}

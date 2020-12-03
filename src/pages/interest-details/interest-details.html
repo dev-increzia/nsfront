@@ -1,0 +1,57 @@
+<!--
+  Generated template for the BasicPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-row class="header-popin" no-padding>
+        <ion-col class="no-padding " text-left>
+        </ion-col>
+        <ion-col class="no-padding " text-center>
+            <h5 class="primary-color title-popin" no-margin>Détail</h5>
+        </ion-col>
+        <ion-col class="no-padding " text-right>
+            <button ion-button clear small color="primary" icon-start no-margin no-padding (click)="close()">
+                <img class="icon-heart material-icons" src="assets/imgs/icons/image3.png">
+            </button>
+        </ion-col>
+    </ion-row>
+</ion-header>
+
+
+<ion-content padding>
+    <div class="padding-top">
+        <ion-grid class="margin-top-grid">
+            <ion-row>
+                <ion-col col-12 text-center>
+                    <img src="{{interest.image_url}}" class="assoc_logo float-left">
+                </ion-col>
+                <ion-col col-12 class="float-col-8">
+                    <span class="assoc_title"><strong> Titre :</strong> </span> <span class="categs float-left">{{interest.title}}</span>
+                    <div class="clear"></div>
+                    <span class="assoc_title"><strong> Catégorie : </strong></span> <span class="categs float-left">{{interest.category.name}}</span>
+                </ion-col>
+
+
+            </ion-row>
+        </ion-grid>
+        <hr>
+        <ion-col col-12>
+            <div class="clear"></div>
+            <span class="champs horaires" *ngIf="interest.openFrom"><strong>Horaires :</strong></span> <span class="g_details"
+                *ngIf="interest.openFrom">De &nbsp;{{interest.openFrom}} &nbsp;À &nbsp; {{interest.openTo}}</span>
+            <div class="clear"></div>
+            <span class="champs horaires" *ngIf="interest.address"><strong>Adresse :</strong></span> <span class="g_details">{{interest.address}}</span>
+            <div class="clear"></div>
+            <span class="champs horaires" *ngIf="interest.email"><strong>Email :</strong></span> <span class="g_details">{{interest.email}}</span>
+            <div class="clear"></div>
+            <span class="champs horaires" *ngIf="interest.phone"><strong>Télephone :</strong></span> <span class="g_details"
+                (click)="call(interest.phone)"><span class="phone">{{interest.phone}}</span></span>
+            <div class="clear"></div>
+            <span class="champs horaires" *ngIf="interest.description"><strong>Description : </strong></span> <span
+                class="g_details">{{interest.description}}</span>
+            <div class="clear"></div>
+        </ion-col>
+    </div>
+</ion-content>

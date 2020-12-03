@@ -1,0 +1,152 @@
+<!--
+  Generated template for the ModerationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  
+
+</ion-header>
+
+
+<ion-content padding>
+
+  
+
+  <ion-col col-12 text-centre class="padding-top">
+    <form [formGroup]="fromGroup" >
+    <ion-grid class="margin-top-grid padding-horizontal">
+
+      <ion-row>
+        <ion-col text-center>
+            <img class="img-logo" src="assets/imgs/icons/logo-simple.png" alt="NOUS-Ensemble">
+        </ion-col>
+    </ion-row>
+    
+    <ion-row>
+        <ion-col text-center margin-top>
+            <h6 class="notice-register" padding-horizontal>
+                <br><br>
+            </h6>
+        </ion-col>
+    </ion-row>
+
+
+
+      <ion-list>
+
+        <ion-col col-12 text-center class="margin-top select-not-ie">
+          <ion-item [class.formError]="(fromGroup.controls['lastname'].errors?.required && fromGroup.controls['lastname'].touched)|| invalidlastname ">
+            <ion-input type="text" formControlName="lastname"  placeholder="Nom" [(ngModel)]="moduration.lastname"  required (change)="capitalize($event.target.value, 'lastname')" ></ion-input>
+          </ion-item>
+  
+        
+  
+          <div *ngIf="(fromGroup.controls['lastname'].errors?.required && fromGroup.controls['lastname'].touched) || invalidlastname">
+                  <span class="error">Veuillez indiquer votre nom</span>
+          </div>
+          </ion-col>
+
+
+
+          <ion-col col-12 text-center class="margin-top select-not-ie">
+            <ion-item [class.formError]="(fromGroup.controls['firstname'].errors?.required && fromGroup.controls['firstname'].touched)|| invalidFirstname ">
+              <ion-input type="text" formControlName="firstname"  placeholder="Prénom" [(ngModel)]="moduration.firstname"  required (change)="capitalize($event.target.value, 'firstname')" ></ion-input>
+            </ion-item>
+    
+          
+    
+            <div *ngIf="(fromGroup.controls['firstname'].errors?.required && fromGroup.controls['firstname'].touched) || invalidFirstname">
+                    <span class="error">Veuillez indiquer votre prénom</span>
+            </div>
+            </ion-col>
+
+        
+        <ion-col col-12 text-center class="margin-top select-not-ie">
+        <ion-item [class.formError]="(fromGroup.controls['email'].errors?.required && fromGroup.controls['email'].touched) || invalidEmail">
+          <ion-input type="text" formControlName="email"  placeholder="E-mail" [(ngModel)]="moduration.email"  required (change)="capitalize($event.target.value, 'email')" ></ion-input>
+        </ion-item>
+
+      
+
+        <div *ngIf="(fromGroup.controls['email'].errors?.required && fromGroup.controls['email'].touched) || invalidEmail">
+                <span class="error">Veuillez indiquer votre E-mail</span>
+        </div>
+        </ion-col>
+
+
+
+        <ion-col col-12 text-center class="margin-top select-not-ie">
+          <ion-item [class.formError]="(fromGroup.controls['password'].errors?.required && fromGroup.controls['password'].touched)  || invalidPassword">
+            <ion-input type="password" formControlName="password"  placeholder="Mot de passe" [(ngModel)]="moduration.password"  required (change)="capitalize($event.target.value, 'password')" ></ion-input>
+          </ion-item>
+  
+        
+  
+          <div *ngIf="(fromGroup.controls['password'].errors?.required && fromGroup.controls['password'].touched) || invalidPassword">
+                  <span class="error">Veuillez indiquer votre mot de passe</span>
+          </div>
+          </ion-col>
+       
+        <ion-col col-12 text-center class="margin-top select-not-ie">
+          <ion-item [class.formError]="(fromGroup.controls['city'].errors?.required && fromGroup.controls['city'].touched) || invalidCity ">
+              <ion-input  required (click)="SelectCity()" formControlName="city"  readonly autocomplete="off" autocorrect="on"  type="text"  placeholder="Ville" [(ngModel)]="moduration.city" ></ion-input>
+          </ion-item>         
+          <div *ngIf="(fromGroup.controls['city'].errors?.required && fromGroup.controls['city'].touched) || invalidCity ">
+              <span class="error">Champs ville obligatoire</span>
+          </div>
+        </ion-col>
+
+
+        <ion-col class="margin-top select-not-ie">
+        <ion-item style="border-radius: 25px;
+        background-color: grey;">
+          <p>{{communaute.name}}</p>
+        </ion-item>         
+     
+        </ion-col>
+
+
+        <ion-col col-12 text-center class="margin-top select-not-ie" *ngIf="communaute.isPrivate" >
+          <ion-item [class.formError]="(fromGroup.controls['code'].errors?.required && fromGroup.controls['code'].touched)|| invalidCode ">
+            <ion-input type="text" formControlName="code"  placeholder="Code" [(ngModel)]="communities.password"  required (change)="capitalize($event.target.value, 'code')" ></ion-input>
+          </ion-item>
+  
+        
+  
+          <div *ngIf="(fromGroup.controls['code'].errors?.required && fromGroup.controls['code'].touched) || invalidCode">
+                  <span class="error">Veuillez indiquer le code de communauté</span>
+          </div>
+          </ion-col>
+
+
+      </ion-list>  
+      
+      
+     
+      
+    
+      <ion-row class="padding-horizontal">
+        <ion-col class="col-submit" col-12 text-center>
+            <button ion-button color="primary" round class="button-big" (click)="register(fromGroup.invalid)">C'est
+                bon</button>
+                <button ion-button color="primary" round class="button-big" (click)="login()">J'ai un compte</button>
+        </ion-col>
+    </ion-row>
+
+      <ion-row class="padding-horizontal">
+        <ion-col class="div-img">
+            <img  src="assets/imgs/forget-password.png" alt="NOUS-Ensemble" class="img-bottom"/>
+
+        </ion-col>
+    </ion-row>
+
+      </ion-grid>
+    </form>
+</ion-col>
+
+
+
+</ion-content>

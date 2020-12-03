@@ -1,0 +1,367 @@
+page-agenda {
+    .scroll-content {
+        margin-top: 93px !important;
+    }
+
+    .button-md,
+    .button-ios,
+    .button-wp {
+        height: auto;
+    }
+
+    .fixed-height {
+        height: 4.5rem;
+    }
+
+    ion-content.has-refresher>.scroll-content {
+        background-color: color($colors, grey-color);
+    }
+
+    .img-div {
+        margin-top: 4px;
+    }
+
+    ion-row.row.item-margin{
+        margin-right: -19.5%;
+        margin-left: 1.5%;
+        margin-bottom: 5%;
+    }
+
+    .game {
+        background-color: #cde4e1;
+    }
+
+    .home-card-slides {
+        height: auto;
+        margin-top: -4px;
+    }
+
+    .swiper-pagination-bullet-active {
+        background: color($colors, primary);
+    }
+
+    .agenda-container {
+        width: 100%;
+    }
+
+    .select-filters {
+        background: color($colors, gray-select);
+    }
+
+    .select-fitler {
+        width: 100%;
+        max-width: 100%;
+        background: color($colors, gray-select);
+    }
+
+    .event-item {
+        border-top: 0.55px solid color($colors, light-black);
+        margin-top: -20px;
+        padding-top: 15px;
+    }
+
+    .first-event-item {
+        margin-top: -20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-bottom: 0.55px solid color($colors, light-black);
+    }
+
+    .event-item-butAlso {
+        border-bottom: 0.55px solid color($colors, light-black);
+        margin-top: -20px;
+        padding-bottom: 15px;
+    }
+
+    .last-event-item {
+        padding-bottom: 15px;
+    }
+
+    .content-first {
+        display: list-item;
+        padding-top: 0;
+    }
+
+    .select-placeholder.select-text {
+        font-size: 17px;
+        color: color($colors, h6-color);
+        font-family: "Montserrat Regular";
+        font-weight: 200;
+    }
+
+    .start-hour {
+        font-size: 18px;
+        font-weight: 100;
+    }
+    .AssoTitle{
+        color: color($colors, primary) !important;
+       text-decoration: underline;
+       font-weight: 100;
+       font-family: 'Montserrat Medium';
+       cursor: pointer;
+    }
+
+    .event-title {
+        font-size: 16px;
+    }
+
+    .title-day {
+        color: color($colors, h-color);
+        font-size: 20px;
+    }
+
+    .title-date {
+        font-size: 25px;
+    }
+
+    .weekend-button.activate {
+        background: color($colors, primary);
+        color: color($colors, white-color);
+        font-family: "Montserrat Bold";
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    .comments-nbr {
+        margin-right: 5px;
+        font-size: 22px;
+    }
+
+    .likes-nbr {
+        margin-left: 5px;
+        font-size: 22px;
+    }
+
+    .grid-bottom {
+        padding-bottom: 75px;
+    }
+
+    .same-post {
+        background: color($colors, list-admin-items);
+        margin-top: 4em;
+    }
+
+    .special-card-position {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .card-header-ios,
+    .card-header-md,
+    .card-header-wp {
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: color($colors, card-header);
+    }
+
+    .item-ios,
+    .item-md,
+    .item-wp {
+        background-color: color($colors, primary);
+        color: color($colors, white-color);
+        font-weight: bold;
+    }
+
+    .same-post-h2,
+    .same-post-h6 {
+        color: color($colors, white-color);
+        font-weight: bold;
+    }
+
+    .max-width {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .custom-card {
+        margin: 0;
+    }
+
+    .same-post-h2,
+    .same-post-h2 {
+        color: color($colors, white-color);
+    }
+
+    .custom-item-agenda {
+        padding: 0 !important;
+    }
+
+    .icon-img-action {
+        width: 25px;
+        vertical-align: top;
+    }
+
+    .bottom-margin-8 {
+        margin-bottom: 8px;
+    }
+
+    .card-ios,
+    .card-md,
+    .card-wp {
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .margin-mais {
+        margin-top: 20px;
+    }
+
+    .je-suis {
+        margin-left: 5px;
+        font-size: 15px;
+    }
+
+    img.dot-icon {
+        display: inline;
+        width: 6px;
+        vertical-align: middle;
+        margin: 0 10px;
+    }
+
+    .numberParagraph {
+        font-size: 1.2rem;
+    }
+
+    .agenda-icons {
+        width: 25px;
+        margin: 0 auto;
+        display: inline;
+        vertical-align: -webkit-baseline-middle;
+
+        &.icons-car {
+            width: 40px;
+        }
+
+        &.icons-stars {
+            width: 30px;
+        }
+    }
+    .move.lock-icons {
+        width: 25px;
+        bottom: inherit;
+        top: 12%;
+        left: -25%;
+    }
+    .publish {
+        margin-top: 40px;
+        position: fixed;
+    }
+    @media (max-width: 350px) {
+        .numberParagraph {
+            font-size: 1rem;
+        }
+    }
+
+    // class desktop
+    // ----------------------------------------------------------------------------------
+    @media (min-width: 1023px) {
+        .agenda-filter {
+            margin-top: 20px;
+        }
+
+        .div-right {
+            padding-top: 20px;
+        }
+
+        .same-post-date {
+            font-family: "Montserrat Regular";
+            color: color($colors, light-black);
+            font-size: 15px;
+            display: block;
+            font-weight: normal;
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+
+        .event-excerpt {
+            display: block;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .select-ie {
+            display: none;
+        }
+
+        .move.lock-icons {
+            width: 25px;
+            bottom: inherit;
+            top: 12%;
+            left: -40%;
+        }
+
+        @media all and (-ms-high-contrast: none),
+        (-ms-high-contrast: active) {
+
+            /* IE10+ CSS styles go here */
+            .grid {
+                display: block;
+            }
+
+            .select-ie {
+                display: inline;
+                height: 100%;
+                margin: auto;
+                width: 100%;
+                border: none;
+                padding: 10px 30px 10px 10px;
+            }
+
+            .select-not-ie {
+                display: none;
+            }
+
+            .select-ie::-ms-expand {
+                display: none;
+            }
+
+            .submit-ne {
+                display: block;
+            }
+
+            .swiper-slide {
+                display: block;
+            }
+        }
+    }
+
+    // class mobile
+    // ----------------------------------------------------------------------------------
+    @media (max-width: 1022px) {
+        .card-content-ios {
+            padding: 6px 16px 14px !important;
+            font-size: 1.4rem;
+            line-height: 1.4;
+        }
+
+        .scroll-content {
+            margin-top: 133px !important;
+        }
+
+        .card-content-ios {
+            padding: 18px 16px 14px;
+            font-size: 1.4rem;
+            line-height: 1.4;
+        }
+
+        .same-post-date {
+            margin-top: 8px;
+            font-family: "Montserrat Regular";
+            color: color($colors, light-black);
+            display: block;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.5;
+        }
+
+        .event-excerpt {
+            display: block;
+            font-size: 1.7rem;
+            font-weight: bold;
+        }
+    }
+
+    ion-fab[bottom] {
+        bottom: 120px !important;
+    }
+}

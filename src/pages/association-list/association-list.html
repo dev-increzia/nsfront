@@ -1,0 +1,53 @@
+<!--
+  Generated template for the AssociationListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header" *ngIf="globals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+                <ion-title>Associations</ion-title>
+            </ion-col>
+            <ion-col col-2>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-content>
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <!--bloc central -->
+    <div class="div-center">
+        <ion-grid grid-bottom padding-top padding-bottom class="no-padding grid grid-bottom">
+
+            <ion-row responsive-sm text-center>
+                <ion-col col-md-12 col-12 class="underlined" *ngFor="let association of associations" (click)="openAssociation(association.id, association.name)">
+                    <button class="assoc-show-button" ion-button icon-end color="light">
+                        <img src="{{association.image_url}}" class="logo_assoc" *ngIf="association.image_url">
+                        <img src="assets/imgs/icons/user_default.png" class="logo_assoc" *ngIf="!association.image_url">
+                        <div class="names"> {{association.name | capitalize}}</div>
+                        <div class="name">{{association.category.name}} </div>
+                        <ion-icon name="ios-arrow-forward" float-end></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
+                <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Charger plus...">
+                </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </ion-grid>
+
+    </div>
+    <!-- fin bloc central -->
+    <div class="div-right" text-left>
+    </div>
+</ion-content>

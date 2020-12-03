@@ -1,0 +1,219 @@
+<ion-header class="mobile-header MMS" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+
+                <ion-title></ion-title>
+            </ion-col>
+            <ion-col col-2>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-header class="mobile-header MMS" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+
+
+                    <div class="page-title">{{ name }}</div>
+
+            </ion-col>
+            <ion-col col-2>
+                <ion-avatar class="blason">
+                    <img src="{{img_url}}">
+                </ion-avatar>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-content no-padding>
+    <div class="div-left">
+        <div text-center class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <!--bloc central -->
+    <div class="div-center">
+        <ion-grid padding-bottom class="no-padding grid bar-custom margin-bottom-grid">
+           <!-- <ion-row>
+                <ion-col text-center class="text-center" col-12>
+                    <img src="{{infos.blason}}">
+
+                </ion-col>
+
+            </ion-row>-->
+            <div *ngIf="infos.images || infos.videoFile" class="card-item-divider">
+
+                <div *ngIf="(!infos.images && infos.videoFile) || (infos.images && infos.images.length == 1); else elseBlock">
+                    <div *ngFor="let img of infos.images">
+                        <img data-src="{{img.url}}">
+                    </div>
+                    <video style="width: 100%; height: 100%" *ngIf="infos.videoFile !== null" controls poster="assets/img/video_default.png">
+                        <source [src]="infos.videoFile" type="video/mp4">
+                    </video>
+                </div>
+
+                <ng-template #elseBlock>
+                    <ion-slides loop="true" pager>
+                        <ion-slide *ngIf="infos.videoFile != null">
+                            <video style="width: 100%; height: 100%" controls poster="assets/img/video_default.png">
+                                <source [src]="infos.videoFile" type="video/mp4">
+                            </video>
+                        </ion-slide>
+                        <ion-slide *ngFor="let img of infos.images">
+                            <img data-src="{{img.url}}">
+                        </ion-slide>
+                    </ion-slides>
+                </ng-template>
+            </div>
+
+            <ion-row>
+                <ion-col class="col-dedicated">
+                    <div class="presentation-title">{{infos.title}}</div>
+
+                    <p *ngIf="infos.description" [innerHTML]="infos.description | nl2br"></p>
+
+                </ion-col>
+
+            </ion-row>
+
+            <ion-row class="scrollRow">
+                <ion-col col-12>
+                    <ion-list class="listScrolled" no-lines>
+
+                        <ion-item *ngFor="let h of headings.mapHeadings" >
+
+                                <button class="custom-button-links" color="light"  text-start (click)="openMapHeading(h.id)">
+                                    <span class="button-sign-affirmation"> {{h.title}} </span>
+                                    <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                                              aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon>
+                                </button>
+
+
+                        </ion-item>
+                        <ion-item *ngFor="let h of headings.articleHeadings" >
+
+                            <button class="custom-button-links" color="light"  text-start (click)="openArticleHeading(h.id)">
+                                <span class="button-sign-affirmation"> {{h.title}} </span>
+                                <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                                          aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon>
+                            </button>
+
+
+                        </ion-item>
+                        <ion-item *ngFor="let h of headings.phoneBookHeadings" >
+
+                            <button class="custom-button-links" color="light"  text-start (click)="openPhoneBookHeading(h.id, h.title)">
+                                <span class="button-sign-affirmation"> {{h.title}} </span>
+                                <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                                          aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon>
+                            </button>
+
+
+                        </ion-item>
+                        <ion-item *ngFor="let h of headings.reportingHeadings" >
+
+                            <button class="custom-button-links" color="light"  text-start (click)="openReportHeading(h.id)">
+                                <span class="button-sign-affirmation"> {{h.title}} </span>
+                                <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                                          aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon>
+                            </button>
+
+
+                        </ion-item>
+                        <ion-item *ngFor="let h of headings.usefullLinkHeadings" text-start (click)="openUsefullLinkHeading(h.url)">
+
+                            <button class="custom-button-links" color="light"  text-start>
+                                <span class="button-sign-affirmation"> {{h.title}} </span>
+                                <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                                          aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon>
+                            </button>
+
+
+                        </ion-item>
+
+
+
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+        <!--<ion-grid padding-bottom class="no-padding grid bar-custom margin-bottom-grid">
+
+            <ion-row>
+
+                <ion-col text-center>
+                    <button class="custom-button-links" color="light" (click)="mapAction()" text-start>
+                        <span class="button-sign-affirmation"> Carte pratique </span>
+                        <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                            aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon>
+                    </button>
+
+
+                    <button class="custom-button-links" color="light" (click)="numbers()" text-start>
+                        <span class="button-sign-affirmation"> Annuaire </span>
+                        <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                            aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon>
+                    </button>
+
+                    <button class="custom-button-links" color="light" (click)="emergency()" text-start>
+                        <span class="button-sign-affirmation"> Téléphones d'urgence </span>
+                        <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                            aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon>
+                    </button>
+
+                    <button class="custom-button-links" color="light" (click)="aLinkTo()" text-start>
+                        <span class="button-sign-affirmation"> Grands projets dans ma ville </span>
+                        <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                            aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon>
+                    </button>
+
+                    <button class="custom-button-links" color="light" text-start>
+                        <span class="button-sign-affirmation" (click)="openUrl()"> Démarches administratives </span>
+                        <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                            aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon>
+                    </button>
+
+                    <button class="custom-button-links" color="light" (click)="canteen()" text-start>
+                        <span class="button-sign-affirmation"> Menus des cantines </span>
+                        <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                            aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon>
+                    </button>
+
+                    <button class="custom-button-links" color="light" (click)="report()" text-start>
+                        <span class="button-sign-affirmation"> Signaler un problème </span>
+                        <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                            aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon>
+                    </button>
+                    <button class="custom-button-links" color="light" (click)="propose()" text-start>
+                        <span class="button-sign-affirmation"> Proposer une Initiative </span>
+                        <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                            aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon>
+                    </button>
+                </ion-col>
+
+            </ion-row>
+
+
+
+        </ion-grid>-->
+
+    </div>
+
+
+    <div class="div-right" text-center>
+    </div>
+</ion-content>

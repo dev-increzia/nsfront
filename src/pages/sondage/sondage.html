@@ -1,0 +1,139 @@
+<!--
+  Generated template for the SondagePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-row class="header-popin" no-padding>
+    <ion-col class="no-padding " text-left>
+      <button ion-button clear small type="button" color="primary" no-margin no-padding>
+        <ion-icon name="ios-create-outline"></ion-icon>
+
+      </button>
+    </ion-col>
+    <ion-col class="no-padding " text-center>
+      <h5 class="primary-color title-popin" no-margin>Créer un Sondage</h5>
+    </ion-col>
+    <ion-col class="no-padding " text-right>
+      <button ion-button clear small color="primary" icon-start no-margin no-padding (click)="goBack()">
+        <img class="icon-heart material-icons" src="assets/imgs/icons/image3.png">
+      </button>
+    </ion-col>
+  </ion-row>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-col col-12 text-centre class="padding-top">
+    <form (ngSubmit)="saveSurvey(publishForm.invalid, titre, description)" #publishForm="ngForm">
+      <ion-grid class="margin-top-grid">
+        <ion-row text-center>
+          <ion-col col-12 text-center no-padding class="margin-top">
+
+            <div>
+              <ion-slides class="image home-card-slides" pager>
+                <ion-slide *ngIf="article.photo">
+                  <img src="{{article.photo}}" *ngIf="article.photo">
+
+                  <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhoto(1);" *ngIf="article.photo"></ion-icon>
+
+                </ion-slide>
+                <div *ngFor="let item of article.photos; let i = index">
+                  <ion-slide *ngIf="item">
+
+                    <img src="{{item}}" *ngIf="item">
+                    <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhotos(i);" *ngIf="item"></ion-icon>
+                  </ion-slide>
+                </div>
+
+              </ion-slides>
+            </div>
+
+            <div *ngIf="article.photos && article.photos.length <= 8;">
+              <img class="button-img" src="assets/imgs/icons/button.png" (click)="presentActionSheet()">
+            </div>
+            <div *ngIf="!article.photos">
+              <img class="button-img" src="assets/imgs/icons/button.png" (click)="presentActionSheet()">
+            </div>
+            <!-- <p class="indication" *ngIf="accountType == 'association' || this.accountType == 'merchant'">(Jusqu'à 3 photos)</p> -->
+          </ion-col>
+
+          <ion-col col-12 text-center class="margin-top select-not-ie">
+            <ion-item [class.formError]="titre.invalid && (titre.dirty || submited || titre.touched)">
+              <ion-input name="titre" type="text" id="titre" placeholder="Intitulé de la question" [(ngModel)]="article.title"
+                         #titre="ngModel" (change)="capitalize($event.target.value, 'title')" (focus)="checkFocus($event)"
+                         required></ion-input>
+            </ion-item>
+            <div class="error-msg" *ngIf="titre.invalid && (titre.dirty || submited || titre.touched)">
+              <span class="error">Champs intitulé de la question obligatoire</span>
+            </div>
+          </ion-col>
+
+          <ion-col col-12 text-center class="margin-top select-ie">
+            <ion-item>
+              <ion-input name="titre" type="text" id="titre" placeholder="Intitulé de la question" [(ngModel)]="article.title"
+                         #titre="ngModel" (change)="capitalize($event.target.value, 'title')" (focus)="checkFocus($event)"
+                         required></ion-input>
+            </ion-item>
+            <div class="error-msg" *ngIf="titre.invalid && (titre.dirty || submited || titre.touched)">
+              <span class="error">Champs intitulé de la question obligatoire</span>
+            </div>
+          </ion-col>
+
+          <ion-col col-12 text-center class="select-not-ie">
+            <ion-item [class.formError]="sondage.invalid && (sondage.dirty || submited || sondage.touched)">
+              <ion-textarea name="sondage" placeholder="Contexte du sondage" [(ngModel)]="article.sondage"
+                #sondage="ngModel" (change)="capitalize($event.target.value, 'sondage')" (focus)="checkFocus($event)"
+                required></ion-textarea>
+            </ion-item>
+            <div class="error-msg" *ngIf="sondage.invalid && (sondage.dirty || submited || sondage.touched)">
+              <span class="error">Champs contexte du sondage obligatoire</span>
+            </div>
+          </ion-col>
+
+          <ion-col col-12 text-center class="select-ie">
+            <ion-item>
+              <ion-textarea name="sondage" placeholder="Contexte du sondage" [(ngModel)]="article.sondage"
+                #sondage="ngModel" (change)="capitalize($event.target.value, 'sondage')" required></ion-textarea>
+            </ion-item>
+            <div class="error-msg"  *ngIf="sondage.invalid && (sondage.dirty || submited || sondage.touched)">
+              <span class="error">Champs contexte du sondage obligatoire</span>
+            </div>
+          </ion-col>
+
+          <ion-col col-12 text-center class="margin-top select-not-ie" *ngFor="let att of questionArray; let idx = index">
+            <ion-item [class.formError]="questionArray[idx]['error']">
+              <ion-input name="questionArray[{{idx}}]" type="text" id="questionArray[{{idx}}]" placeholder='Intitulé du choix {{idx +1}}'
+                [(ngModel)]="questionArray[idx].value" (change)="checkChangeArray(idx)" required></ion-input>
+            </ion-item>
+            <img *ngIf="idx>1" (click)="remove(idx)" class="margin-t-10 icon-heart material-icons" src="assets/imgs/icons/image3.png">
+            <div class="error-msg" *ngIf="questionArray[idx]['error']">
+              <span class="error">Champs Intitulé du choix {{idx +1}} obligatoire</span>
+            </div>
+          </ion-col>
+
+          <ion-col col-12 text-center class="margin-top select-ie" *ngFor="let att of questionArray; let idx = index">
+            <ion-item [class.formError]="questionArray[idx]['error']">
+              <ion-input name="questionArray{{idx}}" type="text" id="questionArray[{{idx}}]" placeholder="Intitulé du choix {{idx +1}}"
+                [(ngModel)]="questionArray[idx].value" (change)="checkChangeArray(idx)" required></ion-input>
+            </ion-item>
+            <img *ngIf="idx>1" (click)="remove(idx)" class="margin-t-10 icon-heart material-icons" src="assets/imgs/icons/image3.png">
+            <div class="error-msg" *ngIf="questionArray[idx]['error']">
+              <span class="error">Champs Intitulé du choix {{idx +1}} obligatoire</span>
+            </div>
+          </ion-col>
+
+          <ion-col col-12 text-center>
+            <img (click)="Add()" class="img-add" src="assets/imgs/icons/add-sondage.png">
+          </ion-col>
+
+          <ion-col col-12 text-center>
+            <button ion-button color="primary" type="submit" class="button-sondage" round>Publier</button>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </form>
+  </ion-col>
+</ion-content>

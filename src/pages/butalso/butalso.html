@@ -1,0 +1,112 @@
+<!--
+  Generated template for the ButalsoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item" (click)="goBack()">
+                    <ion-icon name="ios-arrow-back"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+                <ion-title>Mais aussi</ion-title>
+            </ion-col>
+            <ion-col col-2>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-content>
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <div class="div-center">
+        <ion-refresher (ionRefresh)="doRefreshAgenda($event)">
+            <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+        <ion-grid class="grid-bottom">
+            <ion-row>
+                <div class="full-width" *ngFor="let itemDate of itemsDates; let idx = index">
+                    <ion-card>
+                        <ion-card-header>
+                            <strong class="title-date">{{itemDate.key| amLocale:'fr' | amDateFormat:' Do MMMM'}}</strong>
+                            <p class="title-day" text-capitalize> {{itemDate.key| amLocale:'fr' | amDateFormat:'dddd'}}
+                            </p>
+                        </ion-card-header>
+                        <ion-card-content *ngFor="let item of itemDate.value">
+                            <ion-row class="event-item" (click)="detailsEvent(item, false)">
+                                <ion-col col-3>
+                                    <span class="start-hour">{{item.startAt| amLocale:'fr' |
+                                        amDateFormat:'HH'}}h{{item.startAt| amLocale:'fr' | amDateFormat:'mm'}}</span>
+                                </ion-col>
+                                <ion-col col-6>
+                                    <div class="bottom-margin-8"><strong class="event-title">{{item.title}}</strong></div>
+                                    <p text-capitalize>
+                                        {{item.creatorName}}
+                                    </p>
+                                    <strong>à {{item.cityName}}</strong>
+                                </ion-col>
+                                <ion-col col-3>
+                                    <div *ngIf="(item.imageURL && !item.images) || (item.images && !item.imageURL && item.images.length == 1); else elseBlock"
+                                        class="home-card-slides img-div">
+                                        <div class="img-div" *ngIf="item.imageURL">
+                                            <img class="img-div" data-src="{{item.imageURL}}" imageViewer>
+                                        </div>
+                                        <div class="img-div" *ngFor="let img of item.images">
+                                            <img class="img-div" data-src="{{img.url}}" imageViewer>
+                                        </div>
+                                    </div>
+                                    <ng-template #elseBlock>
+                                        <ion-slides class="home-card-slides  img-div" autoplay="5000" loop="true" pager>
+                                            <ion-slide class="img-div" *ngIf="item.imageURL">
+                                                <img class="img-div" data-src="{{item.imageURL}}" imageViewer>
+                                            </ion-slide>
+                                            <ion-slide class="img-div" *ngFor="let img of item.images">
+                                                <img class="img-div" data-src="{{img.url}}" imageViewer>
+                                            </ion-slide>
+                                        </ion-slides>
+                                    </ng-template>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col text-right>
+                                    <button ion-button clear small color="primary" icon-start class="button-icon"
+                                        (click)="detailsEvent(item, true)">
+                                        <span class="comments-nbr"> {{item.nbComments}} </span><img class="icon-img-action"
+                                            src="assets/imgs/icons/comments.png">
+
+                                    </button>
+                                </ion-col>
+                                <ion-col text-left>
+                                    <button ion-button clear small color="primary" icon-start class="button-icon"
+                                        (click)="like(item);" *ngIf="!item.isLiked">
+                                        <img class="icon-img-action" src="assets/imgs/icons/dislike.png">
+                                        <span class="likes-nbr">{{item.nbParticipants}}</span>
+                                    </button>
+                                    <button ion-button clear small color="primary" icon-start class="button-icon"
+                                        (click)="unlike(item);" *ngIf="item.isLiked">
+                                        <img class="icon-img-action" src="assets/imgs/icons/like.png">
+                                        <span class="likes-nbr">{{item.nbParticipants}}</span>
+                                    </button>
+                                </ion-col>
+                            </ion-row>
+                        </ion-card-content>
+                    </ion-card>
+                </div>
+                <ion-col col-12 text-center *ngIf="itemsDates.length == 0">
+                    <p text-center class="no-result"> Pas de résultat correspondant à votre filtre.</p>
+                </ion-col>
+                <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+                </ion-infinite-scroll>
+            </ion-row>
+        </ion-grid>
+
+    </div>
+    <div class="div-right" text-left></div>
+</ion-content>

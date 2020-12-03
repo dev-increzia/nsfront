@@ -1,0 +1,146 @@
+page-practical-information {
+    .ion-header-k {
+        background-image: url("../../assets/imgs/header/clean-header-png.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .ion-title-k {
+        background: transparent;
+    }
+    .header-ios .toolbar-background-ios,
+    .footer-ios .toolbar-background-ios {
+        border-style: none !important;
+        border-color: transparent !important;
+    }
+    .toolbar-background-ios {
+        background: transparent !important;
+    }
+    .header-md .toolbar-background-md,
+    .footer-md .toolbar-background-md {
+        border-style: none !important;
+        border-color: transparent !important;
+    }
+    .toolbar-background-md {
+        background: transparent !important;
+    }
+    .header-wp .toolbar-background-wp,
+    .footer-md .toolbar-background-wp {
+        border-style: none !important;
+        border-color: transparent !important;
+    }
+    .toolbar-background-wp {
+        background: transparent !important;
+    }
+    .toolbar-title-md,
+    .toolbar-title-ios,
+    .toolbar-title-wp {
+        color: color($colors, white-color) !important;
+        font-family: "Montserrat Bold" !important;
+        font-size: 20px;
+        text-align: center;
+        text-transform: capitalize;
+        position: relative;
+    }
+    ion-icon {
+        display: inline-block;
+        font-size: 25px;
+        vertical-align: middle;
+        color: color($colors, white-color);
+    }
+    .button-outline-md-light,
+    .button-outline-ios-light,
+    .button-outline-wp-light {
+        border-color: color($colors, white-color);
+        color: color($colors, dark);
+        background-color: color($colors, white-color);
+        border-radius: 20px;
+    }
+    .colorized {
+        color: color($colors, primary) !important;
+        float: right;
+        position: relative;
+        right: 15px;
+        display: block;
+        vertical-align: bottom;
+        top: 2px;
+    }
+    [icon-right] ion-icon,
+    [icon-end] ion-icon {
+        font-size: 1.4em;
+        line-height: .67;
+        pointer-events: none;
+        padding-left: 5.4em;
+    }
+    .button-sign-affirmation {
+        font-family: "Montserrat Regular";
+        font-size: 15px;
+        line-height: 30px;
+        color: color($colors, light-black);
+        text-align: left;
+        font-weight: bold;
+        margin-left: 20px;
+    }
+    .ion-img {
+        margin-bottom: 2em;
+    }
+    .ion-page>ion-content {
+        position: absolute;
+        margin-top: 20px !important;
+    }
+    .margin-bottom-grid {
+        margin-bottom: 60px;
+    }
+    @media (min-width: 1023px) {
+        .bar-custom {
+            margin-top: 3em;
+        }
+        .custom-button-links {
+            width: 50%;
+            border-radius: 20px;
+            background: color($colors, white-color);
+            padding: 5px 0px;
+            margin-bottom: 1.5em;
+            -webkit-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        .map-idicator {
+            width: 40%;
+            height: 150px;
+            border-radius: 20px;
+            display: block;
+            border: 2px solid color($colors, white-color) !important;
+            margin-bottom: 1.5em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    @media (max-width: 1022px) {
+        .custom-button-links {
+            width: 80%;
+            border-radius: 20px;
+            background: color($colors, white-color);
+            padding: 5px 0px;
+            margin-bottom: 1.5em;
+            -webkit-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+            -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+        .map-idicator {
+            width: 70%;
+            height: 150px;
+            border-radius: 20px;
+            display: block;
+            border: 2px solid color($colors, white-color) !important;
+            margin-bottom: 1.5em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}

@@ -1,0 +1,88 @@
+page-popup{
+    // ----------------------------------------------------------------------------------
+    // Page Styling
+    // ----------------------------------------------------------------------------------
+    .button-white {
+        -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+        -moz-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+        box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+        width: 85%;
+        height: 45px;
+    }
+
+    .scroll-content {
+        margin-top: 0 !important;
+        padding-top: 15px !important;
+    }
+    p{
+        font-family: "Montserrat Medium";
+        font-size: 15px;
+    }
+    .messagePopup{
+        padding-left:20px;
+    }
+    h6 {
+        font-weight: 600;
+        color: color($colors, p-color);
+    }
+    // ----------------------------------------------------------------------------------
+    // Buttons
+    // ----------------------------------------------------------------------------------
+    .close-btn {
+        padding: 5px;
+    }
+    // ----------------------------------------------------------------------------------
+    // Input
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // Select
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // Item
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // class
+    // ----------------------------------------------------------------------------------
+    // customize icon for modal close action
+    .material-icons {
+        position: absolute;
+    }
+
+    .centred-block-text {
+        display: block;
+        text-align: center;
+        padding: 0 25px;
+    }
+
+    .custom-button-action {
+        width: 80%;
+        background: color($colors, white-color);
+        padding: 0px 5px;
+        font-size: 18px;
+        border-radius: 60px;
+        color: color($colors, light-black);
+    }
+    .wishPublish{
+        display: inline-block;
+    }
+    .only-text .block-name{
+        width: 80%;
+        text-align: left;
+        padding-left: 30px;
+        text-transform: initial;
+        font-weight: normal;
+    }
+
+    // class mobile
+    // ----------------------------------------------------------------------------------
+    @media (max-width: 1022px) {}
+    // class desktop
+    // ----------------------------------------------------------------------------------
+    @media (min-width: 1023px) {
+        .scroll-content {
+            overflow-y: auto;
+        }
+    }
+
+
+}

@@ -1,0 +1,133 @@
+page-home {
+    // ----------------------------------------------------------------------------------
+    // Page Styling
+    // ----------------------------------------------------------------------------------
+    .scroll-content {
+        background-color: color($colors, white-color);
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+    h2 {
+        margin-top: 0rem;
+        margin-bottom: 0;
+    }
+    p {
+        font-weight: $medium;
+        color: color($colors, text-color);
+        margin: 5px 5px;
+    }
+    // ----------------------------------------------------------------------------------
+    // Buttons
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // Input
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // Select
+    // ----------------------------------------------------------------------------------
+    .div-select-rond {
+        background: color($colors, grey-color);
+        border-radius: 64px;
+        width: 80%;
+        margin: auto;
+    }
+    .input-ios,
+    .input-md,
+    .input-wp {
+        padding: 11px 0px 11px 5px;
+    }
+    .input-ios .input-icon,
+    .input-md .input-icon,
+    .input-wp .input-icon {
+        display: none;
+    }
+    .input-ios .input-placeholder,
+    .input-md .input-placeholder,
+    .input-wp .input-placeholder {
+        color: color($colors, p-color);
+    }
+    // ----------------------------------------------------------------------------------
+    // Item
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // class
+    // ----------------------------------------------------------------------------------
+    .img-logo {
+        width: 25%;
+        display: block;
+        margin: auto;
+        position: relative;
+        top: 20px;
+    }
+    .padding-40 {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+    }
+    .select-text {
+        margin-left: 0px !important;
+        font-size: 90% !important;
+    }
+    .button{
+        font-weight: 500;
+    }
+    .input-ios .input-placeholder, .input-md .input-placeholder, .input-wp .input-placeholder{
+        font-weight: 500;
+    }
+    // class mobile
+    // ----------------------------------------------------------------------------------
+    @media (max-width: 1022px) {
+
+    }
+
+    // class desktop
+    // ----------------------------------------------------------------------------------
+    @media (min-width: 1023px) {
+        .div-select-rond {
+            width: 60%;
+            display: inline-block;
+        }
+        .select-ie{
+            display: none;
+        }
+        .submit-ne{
+            display: none;
+        }
+        .headerImg{
+            max-height: 550px;
+            height: 600px;
+        }
+
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) { 
+            /* IE10+ CSS styles go here */
+            .grid{
+                display: block;
+            }
+            .select-ie{
+                display: inline;
+                border: none;
+                background: transparent;
+                width: 100%;
+                text-align: center;
+                margin: 5px;
+                color: color($colors, p-color);
+                font-weight: 600;
+            }
+            .select-not-ie{
+                display: none;
+            }
+            .select-ie::-ms-expand {
+                display: none;
+            }
+            .submit-ne{
+                display: block;
+            }
+        }
+    }
+}
+ion-label{
+    font-weight: 500 !important;
+}
+.text-input{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}

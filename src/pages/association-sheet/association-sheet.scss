@@ -1,0 +1,93 @@
+page-association-sheet {
+
+    .medium-text-title {
+        color: color($colors, light-black);
+        font-family: "Montserrat Medium";
+        font-size: 15px;
+        font-weight: normal;
+    }
+    // custom special margins
+    .csm1 {
+        margin-top: 25px;
+        padding-left: 20px;
+        margin-bottom: 20px;
+    }
+    
+
+    .csm2 {
+        margin-right: 10px;
+        margin-bottom: 5px;
+    }
+
+    .csm3 {
+        margin-top: 10px;
+    }
+
+    .excerpt {
+        font-family: "SourceSansPro Regular";
+        font-size: 14px;
+        color: color($colors, light-black);
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .clear{
+        clear: both;
+        margin-top: 5px;
+    }
+
+    .card-title {
+        font-family: "Montserrat Medium";
+        font-size: 18px;
+        color: color($colors, light-black);
+        font-weight: normal;
+    }
+
+    .card-title-subtitle {
+        font-family: "SourceSansPro Regular";
+        font-size: 16px;
+        color: color($colors, light-grey);
+        display: block;
+    }
+
+    .icon-img-action{
+        width: 30px;
+        margin-right: 10px;
+        margin-left: 10px;
+        vertical-align: top;
+    }
+
+    .custom-grid {
+        background: color($colors, white-color);
+        margin-bottom: 40px;
+    }
+
+    .page-title{
+        margin: auto;
+    }
+
+    .toolbar-title{
+        font-size: 20px !important;
+        //white-space: pre-wrap !important;
+        //text-overflow: clip !important;
+        text-transform: capitalize;
+    }
+
+    .imgs-div{
+        margin-bottom: 20px;
+    }
+
+    .back {
+        padding-top: 15px;
+    }
+    .titleAsso {
+        color: #00a99d !important;
+        text-decoration: underline;
+        font-weight: bold;
+        font-family: 'Montserrat Medium';
+    }
+    .search-button{
+        font-size: 17px;
+        bottom: -1.5em
+    }
+}

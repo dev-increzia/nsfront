@@ -1,0 +1,56 @@
+page-delete-citzen-account-last {
+
+    .full-width-s {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    .error-msg {
+        padding: 5px 0 0 0px;
+        float: left;
+        margin-left: 5px;
+    }
+
+    .res {
+        width: 250px;
+        position: relative;
+        margin: 20px auto;
+        border-radius: 20px;
+    }
+
+    .textarea-timing {
+        .text-input {
+            height: 40px;
+        }
+    }
+    .div-margin-top {
+        margin-top: 20px;
+    }
+    // class mobile
+    // ----------------------------------------------------------------------------------
+    @media (max-width: 1022px) {
+        .icon-img {
+            width: 20%;
+            background: color($colors, white-color);
+            border-radius: 20%;
+        }
+        .scroll-content {
+            margin-bottom: 75px;
+        }
+    }
+    // class desktop
+    // ----------------------------------------------------------------------------------
+    @media (min-width: 1023px) {
+        .icon-img {
+            width: 7%;
+            background: color($colors, white-color);
+            border-radius: 20%;
+        }
+        .div-margin-top {
+            margin-top: 20px;
+        }
+        .button-img {
+            width: 25%;
+        }
+    }
+}

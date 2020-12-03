@@ -1,0 +1,56 @@
+<!--
+  Generated template for the NumberCategoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header" *ngIf="globals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+                <ion-title> {{pageTitle}} </ion-title>
+            </ion-col>
+            <ion-col col-2 text-right>
+                <div class="block-image" *ngIf="currentUser && currentUser.cityhall">
+                    <img *ngIf="currentUser.cityhall.image_url" src="{{currentUser.cityhall.image_url}}" class="user-img">
+                    <img *ngIf="!currentUser.cityhall.image_url" src="assets/imgs/icons/user_default.png" class="user-img">
+                </div>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-content padding>
+    <div class="div-left div-left-top">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <!--bloc central -->
+    <div class="div-center">
+        <ion-grid padding-top padding-bottom class="no-padding grid M bar-custom grid-bottom">
+
+            <ion-row>
+
+                <ion-col padding margin-bottom>
+                    <ion-list class="category-number">
+                        <ion-item (click)="deciedAction(item)" *ngFor="let item of categories">
+                            <ion-label class="labelWhiteSpace">{{ item.name }}</ion-label>
+                            <ion-icon item-end name="ios-arrow-forward"></ion-icon>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+
+            </ion-row>
+
+        </ion-grid>
+
+    </div>
+    <!-- fin bloc central -->
+    <div class="div-right" text-center>
+    </div>
+</ion-content>

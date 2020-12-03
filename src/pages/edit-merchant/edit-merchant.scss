@@ -1,0 +1,149 @@
+page-edit-merchant {
+    // ----------------------------------------------------------------------------------
+    // Page Styling
+    // ----------------------------------------------------------------------------------
+    .title {
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+    ion-label {
+        white-space: inherit;
+    }
+    .button-img{
+        width: 30%;
+    }
+    // ----------------------------------------------------------------------------------
+    // Buttons
+    // ----------------------------------------------------------------------------------
+    .button-ios-white-color,
+    .button-md-white-color,
+    .button-wp-white-color {
+        color: color($colors, light-grey);
+    }
+    // ----------------------------------------------------------------------------------
+    // Input
+    // ----------------------------------------------------------------------------------
+    .textarea-timing {
+        .text-input {
+            height: 40px;
+        }
+    }
+    .text-input {
+        border-left: none;
+    }
+    // ----------------------------------------------------------------------------------
+    // Select
+    // ----------------------------------------------------------------------------------
+    .select-text {
+        color: color($colors, h-color);
+        padding-left: 15px;
+        text-align: left;
+    }
+    // ----------------------------------------------------------------------------------
+    // Item
+    // ----------------------------------------------------------------------------------
+    .item-ios.item-block .item-inner,
+    .item-md.item-block .item-inner,
+    .item-wp.item-block .item-inner {
+        padding: 0;
+    }
+    // ----------------------------------------------------------------------------------
+    // class
+    // ----------------------------------------------------------------------------------
+    .div-icon-imge {
+        position: absolute;
+        z-index: 9999;
+        width: 100%;
+    }
+    .div-button-icon {
+        width: 100%;
+        position: absolute;
+        top: 40px;
+    }
+    .icon-delete {
+        font-size: 35px;
+    }
+    .div-margin-top {
+        margin-top: 20px;
+    }
+    // class mobile
+    // ----------------------------------------------------------------------------------
+    @media (max-width: 1022px) {
+        .icon-img {
+            width: 20%;
+            background: color($colors, white-color);
+            border-radius: 20%;
+        }
+        .scroll-content {
+            margin-bottom: 75px;
+        }
+        .select-ie {
+            display: none;
+        }
+    }
+    // class desktop
+    // ----------------------------------------------------------------------------------
+    @media (min-width: 1023px) {
+        .icon-img {
+            width: 7%;
+            background: color($colors, white-color);
+            border-radius: 20%;
+        }
+        .div-margin-top {
+            margin-top: 20px;
+        }
+        .button-img {
+            width: 25%;
+        }
+        .select-ie {
+            display: none;
+        }
+        // class IE
+        // ----------------------------------------------------------------------------------
+        @media all and (-ms-high-contrast: none),
+        (-ms-high-contrast: active) {
+            .table-activity {
+                width: 100%;
+            }
+            .grid {
+                display: block;
+            }
+            img {
+                width: 100%;
+            }
+            .select-ie {
+                display: inline;
+                height: 100%;
+                margin: auto;
+                width: 100%;
+                border: none;
+                padding: 10px 0px 10px 5px;
+            }
+            .input-select-ie {
+                display: inline;
+                margin: auto;
+                width: 900%;
+                border: none;
+            }
+            .margin-top-ie {
+                margin-top: 10px;
+            }
+            .margin-bottom-ie {
+                padding-bottom: 10px !important;
+            }
+            .select-not-ie {
+                display: none;
+            }
+            .select-ie::-ms-expand {
+                display: none;
+            }
+            .submit-ne {
+                display: block;
+            }
+        }
+    }
+}

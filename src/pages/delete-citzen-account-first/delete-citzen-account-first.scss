@@ -1,0 +1,217 @@
+page-delete-citzen-account-first {
+    // ----------------------------------------------------------------------------------
+    // Page Styling
+    // ----------------------------------------------------------------------------------
+
+    .error-msg {
+        padding: 5px;
+        text-align: left;
+        margin-left: 35px;
+    }
+
+    .res {
+        width: 150px;
+        position: relative;
+        margin: 20px auto;
+        border-radius: 20px;
+    }
+
+    .content-div {
+        width: 100%;
+        text-align: center !important;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2em;
+        margin-bottom: 0;
+    }
+
+    .button-white {
+        -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+        box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+        width: 270px;
+        position: relative;
+        margin: auto;
+    }
+
+    ion-label {
+        white-space: inherit;
+    }
+
+    .item-input-white-custom {
+        width: 270px;
+        position: relative;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 20px;
+        font-size:12px;
+    }
+
+    .block-button-img {
+        width: 25px !important;
+        display: block;
+        vertical-align: middle;
+        margin-left: 10px;
+    }
+    // ----------------------------------------------------------------------------------
+    // Buttons
+    // ----------------------------------------------------------------------------------
+    .button-ios-white-color,
+    .button-md-white-color,
+    .button-wp-white-color {
+        color: color($colors, light-grey);
+    }
+
+    .button-ios-light,
+    .button-md-light,
+    .button-wp-light {
+        color: color($colors, primary);
+        background-color : color($colors, grey-color);
+    }
+
+    .button-md-light:hover:not(.disable-hover) {
+        background-color: color($colors, grey-color);
+    }
+
+    // ----------------------------------------------------------------------------------
+    // Input
+    // ----------------------------------------------------------------------------------
+    .textarea-timing {
+        .text-input {
+            height: 40px;
+        }
+    }
+
+    .text-input {
+        border-left: none;
+    }
+    // ----------------------------------------------------------------------------------
+    // Chexkbox
+    // ----------------------------------------------------------------------------------
+    .checkbox-ios-secondary .checkbox-checked {
+        border-color: color($colors, primary);
+        background-color: color($colors, primary);
+    }
+
+    .checkbox-md-secondary .checkbox-checked{
+        border-color: color($colors, primary);
+        background-color: color($colors, primary);
+    }
+    // ----------------------------------------------------------------------------------
+    // Select
+    // ----------------------------------------------------------------------------------
+    .select-text {
+        color: color($colors, h-color);
+        padding-left: 15px;
+    }
+    // ----------------------------------------------------------------------------------
+    // Item
+    // ----------------------------------------------------------------------------------
+    .item-ios.item-block .item-inner,
+    .item-md.item-block .item-inner,
+    .item-wp.item-block .item-inner {
+        padding: 0;
+    }
+    // ----------------------------------------------------------------------------------
+    // class
+    // ----------------------------------------------------------------------------------
+    .div-icon-imge {
+        position: absolute;
+        z-index: 9999;
+        width: 100%;
+    }
+
+    .div-button-icon {
+        width: 100%;
+        position: absolute;
+        top: 40px;
+    }
+
+    .icon-delete {
+        font-size: 35px;
+    }
+
+    .overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        top: 0;
+        left: 0;
+    }
+
+    .full-width {
+        width: 100%;
+        overflow:auto;
+        min-height: 250px;
+        max-height: 350px;
+    }
+
+    .registred-new-user {
+        position: absolute;
+        padding: 20px 20px 0px 0px;
+        background: color($colors, white-color);
+        z-index: 999;
+        top: 100px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        @media (max-width: 1022px) { width: 80%;}
+        @media (min-width: 1023px) { width: 50%;}
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: $medium;
+        text-align: center;
+        .close-btn {
+            float: right;
+        }
+        .app-title {
+            font-size: 20px;
+            color: color($colors, primary);
+        }
+        .title-app {
+            font-size: 18px;
+            color: color($colors, primary);
+        }
+        .item-input-white {
+            font-size: 15px;
+            background: color($colors, grey-color);
+            border-radius: $button-round-border-radius;
+        }
+        .passwordButton{
+            font-size: 16px;
+        }
+    }
+
+    // class mobile
+    // ----------------------------------------------------------------------------------
+    @media (max-width: 1022px) {
+        .icon-img {
+            width: 20%;
+            background: color($colors, white-color);
+            border-radius: 20%;
+        }
+
+        .scroll-content {
+            margin-bottom: 75px;
+        }
+    }
+    // class desktop
+    // ----------------------------------------------------------------------------------
+    @media (min-width: 1023px) {
+        .icon-img {
+            width: 7%;
+            background: color($colors, white-color);
+            border-radius: 20%;
+        }
+
+        .div-margin-top {
+            margin-top: 20px;
+        }
+
+        .button-img {
+            width: 25%;
+        }
+    }
+
+}

@@ -1,0 +1,51 @@
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+                <ion-title>Liste des administrateurs</ion-title>
+            </ion-col>
+            <ion-col col-2>
+                <div class="item" text-right>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-content padding class="inside-content no-padding">
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <div class="div-center">
+        <ion-grid margin-top class="no-padding">
+            <ion-row responsive-sm text-center class="no-padding">
+                <ion-col col-md-12 col-12 class="no-padding">
+                    <div class="list-admin-items" *ngFor="let item of items">
+                        <span class="current-admin-name"> {{ item.lastname | capitalize }} {{ item.firstname |
+                            capitalize }} </span>
+                        <ion-icon name="md-more" float-end (click)="deleteAccountConfirmation(item)"></ion-icon>
+                        <div class="clear"></div>
+                    </div>
+                </ion-col>
+
+                <ion-col col-12 text-center>
+                    <img (click)="addAdmin()" class="img-add" src="assets/imgs/icons/add.png">
+                </ion-col>
+
+                <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
+                    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Charger plus...">
+                    </ion-infinite-scroll-content>
+                </ion-infinite-scroll>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <!-- fin bloc central -->
+    <div class="div-right" text-center>
+        <!-- <img class="publish" src="assets/imgs/icons/add-admin.png" (click)="addAdmin()"> -->
+    </div>
+</ion-content>

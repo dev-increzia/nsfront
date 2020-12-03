@@ -1,0 +1,281 @@
+page-number {
+    .bordred:nth-child(2n+1) {
+        border-bottom: 1px solid color($colors, names);
+    }
+    .number-title {
+        margin: 0 0 2px;
+        overflow: inherit;
+        font-size: 1.4rem;
+        line-height: normal;
+        text-overflow: inherit;
+        color: color($colors, number-color);
+        font-weight: bold;
+        white-space: pre-line;
+    }
+    .select-ios {
+        padding: 16px 8px 11px 16px;
+    }
+    .item-ios {
+        padding-left: 0px;
+        padding-left: 0px;
+        border-radius: 0;
+        position: relative;
+        font-size: 1.7rem;
+        color: color($colors, dark);
+        background-color: color($colors, white-color);
+        -webkit-transition: background-color 200ms linear;
+        transition: background-color 200ms linear;
+    }
+    .phone.margin-num {
+        padding: 7px;
+        display: inline-block;
+    }
+    .list-ios>.item-block:last-child,
+    .list-ios>.item-wrapper:last-child .item-block {
+        border-bottom: none;
+    }
+    .list-ios>.item-block:first-child {
+        border-top: none;
+    }
+    ion-app.md [padding] .scroll-content {
+        padding: 16px 0px 16px 0px !important;
+    }
+    ion-app.ios [padding] .scroll-content {
+        padding: 16px 0px 16px 0px !important;
+    }
+    ion-app.wp [padding] .scroll-content {
+        padding: 16px 0px 16px 0px !important;
+    }
+    .boxed-container {
+        background: color($colors, white-color);
+        padding: 10px 5px;
+        border-radius: 25px;
+    }
+    .item-md.item-block .item-inner {
+        padding-right: 0 !important;
+        border-bottom: none;
+    }
+    .item-ios.item-block .item-inner {
+        padding-right: 0 !important;
+        border-bottom: none;
+    }
+    .item-wp.item-block .item-inner {
+        padding-right: 0 !important;
+        border-bottom: none;
+    }
+    .item-md {
+        padding-left: 0px !important;
+        padding-right: 0;
+        position: relative;
+        font-size: 1.6rem;
+        font-weight: normal;
+        text-transform: none;
+        color: color($colors, dark);
+        background-color: color($colors, white-color);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    ion-content.has-refresher>.scroll-content {
+        background-color: color($colors, grey-color);
+    }
+    .select-filters {
+        background: color($colors, gray-select);
+        margin-top: 25px;
+        margin-bottom: 20px;
+    }
+    .select-fitler{
+      padding: 0px 8px 0px 16px;
+    }
+    .select-fitler .select-icon{
+      top:0;
+    }
+    .select-fitler {
+        width: 100%;
+        max-width: 100%;
+        background: color($colors, gray-select);
+    }
+    .event-item {
+        border-top: 0.55px solid color($colors, light-black);
+        margin-top: -20px;
+        padding-top: 15px;
+    }
+    .select-placeholder.select-text {
+        font-size: 17px;
+        color: color($colors, light-grey);
+        font-family: "Montserrat Regular";
+        font-weight: 200;
+    }
+    .card {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+    .start-hour {
+        font-size: 20px;
+    }
+    .event-title {
+        font-size: 18px;
+    }
+    .title-day {
+        color: color($colors, h-color);
+        font-size: 20px;
+    }
+    .title-date {
+        font-size: 25px;
+    }
+    .weekend-button.activate {
+        background: color($colors, primary);
+        color: color($colors, white-color);
+        font-family: "Montserrat Bold";
+        font-size: 17px;
+        font-weight: bold;
+    }
+    .comments-nbr {
+        margin-right: 5px;
+        font-size: 22px;
+    }
+    .likes-nbr {
+        margin-left: 5px;
+        font-size: 22px;
+    }
+    .grid-bottom {
+        margin-bottom: 50px;
+    }
+    .same-post {
+        background: color($colors, list-admin-items);
+        margin-top: 4em;
+    }
+    .special-card-position {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+    .card-header-ios,
+    .card-header-md,
+    .card-header-wp {
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: color($colors, card-header);
+    }
+    .item-ios,
+    .item-md,
+    .item-wp {
+        background-color: transparent;
+        color: color($colors, white-color);
+        font-weight: bold;
+    }
+    .same-post-h2,
+    .same-post-h6 {
+        color: color($colors, white-color);
+        font-weight: bold;
+    }
+    .max-width {
+        width: 100%;
+        max-width: 100%;
+    }
+    .custom-card {
+        margin: 0;
+    }
+    .same-post-h2,
+    .same-post-h2 {
+        color: color($colors, white-color);
+    }
+    .custom-item-agenda {
+        padding: 0 !important;
+    }
+    .icon-img-action {
+        width: 30px;
+        vertical-align: top;
+    }
+    .icon-img-action {
+        width: 30px;
+    }
+    .bottom-margin-8 {
+        margin-bottom: 8px;
+    }
+    .option-text {
+        color: color($colors, dark) !important;
+    }
+    .number-description {
+        white-space: pre-line;
+    }
+    // class desktop
+    // ----------------------------------------------------------------------------------
+    @media (min-width: 1023px) {
+        .agenda-filter {
+            margin-top: 20px;
+        }
+        .div-right {
+            padding-top: 20px;
+        }
+        .same-post-date {
+            font-family: "Montserrat Regular";
+            color: color($colors, light-black);
+            font-size: 15px;
+            display: block;
+        }
+        .event-excerpt {
+            font-family: "Montserrat Bold";
+            display: block;
+            font-size: 20px;
+        }
+        .select-ie {
+            display: none;
+        }
+        @media all and (-ms-high-contrast: none),
+        (-ms-high-contrast: active) {
+            /* IE10+ CSS styles go here */
+            .select-ie {
+                display: inline;
+                height: 100%;
+                margin: auto;
+                width: 100%;
+                border: none;
+                padding: 10px 30px 10px 10px;
+            }
+            .select-not-ie {
+                display: none;
+            }
+            .select-ie::-ms-expand {
+                display: none;
+            }
+            .submit-ne {
+                display: block;
+            }
+        }
+    }
+    // class mobile
+    // ----------------------------------------------------------------------------------
+    @media (max-width: 1022px) {
+        .same-post-date {
+            font-family: "Montserrat Regular";
+            color: color($colors, light-black);
+            font-size: 11px;
+            display: block;
+        }
+        .event-excerpt {
+            font-family: "Montserrat Bold";
+            display: block;
+            font-size: 12px;
+        }
+        .margin-bot {
+            margin-bottom: 50px;
+        }
+        .mobile-header .toolbar-title {
+            color: color($colors, white-color);
+            font-size: 20px !important;
+            //white-space: pre-wrap !important;
+            //text-overflow: clip !important;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 18ch;
+        }
+    }
+    .scroll-content {
+        bottom: 60px;
+    }
+    
+    
+}

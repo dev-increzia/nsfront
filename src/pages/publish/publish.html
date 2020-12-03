@@ -1,0 +1,810 @@
+<!--
+  Generated template for the PublishPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header> 
+    <ion-row class="header-popin" no-padding>
+        <ion-col class="no-padding " text-left>
+            <button ion-button clear small type="button" color="primary" no-margin no-padding>
+                <!--<ion-icon name="ios-create-outline"></ion-icon>-->
+                <img class="editimg" src="assets/imgs/icons/edit.png">
+
+            </button>
+        </ion-col>
+        <ion-col class="no-padding " text-center>
+            <h5 class="primary-color title-popin" no-margin>Publier</h5>
+        </ion-col>
+        <ion-col class="no-padding " text-right>
+            <button ion-button clear small color="primary" icon-start no-margin no-padding (click)="goBack()">
+                <img class="icon-heart material-icons" src="assets/imgs/icons/image3.png">
+            </button>
+        </ion-col>
+    </ion-row>
+</ion-header>
+<ion-content padding>
+    <ion-col col-12 text-centre class="padding-top">
+        <form  #publishForm="ngForm">
+            <ion-grid class="margin-top-grid padding-horizontal">
+                <ion-row text-center>
+                    <ion-col col-12 text-center *ngIf="accountType == 'association'">
+
+                        <ion-item class="item-grey select-not-ie no-padding-left"  [class.formError]="group.invalid && (group.dirty || submited || group.touched)">
+                            <ion-select (ionChange)="onChangeCommuAsso($event)" required [(ngModel)]="article.group" #group="ngModel" class="select-white no-padding-left" placeholder="Groupe / Association" name="group" submitText="Ok" cancelText="Annuler">
+                                <ion-option *ngFor="let asso of listAccount" value="{{asso.id}}">{{asso.name}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-col class="item-grey select-ie no-padding-left"  [class.formError]="group.invalid && (group.dirty || submited || group.touched)">
+                            <select required (ionChange)="onChangeCommuAsso($event)" [(ngModel)]="article.group" #group="ngModel" class="select-white input-select-ie margin-top-select margin-bottom-select padding-right no-padding-left"
+                                    placeholder="Groupe / Association" name="group">
+                                <option *ngFor="let asso of listAccount" value="{{asso.id}}">{{asso.name}}</option>
+                            </select>
+                        </ion-col>
+                        <div class="error-msg" *ngIf="(group.invalid && (group.dirty || submited || group.touched))">
+                            <span class="error">Le champs Groupe / Association est obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center *ngIf="accountType == 'community'">
+                        <ion-item class="item-grey select-not-ie no-padding-left"  [class.formError]="group.invalid && (group.dirty || submited || group.touched || surveyDisabled)">
+                            <ion-select (ionChange)="onChangeCommuCommu($event)" required [(ngModel)]="article.group" #group="ngModel" class="select-white no-padding-left" placeholder="Communauté" name="group" submitText="Ok" cancelText="Annuler">
+                                <ng-container *ngFor="let community of adminCommunities">
+                                    <ion-option  *ngIf="community.survey || community.article" value="{{community.id}}">{{community.name}}</ion-option>
+                                </ng-container>
+                            </ion-select>
+                        </ion-item>
+                        <ion-col class="item-grey select-ie no-padding-left"  [class.formError]="group.invalid && (group.dirty || submited || group.touched || surveyDisabled)">
+                            <select required (ionChange)="onChangeCommuCommu($event)" [(ngModel)]="article.group" #group="ngModel" class="select-white input-select-ie margin-top-select margin-bottom-select padding-right no-padding-left"
+                                    placeholder="Communauté" name="group">
+                                <ng-container *ngFor="let community of adminCommunities">
+                                    <option *ngIf="community.survey || community.article" value="{{community.id}}">{{community.name}}</option>
+                                </ng-container>
+                            </select>
+                        </ion-col>
+                        <div class="error-msg" *ngIf="(group.invalid && (group.dirty || submited || group.touched || surveyDisabled))">
+                            <span class="error">Le champs communauté est obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center *ngIf="accountType == 'merchant'">
+
+                        <ion-item class="item-grey select-not-ie no-padding-left"  [class.formError]="group.invalid && (group.dirty || submited || group.touched)">
+                            <ion-select (ionChange)="onChangeCommuAsso($event)" required [(ngModel)]="article.group" #group="ngModel" class="select-white no-padding-left" placeholder="Commerce / Partenaire" name="group" submitText="Ok" cancelText="Annuler">
+                                <ion-option *ngFor="let merchant of listAccount" value="{{merchant.id}}">{{merchant.name}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-col class="item-grey select-ie no-padding-left"  [class.formError]="group.invalid && (group.dirty || submited || group.touched)">
+                            <select (ionChange)="onChangeCommuAsso($event)" required [(ngModel)]="article.group" #group="ngModel" class="select-white input-select-ie margin-top-select margin-bottom-select padding-right no-padding-left"
+                                    placeholder="Commerce / Partenaire" name="group">
+                                <option *ngFor="let merchant of listAccount" value="{{merchant.id}}">{{merchant.name}}</option>
+                            </select>
+                        </ion-col>
+                        <div class="error-msg" *ngIf="(group.invalid && (group.dirty || submited || group.touched))">
+                            <span class="error">Le champs Commerce / Partenaire est obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center class="privateContent select-not-ie" *ngIf="accountType != 'community' && accountType != 'citoyen'">
+                        <ion-item class="item-input no-padding-left">
+                            <ion-label color="h-color"> <img class="imglock" src="assets/imgs/icons/lock.png" alt="NOUS-Ensemble" />C'est un contenu privé</ion-label>
+                            <ion-toggle name="private" (ionChange)="onChangePrivate($event)" [(ngModel)]="article.private" checked="false"></ion-toggle>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-12 text-center class="privateContent select-not-ie" *ngIf="accountType == 'citoyen'">
+                        <ion-item class="item-input no-padding-left">
+                            <ion-label color="h-color"> <img class="imglock" src="assets/imgs/icons/lock.png" alt="NOUS-Ensemble" />C'est un contenu privé</ion-label>
+                            <ion-toggle [disabled]="listAccount.length < 1" name="private" (ionChange)="onChangePrivate($event)" [(ngModel)]="article.private" checked="false"></ion-toggle>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-12 text-center *ngIf="accountType == 'community' && hasSondage">
+                        <button ion-button round type="button" class="button-white button-survey" no-padding (click)="popSondage()">
+                            <div class="block-image"><img src="assets/imgs/icons/survey.png" class="img-survey"></div>
+                            <div class="block-name">C'est un sondage</div>
+                            <div class="block-icon">
+                            </div>
+                        </button>
+                    </ion-col>
+                    <ion-col col-12 text-center class="select-not-ie privateContent" *ngIf="accountType == 'community'">
+                        <ion-item class="item-input no-padding-left">
+                            <ion-label color="h-color">C'est une publication à <br/> garder sur la page dédiée</ion-label>
+                            <ion-toggle [disabled]="disabledDedicated" name="private" (ionChange)="onChangeHeading($event)" checked="false"></ion-toggle>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-12 text-center *ngIf="accountType == 'community'">
+
+                        <ion-item class="item-grey select-not-ie no-padding-left"  [class.formError]="heading.invalid && (heading.dirty || submited || heading.touched)">
+                            <ion-select [disabled]="disabledHeading" [required]="!disabledHeading" [(ngModel)]="article.heading" #heading="ngModel" class="select-white no-padding-left" placeholder="Grand projet de ville" name="heading" submitText="Ok" cancelText="Annuler">
+                                <ion-option *ngFor="let heading of allHeadings" value="{{heading.id}}">{{heading.title}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-col class="item-grey select-ie no-padding-left"  [class.formError]="heading.invalid && (heading.dirty || submited || heading.touched)">
+                            <select [disabled]="disabledHeading" [required]="!disabledHeading" [(ngModel)]="article.heading" #heading="ngModel" class="select-white input-select-ie margin-top-select margin-bottom-select padding-right no-padding-left"
+                                    placeholder="Grand projet de ville" name="heading">
+                                <option *ngFor="let heading of allHeadings" value="{{heading.id}}">{{heading.title}}</option>
+                            </select>
+                        </ion-col>
+                        <div class="error-msg" *ngIf="(heading.invalid && (heading.dirty || submited || heading.touched))">
+                            <span class="error">Champs Grand projet de ville obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center *ngIf="accountType == 'citoyen'">
+
+                        <ion-item class="item-grey select-not-ie no-padding-left"  [class.formError]="group.invalid && (group.dirty || submited || group.touched)">
+                            <ion-select (ionChange)="onChangeEtablish($event)" [disabled]="disabledMerchant" [required]="!disabledMerchant" [(ngModel)]="article.group" #group="ngModel" class="select-white no-padding-left" placeholder="Choix groupe/établissement" name="group" submitText="Ok" cancelText="Annuler">
+                                <ion-option *ngFor="let group of listAccount" value="{{group.type}}-{{group.id}}">{{group.name}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-col class="item-grey select-ie no-padding-left"  [class.formError]="group.invalid && (group.dirty || submited || group.touched)">
+                            <select (ionChange)="onChangeEtablish($event)" [disabled]="disabledMerchant" [required]="!disabledMerchant" [(ngModel)]="article.group" #group="ngModel" class="select-white input-select-ie margin-top-select margin-bottom-select padding-right no-padding-left"
+                                    placeholder="Choix groupe/établissement" name="group">
+                                <option *ngFor="let group of listAccount" value="{{group.type}}-{{group.id}}">{{group.name}}</option>
+                            </select>
+                        </ion-col>
+                        <div class="error-msg" *ngIf="(group.invalid && (group.dirty || submited || group.touched))">
+                            <span class="error">Champs groupe / établissement obligatoire</span>
+                        </div>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row text-center>
+                    <ion-col col-12 text-center no-padding class="margin-top">
+
+                        <div>
+                            <ion-slides class="image home-card-slides" pager>
+                                <ion-slide *ngIf="article.photo">
+                                    <img src="{{article.photo}}" *ngIf="article.photo">
+
+                                    <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhoto(1);"
+                                        *ngIf="article.photo"></ion-icon>
+
+                                </ion-slide>
+                                <div *ngFor="let item of article.photos; let i = index">
+                                    <ion-slide *ngIf="item">
+
+                                        <img src="{{item}}" *ngIf="item">
+                                        <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhotos(i);"
+                                            *ngIf="item"></ion-icon>
+                                    </ion-slide>
+                                </div>
+
+                            </ion-slides>
+                        </div>
+
+                        <div *ngIf="article.photos && article.photos.length <= 8;">
+                            <img class="button-img" src="assets/imgs/icons/button.png" (click)="presentActionSheet()">
+                        </div>
+                        <div *ngIf="!article.photos">
+                            <img class="button-img" src="assets/imgs/icons/button.png" (click)="presentActionSheet()">
+                        </div>
+                        <div *ngIf="article.videoFile" style="position: relative;">
+                                	<img class="button-img" src="assets/imgs/icons/video.png">
+                                    <ion-icon name="trash" 
+                                    	class="icon-delete delete-icon" 
+                                    	(click)="deleteVideo();"
+                                        *ngIf="article.videoFile">
+                                    </ion-icon>
+                        </div>
+                        <div *ngIf="article.document" style="position: relative;">
+                            <img class="button-img" src="assets/imgs/icons/doc-icon.png">
+                            <ion-icon name="trash"
+                                      class="icon-delete delete-icon"
+                                      (click)="deleteDocument();"
+                                      *ngIf="article.document">
+                            </ion-icon>
+                        </div>
+
+                        <div>
+
+                            <input type="file" id="fileInput" (change)="onFileChange($event)" >
+
+                        </div>
+                        <!-- <p class="indication" *ngIf="accountType == 'association' || this.accountType == 'merchant'">(Jusqu'à 3 photos)</p> -->
+                    </ion-col>
+
+                </ion-row>
+
+            </ion-grid>
+
+            <ion-grid class="padding-horizontal">
+
+                <ion-row>
+
+                    <ion-col col-12 text-center class="margin-top select-not-ie">
+
+                        <ion-item class="no-padding-left" [class.formError]="titre.invalid && (titre.dirty || submited || titre.touched)">
+                            <ion-input autocomplete="on" autocorrect="on" name="titre" type="text" id="titre" placeholder="Titre" [(ngModel)]="article.title"
+                                #titre="ngModel" (change)="capitalize($event.target.value, 'title')" (focus)="checkFocus($event)"
+                                required></ion-input>
+                        </ion-item>
+
+                        <div style="width: 90%;
+                        text-align: right;">
+                            <button class="emojiPosition" ion-button clear icon-only (click)="toggled = !toggled"
+                            [(emojiPickerIf)]="toggled" [emojiPickerDirection]="'top'"
+                            (emojiPickerSelect)="handleSelection($event)">
+                            😃
+                            </button>
+                        </div>
+                        
+                        <div class="error-msg" *ngIf="titre.invalid && (titre.dirty || submited || titre.touched)">
+                            <span class="error">Champs titre obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <div style="width: 100%; height: 20px;"></div>
+                    <ion-col col-12 text-center class="margin-top select-ie">
+
+                        <ion-item class="no-padding-left">
+                            <ion-input autocomplete="on" autocorrect="on" name="titre" type="text" id="titre" placeholder="Titre" [(ngModel)]="article.title"
+                                #titre="ngModel" (change)="capitalize($event.target.value, 'title')" (focus)="checkFocus($event)"
+                                required></ion-input>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="invalidTitre">
+                            <span class="error">Champs titre obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center class="margin-top select-not-ie">
+
+                        <ion-item class="no-padding-left" style="padding-top: 15px;" [class.formError]="description.invalid && (description.dirty || submited || description.touched)">
+                            <ion-textarea autocomplete="on" autocorrect="on" name="description" placeholder="Description" [(ngModel)]="article.description"
+                                #description="ngModel" (change)="capitalize($event.target.value, 'description')"
+                                (focus)="checkFocus($event)" required></ion-textarea>
+                        </ion-item>
+
+                        <div style="width: 90%;
+                        text-align: right;">
+                        <button style="position: absolute;
+                        top: 85%;
+                        left: 1%;" ion-button clear icon-only (click)="toggledDes= !toggledDes"
+                        [(emojiPickerIf)]="toggledDes" [emojiPickerDirection]="'top'"
+                        (emojiPickerSelect)="handleDescription($event)">
+                        😃
+                        </button>
+                        </div>
+                        <div class="error-msg" *ngIf="description.invalid && (description.dirty || submited || description.touched)">
+                            <span class="error">Champs description obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <div style="width: 100%; height: 30px;"></div>
+                    <ion-col col-12 text-center class="select-ie">
+
+                        <ion-item class="no-padding-left" style="padding-top: 15px;">
+                            <ion-textarea autocomplete="on" autocorrect="on" name="description" placeholder="Description" [(ngModel)]="article.description"
+                                #description="ngModel" (change)="capitalize($event.target.value, 'description')"
+                                required></ion-textarea>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="invalidDesc">
+                            <span class="error">Champs description obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center  *ngIf="accountType == 'citoyen' ; else elseBlock">
+                        <ion-item class="item-grey select-not-ie no-padding-left" [class.formError]="community.invalid && (community.dirty || submited || community.touched)">
+                            <ion-select (ionChange)="onChangeCommuCitoyen($event)" [disabled]="disabledCommunity" [required]="!disabledCommunity"  [(ngModel)]="article.community" #community="ngModel" class="select-white no-padding-left" placeholder="Communauté" name="communaute" submitText="Ok" cancelText="Annuler" required>
+                                <ion-option *ngFor="let community of linkedCommunities" value={{community.id}}>{{community.name}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-col class="item-grey select-ie no-padding-left" [class.formError]="community.invalid && (community.dirty || submited || community.touched)">
+                            <select (ionChange)="onChangeCommuCitoyen($event)" [disabled]="disabledCommunity" [required]="!disabledCommunity" [(ngModel)]="article.community" #community="ngModel" class="select-white input-select-ie margin-top-select margin-bottom-select padding-right no-padding-left"
+                                    placeholder="Communauté" name="community" required>
+                                <option *ngFor="let community of linkedCommunities" value={{community.id}}>{{community.name}}</option>
+                            </select>
+                        </ion-col>
+                        <div class="error-msg" *ngIf="community.invalid && (community.dirty || submited || community.touched)">
+                            <span class="error">Champs Communauté obligatoire</span>
+                        </div>
+                    </ion-col>
+                        <ion-col col-12 text-center no-pading-bottom>
+                            <ion-item class="item-grey select-not-ie no-padding-left" [class.formError]="category.invalid && (category.dirty || submited || category.touched)">
+                                <ion-select required class="select-white no-padding-left" placeholder="Thèmes *" name="category" submitText="Ok"
+                                    cancelText="Annuler" multiple="true" [(ngModel)]="article.category" #category="ngModel"
+                                    (ionChange)="onChangeCategory($event)">
+                                    <ion-option *ngFor="let category of allCategories" value={{category.id}}>{{category.name}}</ion-option>
+                                </ion-select>
+                            </ion-item>
+                            <ion-col no-padding class="select-padding-ie item-grey select-ie " style="padding: 0;"
+                                [class.formError]="category.invalid && (category.dirty || submited || category.touched)">
+                                <select required class="select-white input-select-ie select-multiple-ie padding-right no-padding-left"
+                                    placeholder="Thèmes *" name="category" multiple [(ngModel)]="article.category"
+                                    #category="ngModel">
+                                    <option *ngFor="let category of allCategories" value={{category.id}} (click)="onChangeCategory($event.srcElement.value)">{{category.name}}</option>
+                                </select>
+                            </ion-col>
+                            <div class="form-category">
+                                <div class="tags">
+                                    <div *ngFor="let category of categoryNames"><a>{{category.name}} <span (click)="removeCategory(category.id)">x</span></a></div>
+                                </div>
+                            </div>
+                            <div class="error-msg" *ngIf="category.invalid && (category.dirty || submited || category.touched)">
+                                <span class="error">Champs Thèmes obligatoire</span>
+                            </div>
+
+                        </ion-col>
+                    <ion-col col-12 text-center class="margin-top">
+                        <ion-item class="item-grey no-padding-left" [class.formError]="city.invalid && (city.dirty || submited || city.touched)">
+                            <ion-input (click)="SelectCity()"   readonly autocomplete="off" autocorrect="on" name="city" type="text" id="city" placeholder="Ville" [(ngModel)]="events.city"
+                                #city="ngModel" required></ion-input>
+                        </ion-item>
+                        <div text-center class="error-msg" *ngIf="city.invalid && (city.dirty || submited || city.touched)">
+                            <span class="error">Champs ville obligatoire</span>
+                        </div>
+                    </ion-col>
+
+                    <ion-col col-12 text-center *ngIf=" account.role != 'community_su_admin'">
+                        <div class="form-item" *ngIf="publicDate" showWhen="core">
+                            <!-- start date -->
+                            <div col-12 class="label">
+                                <label>Date de publication:</label>
+                            </div>
+                            <ion-grid class="select-not-ie">
+                                <ion-row class="full-width">
+                                    <ion-col col-12 class="col-select-date center" no-padding>
+                                        <span>Le&nbsp;</span>
+                                        <select [class.formError]="publicAtYear.invalid && (publicAtYear.dirty || submited || publicAtYear.touched)"
+                                            [(ngModel)]="article.publicAt.year" #publicAtYear="ngModel" name="publicAtYear"
+                                            class="selected-date date">
+                                            <option disabled>Année</option>
+                                            <option *ngFor="let y of years" value="{{y}}">{{y}}</option>
+                                            <div class="select-icon-inner"></div>
+                                        </select>
+                                        <select [class.formError]="publicAtMonth.invalid && (publicAtMonth.dirty || submited || publicAtMonth.touched)"
+                                            [(ngModel)]="article.publicAt.month" #publicAtMonth="ngModel" name="publicAtMonth"
+                                            class="selected-date date">
+                                            <option disabled>Mois</option>
+                                            <option *ngFor="let m of months" [ngValue]="m.id">{{m.name}}</option>
+                                        </select>
+                                        <select [class.formError]="publicAtDay.invalid && (publicAtDay.dirty || submited || publicAtDay.touched)"
+                                            [(ngModel)]="article.publicAt.day" #publicAtDay="ngModel" name="publicAtDay"
+                                            class="selected-date hours">
+                                            <option disabled>Jour</option>
+                                            <option *ngFor="let d of days" [ngValue]="d">{{pad(d)}}</option>
+                                        </select>
+
+                                        <span>&nbsp;À&nbsp;</span>
+                                        <select [class.formError]="publicAtHour.invalid && (publicAtHour.dirty || submited || publicAtHour.touched)"
+                                            [(ngModel)]="article.publicAt.hour" #publicAtHour="ngModel" name="publicAtHour"
+                                            class="selected-date hours">
+                                            <option disabled>Heure</option>
+                                            <option *ngFor="let h of hours" [ngValue]="h">{{pad(h)}}</option>
+                                        </select>
+                                        <span>&nbsp;H&nbsp;</span>
+                                        <select [class.formError]="publicAtMinute.invalid && (publicAtMinute.dirty || submited || publicAtMinute.touched)"
+                                            [(ngModel)]="article.publicAt.minute" #publicAtMinute="ngModel" name="publicAtMinute"
+                                            class="selected-date hours">
+                                            <option disabled>Minute</option>
+                                            <option *ngFor="let min of minutes" [ngValue]="min">{{pad(min)}}</option>
+                                        </select>
+                                        <span>&nbsp;M&nbsp;</span>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                            <ion-grid class="select-ie">
+                                <ion-row class="full-width">
+                                    <ion-col col-12 class="col-select-date center" no-padding>
+                                        <span>Le&nbsp;</span>
+                                        <select [class.formError]="publicAtYear.invalid && (publicAtYear.dirty || submited || publicAtYear.touched)"
+                                            [(ngModel)]="article.publicAt.year" #publicAtYear="ngModel" name="publicAtYear"
+                                            class="selected-date date">
+                                            <option disabled>Année</option>
+                                            <option *ngFor="let y of years" value="{{y}}">{{y}}</option>
+                                            <div class="select-icon-inner"></div>
+                                        </select>
+                                        <select [class.formError]="publicAtMonth.invalid && (publicAtMonth.dirty || submited || publicAtMonth.touched)"
+                                            [(ngModel)]="article.publicAt.month" #publicAtMonth="ngModel" name="publicAtMonth"
+                                            class="selected-date date">
+                                            <option disabled>Mois</option>
+                                            <option *ngFor="let m of months" [ngValue]="m.id">{{m.name}}</option>
+                                        </select>
+                                        <select [class.formError]="publicAtDay.invalid && (publicAtDay.dirty || submited || publicAtDay.touched)"
+                                            [(ngModel)]="article.publicAt.day" #publicAtDay="ngModel" name="publicAtDay"
+                                            class="selected-date hours">
+                                            <option disabled>Jour</option>
+                                            <option *ngFor="let d of days" [ngValue]="d">{{pad(d)}}</option>
+                                        </select>
+                                    </ion-col>
+                                    <ion-col col-12 class="col-select-date center" no-padding>
+                                        <span>&nbsp;À&nbsp;</span>
+                                        <select [class.formError]="publicAtHour.invalid && (publicAtHour.dirty || submited || publicAtHour.touched)"
+                                            [(ngModel)]="article.publicAt.hour" #publicAtHour="ngModel" name="publicAtHour"
+                                            class="selected-date hours">
+                                            <option disabled>Heure</option>
+                                            <option *ngFor="let h of hours" [ngValue]="h">{{pad(h)}}</option>
+                                        </select>
+                                        <span>&nbsp;H&nbsp;</span>
+                                        <select [class.formError]="publicAtMinute.invalid && (publicAtMinute.dirty || submited || publicAtMinute.touched)"
+                                            [(ngModel)]="article.publicAt.minute" #publicAtMinute="ngModel" name="publicAtMinute"
+                                            class="selected-date hours">
+                                            <option disabled>Minute</option>
+                                            <option *ngFor="let min of minutes" [ngValue]="min">{{pad(min)}}</option>
+                                        </select>
+                                        <span>&nbsp;M&nbsp;</span>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </div>
+
+                        <div class="form-item" *ngIf="this.accountType != 'merchant'">
+                            <a class="show-more" (click)="showMore()">(<span *ngIf="publicDate">-</span><span *ngIf="!publicDate">+</span>)
+                                Date de publication</a>
+                        </div>
+                        <div class="more-event-div" *ngIf="publicDate">
+                            <div class="form-item" showWhen="android, ios, windows">
+                                <ion-item class="item-grey">
+                                    <ion-datetime class="datetime-input" [(ngModel)]="article.publicAt.fullDate"
+                                        placeholder="Date de publication" name="publicAt" id="publicAt" displayFormat="DD/MM/YYYY HH:mm" [min]="minPublicDate"
+                                        min="2017" max="2030-10-31" pickerFormat="DD-MMMM-YYYY HH:mm" monthNames="Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre"
+                                        doneText="Ok" cancelText="Annuler">
+                                    </ion-datetime>
+                                </ion-item>
+                            </div>
+                        </div>
+                    </ion-col>
+
+
+
+
+
+
+
+                    <div class="more-event-div privateContent">
+                        <ion-col col-12 text-center>
+                            <ion-item class="item-grey" no-padding>
+                                <ion-label class="toggle-label" no-padding>
+                                    <div class="div-event without-icon">Envoyer une notification</div>
+                                </ion-label>
+                                <ion-toggle class="no-padding" [(ngModel)]="article.push.enabled" name="event"
+                                    checked="false" no-padding></ion-toggle>
+                            </ion-item>
+                        </ion-col>
+                        <div *ngIf="article.push.enabled">
+                            <div class="form-item">
+                                <ion-item class="item-grey" [class.formError]="push_date.invalid && (push_date.dirty || submited || push_date.touched)">
+                                    <ion-datetime #push_date="ngModel" name="push_date" placeholder="Date*" min="2017-08-31"
+                                        max="2030-12-31" displayFormat="DD/MM/YYYY" pickerFormat="DD-MMMM-YYYY"
+                                        name="push_date" [(ngModel)]="article.push.date" monthNames="Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre"
+                                        doneText="Ok" cancelText="Annuler" required>
+                                    </ion-datetime>
+                                </ion-item>
+                                <div class="error-msg" *ngIf="push_date.invalid && (push_date.dirty || submited || push_date.touched)">
+                                    <span class="error">Champs date obligatoire.</span>
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <ion-item class="item-grey" [class.formError]="push_hour.invalid && (push_hour.dirty || submited || push_hour.touched)">
+                                    <ion-datetime class="datetime-input" #push_hour="ngModel" minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"
+                                        name="push_hour" placeholder="Heure*" displayFormat="HH:mm" pickerFormat="HH:mm"
+                                        [(ngModel)]="article.push.hour" doneText="Ok" cancelText="Annuler" required>
+                                    </ion-datetime>
+                                </ion-item>
+                                <div class="error-msg" *ngIf="push_hour.invalid && (push_hour.dirty || submited || push_hour.touched)">
+                                    <span class="error">Champs heure obligatoire.</span>
+                                </div>
+                            </div>
+                            <div class="form-item">
+                                <ion-col col-12 text-center class="margin-top select-not-ie">
+                                    <ion-item class="textAreaInput" style="padding-top: 15px;" [class.formError]="push_content.invalid && (push_content.dirty || submited || push_content.touched)">
+                                        <ion-textarea (change)="capitalize($event.target.value)" #push_content="ngModel"
+                                             class="form-input-text" name="push_content"
+                                            maxlength="140" type="text" id="title" placeholder="Description*..." [(ngModel)]="evtdescription"
+                                            required></ion-textarea>
+                                    </ion-item>
+
+                                    <div style="width: 90%;
+                                    text-align: right;">
+                                    <button style="position: absolute;
+                                    top: 78%;
+                                    left: 0%;" ion-button clear icon-only (click)="toggledContent= !toggledContent"
+                                    [(emojiPickerIf)]="toggledContent" [emojiPickerDirection]="'top'"
+                                    (emojiPickerSelect)="handleContent($event)">
+                                    😃
+                                    </button>
+                                    </div>
+                                    
+
+                                    <div class="error-msg" *ngIf="push_content.invalid && (push_content.dirty || submited || push_content.touched)">
+                                        <span class="error">Champs description obligatoire</span>
+                                    </div>
+                                </ion-col>
+                            </div>
+                        </div>
+                      
+                    </div>
+
+
+
+
+
+                    <div style="width: 100%; height: 20px;"></div>
+                    
+
+                    <ion-col col-12 text-center *ngIf="accountType == 'association' || accountType == 'community'">
+                        <ion-item class="item-input no-padding-left privateContent">
+                            <ion-label color="h-color"> <img class="imgcalendar" src="assets/imgs/icons/calendar.png" alt="NOUS-Ensemble" />C’est un évènement</ion-label>
+                            <ion-toggle name="event" (ionChange)="openEvent($event)" checked="false"></ion-toggle>
+                        </ion-item>
+                    </ion-col>
+
+                    <ion-col col-12 text-center *ngIf="accountType == 'merchant'">
+                        <p class="secondCommuText">Organisation du bon plan</p>
+                    </ion-col>
+
+                    <ion-row class="step-row" text-center="" *ngIf="showEvent || accountType == 'merchant'">
+                        <div class="form-item" showWhen="core">
+                            <!-- start date -->
+                            <div col-12 class="label">
+                                <label>Date de début:</label>
+                            </div>
+                            <ion-grid class="select-not-ie">
+                                <ion-row class="full-width">
+                                    <ion-col col-12 class="col-select-date center" no-padding>
+                                        <span>Le&nbsp;</span>
+                                        <select [class.formError]="startDateYear.invalid && (startDateYear.dirty || submited || startDateYear.touched)"
+                                            [(ngModel)]="events.startDate.year" #startDateYear="ngModel" name="startDateYear"
+                                            class="selected-date date" (change)="checkDate()" required>
+                                            <option disabled>Année</option>
+                                            <option *ngFor="let y of years" value="{{y}}">{{y}}</option>
+                                            <div class="select-icon-inner"></div>
+                                        </select>
+                                        <select [class.formError]="startDateMonth.invalid && (startDateMonth.dirty || submited || startDateMonth.touched)"
+                                            [(ngModel)]="events.startDate.month" #startDateMonth="ngModel" name="startDateMonth"
+                                            class="selected-date date" (change)="checkDate()" required>
+                                            <option disabled>Mois</option>
+                                            <option *ngFor="let m of months" [ngValue]="m.id">{{m.name}}</option>
+                                        </select>
+                                        <select [class.formError]="startDateDay.invalid && (startDateDay.dirty || submited || startDateDay.touched)"
+                                            [(ngModel)]="events.startDate.day" #startDateDay="ngModel" name="startDateDay"
+                                            class="selected-date hours" (change)="checkDate()" required>
+                                            <option disabled>Jour</option>
+                                            <option *ngFor="let d of days" [ngValue]="d">{{pad(d)}}</option>
+                                        </select>
+
+                                        <span>&nbsp;À&nbsp;</span>
+                                        <select [class.formError]="startDateHour.invalid && (startDateHour.dirty || submited || startDateHour.touched)"
+                                            [(ngModel)]="events.startDate.hour" #startDateHour="ngModel" name="startDateHour"
+                                            class="selected-date hours" (change)="checkDate()" required>
+                                            <option disabled>Heure</option>
+                                            <option *ngFor="let h of hours" [ngValue]="h">{{pad(h)}}</option>
+                                        </select>
+                                        <span>&nbsp;H&nbsp;</span>
+                                        <select [class.formError]="startDateMinute.invalid && (startDateMinute.dirty || submited || startDateMinute.touched)"
+                                            [(ngModel)]="events.startDate.minute" #startDateMinute="ngModel" name="startDateMinute"
+                                            class="selected-date hours" (change)="checkDate()" required>
+                                            <option disabled>Minute</option>
+                                            <option *ngFor="let min of minutes" [ngValue]="min">{{pad(min)}}</option>
+                                        </select>
+                                        <span>&nbsp;M&nbsp;</span>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                            <ion-grid class="select-ie">
+                                <ion-row class="full-width">
+                                    <ion-col col-12 class="col-select-date center" no-padding>
+                                        <span>Le&nbsp;</span>
+                                        <select [class.formError]="startDateYear.invalid && (startDateYear.dirty || submited || startDateYear.touched)"
+                                            [(ngModel)]="events.startDate.year" #startDateYear="ngModel" name="startDateYear"
+                                            class="selected-date date" (change)="checkDate()" required>
+                                            <option disabled>Année</option>
+                                            <option *ngFor="let y of years" value="{{y}}">{{y}}</option>
+                                            <div class="select-icon-inner"></div>
+                                        </select>
+                                        <select [class.formError]="startDateMonth.invalid && (startDateMonth.dirty || submited || startDateMonth.touched)"
+                                            [(ngModel)]="events.startDate.month" #startDateMonth="ngModel" name="startDateMonth"
+                                            class="selected-date date" (change)="checkDate()" required>
+                                            <option disabled>Mois</option>
+                                            <option *ngFor="let m of months" [ngValue]="m.id">{{m.name}}</option>
+                                        </select>
+                                        <select [class.formError]="startDateDay.invalid && (startDateDay.dirty || submited || startDateDay.touched)"
+                                            [(ngModel)]="events.startDate.day" #startDateDay="ngModel" name="startDateDay"
+                                            class="selected-date hours" (change)="checkDate()" required>
+                                            <option disabled>Jour</option>
+                                            <option *ngFor="let d of days" [ngValue]="d">{{pad(d)}}</option>
+                                        </select>
+                                    </ion-col>
+                                    <ion-col col-12 class="col-select-date center marg-top" no-padding>
+                                        <span>&nbsp;À&nbsp;</span>
+                                        <select [class.formError]="startDateHour.invalid && (startDateHour.dirty || submited || startDateHour.touched)"
+                                            [(ngModel)]="events.startDate.hour" #startDateHour="ngModel" name="startDateHour"
+                                            class="selected-date hours" (change)="checkDate()" required>
+                                            <option disabled>Heure</option>
+                                            <option *ngFor="let h of hours" [ngValue]="h">{{pad(h)}}</option>
+                                        </select>
+                                        <span>&nbsp;H&nbsp;</span>
+                                        <select [class.formError]="startDateMinute.invalid && (startDateMinute.dirty || submited || startDateMinute.touched)"
+                                            [(ngModel)]="events.startDate.minute" #startDateMinute="ngModel" name="startDateMinute"
+                                            class="selected-date hours" (change)="checkDate()" required>
+                                            <option disabled>Minute</option>
+                                            <option *ngFor="let min of minutes" [ngValue]="min">{{pad(min)}}</option>
+                                        </select>
+                                        <span>&nbsp;M&nbsp;</span>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </div>
+                        <div class="form-item" showWhen="core">
+                            <!-- end date -->
+                            <div col-12 class="label">
+                                <label>Date de fin:</label>
+                            </div>
+                            <ion-grid class="select-not-ie">
+                                <ion-row class="full-width">
+                                    <ion-col class="col-select-date center" no-padding>
+                                        <span>Le&nbsp;</span>
+                                        <select [(ngModel)]="events.endDate.year" name="endDateYear" (change)="checkDate()"
+                                            class="selected-date date">
+                                            <option disabled>Année</option>
+                                            <option *ngFor="let y of years" [ngValue]="y">{{y}}</option>
+                                        </select>
+                                        <select [(ngModel)]="events.endDate.month" name="endDateMonth" (change)="checkDate()"
+                                            class="selected-date date">
+                                            <option disabled>Mois</option>
+                                            <option *ngFor="let m of months" [ngValue]="m.id">{{m.name}}</option>
+                                        </select>
+                                        <select [(ngModel)]="events.endDate.day" name="endDateDay" (change)="checkDate()"
+                                            class="selected-date hours">
+                                            <option disabled>Jour</option>
+                                            <option *ngFor="let d of days" [ngValue]="d">{{pad(d)}}</option>
+                                        </select>
+
+                                        <span>&nbsp;À&nbsp;</span>
+                                        <select [(ngModel)]="events.endDate.hour" name="endDateHour" (change)="checkDate()"
+                                            class="selected-date hours">
+                                            <option disabled>Heure</option>
+                                            <option *ngFor="let h of hours" [ngValue]="h">{{pad(h)}}</option>
+                                        </select>
+                                        <span>&nbsp;H&nbsp;</span>
+                                        <select [(ngModel)]="events.endDate.minute" name="endDateMinute" (change)="checkDate()"
+                                            class="selected-date hours">
+                                            <option disabled>Minute</option>
+                                            <option *ngFor="let min of minutes" [ngValue]="min">{{pad(min)}}</option>
+                                        </select>
+                                        <span>&nbsp;M&nbsp;</span>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                            <ion-grid class="select-ie">
+                                <ion-row class="full-width">
+                                    <ion-col col-12 class="col-select-date center" no-padding>
+                                        <span>Le&nbsp;</span>
+                                        <select [(ngModel)]="events.endDate.year" name="endDateYear" (change)="checkDate()"
+                                            class="selected-date date">
+                                            <option disabled>Année</option>
+                                            <option *ngFor="let y of years" [ngValue]="y">{{y}}</option>
+                                        </select>
+                                        <select [(ngModel)]="events.endDate.month" name="endDateMonth" (change)="checkDate()"
+                                            class="selected-date date">
+                                            <option disabled>Mois</option>
+                                            <option *ngFor="let m of months" [ngValue]="m.id">{{m.name}}</option>
+                                        </select>
+                                        <select [(ngModel)]="events.endDate.day" name="endDateDay" (change)="checkDate()"
+                                            class="selected-date hours">
+                                            <option disabled>Jour</option>
+                                            <option *ngFor="let d of days" [ngValue]="d">{{pad(d)}}</option>
+                                        </select>
+                                    </ion-col>
+                                    <ion-col col-12 class="col-select-date center marg-top" no-padding>
+                                        <span>&nbsp;À&nbsp;</span>
+                                        <select [(ngModel)]="events.endDate.hour" name="endDateHour" (change)="checkDate()"
+                                            class="selected-date hours">
+                                            <option disabled>Heure</option>
+                                            <option *ngFor="let h of hours" [ngValue]="h">{{pad(h)}}</option>
+                                        </select>
+                                        <span>&nbsp;H&nbsp;</span>
+                                        <select [(ngModel)]="events.endDate.minute" name="endDateMinute" (change)="checkDate()"
+                                            class="selected-date hours">
+                                            <option disabled>Minute</option>
+                                            <option *ngFor="let min of minutes" [ngValue]="min">{{pad(min)}}</option>
+                                        </select>
+                                        <span>&nbsp;M&nbsp;</span>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </div>
+                        <div class="form-item" *ngIf="dateEndError" showWhen="core">
+                            <div class="error-msg">
+                                <span class="error" *ngIf="dateEndError">La date de fin doit être supérieure à la date
+                                    de début.</span>
+                            </div>
+                        </div>
+                        <div class="form-item no-padding-left" showWhen="android, ios, windows">
+                            <ion-item class="item-grey" [class.formError]="(mStartDate.invalid && (mStartDate.dirty || submited || mStartDate.touched)) || dateEndError">
+                                <ion-datetime class="datetime-input" [(ngModel)]="events.startDate.fullDate"
+                                    #mStartDate="ngModel" placeholder="Date de début" name="mStartDate" id="mStartDate"
+                                    displayFormat="DD/MM/YYYY HH:mm" min="2017" max="2030-10-31" pickerFormat="DD-MMMM-YYYY HH:mm"
+                                    monthNames="Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre"
+                                    minuteValues="0,5,10,15,20,25,30,35,40,45,50,55" doneText="Ok" cancelText="Annuler"
+                                    (ionChange)="checkDate()" no-padding required>
+                                </ion-datetime>
+                            </ion-item>
+                            <div class="error-msg" *ngIf="mStartDate.invalid && (mStartDate.dirty || submited || mStartDate.touched)">
+                                <span class="error">Champs Date obligatoire</span>
+                            </div>
+                        </div>
+                        <div class="form-item no-padding-left" showWhen="android, ios, windows">
+                            <ion-item class="item-grey" [class.formError]="dateEndError">
+                                <ion-datetime class="datetime-input" [(ngModel)]="events.endDate.fullDate" placeholder="Date de fin"
+                                    name="mEndDate" id="mEndDate" displayFormat="DD/MM/YYYY HH:mm" min="2017" max="2030-10-31"
+                                    pickerFormat="DD-MMMM-YYYY HH:mm" monthNames="Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre"
+                                    minuteValues="0,5,10,15,20,25,30,35,40,45,50,55" doneText="Ok" cancelText="Annuler"
+                                    (ionChange)="checkDate()">
+                                </ion-datetime>
+                            </ion-item>
+                            <div class="error-msg" *ngIf="dateEndError">
+                                <span class="error">La date de fin doit être supérieure à la date de début.</span>
+                            </div>
+                        </div>
+                        <!-- end date -->
+                        <!-- adress -->
+                        <div class="form-item townSelect">
+                            <ion-item [class.formError]="address.invalid && (address.dirty || submited || address.touched)">
+                                <ion-input name="titre" type="text" id="address" name="address" placeholder="Adresse"
+                                    [(ngModel)]="events.address" (focus)="checkFocus($event)" #address="ngModel"
+                                    required></ion-input>
+                            </ion-item>
+                            <div class="error-msg" *ngIf="address.invalid && (address.dirty || submited || address.touched)">
+                                <span class="error">Champs adresse obligatoire</span>
+                            </div>
+                        </div>
+                        
+                        <div class="more-event-div privateContent" *ngIf=" (accountType == 'association' || accountType == 'community') ">
+                            
+                            <ion-col col-12 text-center *ngIf="accountType == 'association'">
+                                <ion-item class="item-grey privateContent" no-padding>
+                                    <ion-label class="toggle-label" no-padding>
+                                        <div class="div-event without-icon">Besoin d’une salle / un terrain</div>
+                                    </ion-label>
+                                    <ion-toggle (ionChange)="OnChangeRoom($event)" [(ngModel)]="events.room" class="no-padding" name="event" checked="false"
+                                        no-padding></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </div>
+                        <div *ngIf="accountType == 'association' || accountType == 'merchant' ">
+                        <ion-col col-12 text-center>
+                            <p class="secondCommuText">Si vous le voulez, vous pouvez adresser votre publication à une seconde communauté que vous suivez<br/>
+                                <span>soumis à acceptation par l’administrateur de cette communauté</span></p>
+                        </ion-col>
+                        <ion-col col-12 text-center> 
+                            <ion-item class="item-grey select-not-ie no-padding-left">
+                                <ion-select (ionChange)="onChangeSecondCommu($event)"  [(ngModel)]="events.secondCommu" #secondCommu="ngModel" class="select-white no-padding-left" placeholder="Communauté" name="secondCommu" submitText="Ok" cancelText="Annuler">
+                                    <ion-option *ngFor="let community of linkedCommunities" value={{community.id}}>{{community.name}}</ion-option>
+                                </ion-select>
+                            </ion-item>
+                            <ion-col class="item-grey select-ie no-padding-left">
+                                <select (ionChange)="onChangeSecondCommu($event)" [(ngModel)]="events.secondCommu" #secondCommu="ngModel" class="select-white input-select-ie margin-top-select margin-bottom-select padding-right no-padding-left"
+                                        placeholder="Communauté" name="secondCommu">
+                                    <option *ngFor="let community of linkedCommunities" value={{community.id}}>{{community.name}}</option>
+                                </select>
+                            </ion-col>
+                        </ion-col>
+                        <ion-col col-12 text-center no-pading-bottom>
+                            <ion-item class="item-grey select-not-ie no-padding-left" [class.formError]="secondCategories.invalid && (secondCategories.dirty || submited || secondCategories.touched)">
+                                <ion-select [disabled]="disabledSecondTheme" [required]="!disabledSecondTheme" class="select-white no-padding-left" placeholder="Thèmes *" name="secondCategories" submitText="Ok"
+                                            cancelText="Annuler" multiple="true" [(ngModel)]="events.secondCategories" #secondCategories="ngModel"
+                                            (ionChange)="onChangeSecondCategory($event)">
+                                    <ion-option *ngFor="let category of allSecondCategories" value={{category.id}}>{{category.name}}</ion-option>
+                                </ion-select>
+                            </ion-item>
+                            <ion-col no-padding class="select-padding-ie item-grey select-ie " style="padding: 0;"
+                                     [class.formError]="secondCategories.invalid && (secondCategories.dirty || submited || secondCategories.touched)">
+                                <select [disabled]="disabledSecondTheme" [required]="!disabledSecondTheme" class="select-white input-select-ie select-multiple-ie padding-right no-padding-left"
+                                        placeholder="Thèmes *" name="secondCategories" multiple [(ngModel)]="events.secondCategories"
+                                        #secondCategories="ngModel">
+                                    <option *ngFor="let category of allSecondCategories" value={{category.id}} (click)="onChangeSecondCategory($event.srcElement.value)">{{category.name}}</option>
+                                </select>
+                            </ion-col>
+                            <div class="form-category">
+                                <div class="tags">
+                                    <div *ngFor="let category of secondCategoryNames"><a>{{category.name}} <span (click)="removeSecondCategory(category.id)">x</span></a></div>
+                                </div>
+                            </div>
+                            <div class="error-msg" *ngIf="secondCategories.invalid && (secondCategories.dirty || submited || secondCategories.touched)">
+                                <span class="error">Champs Thèmes obligatoire</span>
+                            </div>
+                        </ion-col>
+                        </div>
+                    </ion-row>
+                    <ion-col col-12 text-center>
+                        <button *ngIf="accountType != 'community'" ion-button color="primary" type="submit" class="button-publish" (click)="saveArticle(publishForm.invalid, titre, description)" round>Publier</button>
+                        <button *ngIf="accountType == 'community' && articleActivated" ion-button color="primary" type="submit" class="button-publish" (click)="saveArticle(publishForm.invalid, titre, description)" round>Publier</button>
+                        <p *ngIf="accountType == 'community' && !articleActivated">Cette communauté ne peux pas publier d'article.</p>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </ion-col>
+</ion-content>

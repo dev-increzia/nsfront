@@ -1,0 +1,167 @@
+<!--
+  Generated template for the NotificationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+                <ion-title text-capitalize>Notifications</ion-title>
+            </ion-col>
+            <ion-col col-2>
+                <div class="item" text-right></div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-content>
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <div class="div-center margin-top">
+        <ion-grid class="grid-desktop">
+            <ion-row justify-content-center>
+                <ion-col col-12 text-center>
+                    <h5 class="title-not">Notifications</h5>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid class="grid-notification">
+            <ion-list>
+                <ion-row justify-content-center *ngIf="importants">
+                    <ion-col col-12 justify-content-center class="col-notification important border-notification"
+                        *ngFor="let item of importants">
+                        <div class="div-border ">
+                            <ion-icon class="icon-notification" *ngIf="item.type == 'event'" name="calendar"></ion-icon>
+                            <p class="msg-notification" no-margin>{{item.message}}
+                                <a class="msg-notification" (click)="openParticipation(item.event);">Ajouter</a>
+                            </p>
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row justify-content-center class="row-mobile" *ngIf="items">
+                    <ion-col col-12 justify-content-center class="col-notification border-notification" *ngFor="let item of items">
+                        <div class="div-border">
+                            <ion-icon class="icon-notification" *ngIf="item.type == 'event'" name="walk"></ion-icon>
+                            <ion-icon class="icon-notification" *ngIf="item.type == 'article'" name="people"></ion-icon>
+                            <ion-icon class="icon-notification" *ngIf="item.type == 'newComment' || item.type == 'replyComment'"
+                                name="people"></ion-icon>
+                            <ion-icon class="icon-notification" *ngIf="item.type == 'admin'" name="people"></ion-icon>
+                            <ion-icon class="icon-notification" *ngIf="item.type == 'volunteer'" name="calendar"></ion-icon>
+                            <ion-icon class="icon-notification" *ngIf="item.type == 'eventParticipateRemove'" name="calendar"></ion-icon>
+                            <ion-icon class="icon-notification" *ngIf="item.type == 'eventDisabled'" name="calendar"></ion-icon>
+                            <ion-icon class="icon-notification" *ngIf="item.type == 'eventParticipateAdd'" name="calendar"></ion-icon>
+                            <ion-icon class="icon-notification" *ngIf="item.type == 'merchant' || item.type == 'associationRefused'"
+                                name="md-cart"></ion-icon>
+                            <ion-icon class="icon-notification" *ngIf="item.type == 'association' || item.type == 'merchantRefused'"
+                                name="ios-globe-outline"></ion-icon>
+
+                            <p class="msg-notification" no-margin>{{item.message}}
+                                <a class="msg-notification" *ngIf="item.type == 'article'" (click)="openArticleDetails(item);">Accéder
+                                    à l’article</a>
+                                <a class="msg-notification" *ngIf="item.type == 'event' || item.type == 'eventParticipateRemove'  || item.type == 'volunteer'  || item.type == 'eventParticipateAdd'  || item.type == 'eventDisabled' "
+                                    (click)="openEventDetails(item.event);">Voir l'événement</a>
+                                <a class="msg-notification" *ngIf="item.type == 'newComment' || item.type == 'replyComment'"
+                                    (click)="openArticleCommentPage(item.article_comment);">Accéder </a>
+                                <!--<a class="msg-notification" *ngIf="item.type == 'merchant'" (click)="openMerchant(item.merchant);">Voir
+                                    le partenaire</a>
+                                <a class="msg-notification" *ngIf="item.type == 'association'" (click)="openAssociation(item.association);">Voir
+                                    le groupe</a>-->
+                            </p>
+                        </div>
+                    </ion-col>
+
+                    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+                    </ion-infinite-scroll>
+                </ion-row>
+                <ion-row class="row-desktop" *ngIf="items">
+                    <ion-row class="width-100" *ngFor="let item of items">
+
+                        <ion-col col-12 class="col-notification border-notification" *ngIf="item.tag == 'new'">
+                            <div class="div-border new">
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'event'" name="walk"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'article'" name="people"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'newComment' || item.type == 'replyComment'"
+                                    name="people"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'admin'" name="people"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'volunteer'" name="calendar"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'eventParticipateRemove'" name="calendar"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'eventDisabled'" name="calendar"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'eventParticipateAdd'" name="calendar"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'merchant' || item.type == 'merchantRefused'"
+                                    name="md-cart"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'association' || item.type == 'associationRefused'"
+                                    name="ios-globe-outline"></ion-icon>
+
+                                <p class="msg-notification" no-margin>{{item.message}}
+                                    <a class="msg-notification" *ngIf="item.type == 'article'" (click)="openArticleDetails(item);">Accéder
+                                        article</a>
+                                    <a class="msg-notification" *ngIf="item.type == 'event' || item.type == 'eventParticipateRemove'  || item.type == 'volunteer'  || item.type == 'eventParticipateAdd'  || item.type == 'eventDisabled' "
+                                        (click)="openEventDetails(item.event);">Voir l'événement</a>
+                                    <a class="msg-notification" *ngIf="item.type == 'newComment' || item.type == 'replyComment'"
+                                        (click)="openArticleCommentPage(item.article_comment);">Accéder</a>
+                                    <!--<a class="msg-notification" *ngIf="item.type == 'merchant'" (click)="openMerchant(item.merchant);">Voir
+                                        Commerçant</a>
+                                    <a class="msg-notification" *ngIf="item.type == 'association'" (click)="openAssociation(item.association);">Voir
+                                        Association</a>-->
+                                </p>
+
+                            </div>
+                        </ion-col>
+                        <ion-col col-12 justify-content-center class="col-notification border-notification" *ngIf="item.tag != 'new'">
+                            <div class="div-border">
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'event'" name="walk"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'article'" name="people"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'newComment' || item.type == 'replyComment'"
+                                    name="people"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'admin'" name="people"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'volunteer'" name="calendar"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'eventParticipateRemove'" name="calendar"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'eventDisabled'" name="calendar"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'eventParticipateAdd'" name="calendar"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'merchant'" name="md-cart"></ion-icon>
+                                <ion-icon class="icon-notification" *ngIf="item.type == 'association'" name="ios-globe-outline"></ion-icon>
+
+                                <p class="msg-notification" no-margin>{{item.message}}
+                                    <a class="msg-notification" *ngIf="item.type == 'article'" (click)="openArticleDetails(item);">Voir
+                                        l'article</a>
+                                    <a class="msg-notification" *ngIf="item.type == 'event' || item.type == 'eventParticipateRemove'  || item.type == 'volunteer'  || item.type == 'eventParticipateAdd'  || item.type == 'eventDisabled' "
+                                        (click)="openEventDetails(item.event);">Voir l'événement</a>
+                                    <a class="msg-notification" *ngIf="item.type == 'newComment' || item.type == 'replyComment'"
+                                        (click)="openArticleCommentPage(item.article_comment);">Accéder</a>
+                                    <!--<a class="msg-notification" *ngIf="item.type == 'merchant'" (click)="openMerchant(item.merchant);">Voir
+                                        Commerçant</a>
+                                    <a class="msg-notification" *ngIf="item.type == 'association'" (click)="openAssociation(item.association);">Voir
+                                        Association</a>-->
+                                </p>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+                        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+                    </ion-infinite-scroll>
+                </ion-row>
+                <ion-row justify-content-center *ngIf="items.length == 0">
+                    <ion-col col-12 justify-content-center class="">
+                        <p class="">&nbsp; Vous n'avez pas encore de notifications. Toute votre activité vous sera
+                            résumée sur cette page.
+                    </ion-col>
+                </ion-row>
+
+            </ion-list>
+
+        </ion-grid>
+    </div>
+    <div class="div-right" text-left>
+
+    </div>
+</ion-content>

@@ -1,0 +1,79 @@
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-10 class="page-title">
+                <ion-title text-left>Ajouter un Administrateur</ion-title>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-content padding>
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <div class="div-center">
+        <div class="addAdmin">
+            <ion-grid>
+                <ion-row justify-content-center>
+                    <ion-col col-12 justify-content-center *ngIf="invitation">
+                        <form (ngSubmit)="invit()" novalidate>
+                            <div>
+                                <p>
+                                    Cette personne ne fait pas partie de NOUS-ensemble.<br> Envoyez-lui un e-mail pour
+                                    lui conseiller de nous rejoindre.
+                                </p>
+                                <button ion-button full class="button-email">Envoyer un e-mail</button>
+                                <hr>
+                            </div>
+                        </form>
+                    </ion-col>
+                    <ion-col col-12 justify-content-center>
+                        <form class="formvalidate" (ngSubmit)="add()" novalidate>
+                            <p> Veuillez saisir l'adresse email de la personne que vous souhaitez ajouter comme
+                                administrateur </p>
+                            <ion-item class="middle80">
+                                <ion-input type="email" name="email" [(ngModel)]="email" placeholder="Adresse email*"></ion-input>
+                            </ion-item>
+                            <ion-list radio-group no-padding>
+                                <ion-item class="backgrond" no-padding>
+                                    <ion-label>Donner un droit d'administrateur</ion-label>
+                                    <ion-radio (click)="addAdmin();" checked="true"></ion-radio>
+                                </ion-item>
+                                <ion-item class="backgrond" *ngIf="account && role == 'superadmin'" no-padding>
+                                    <ion-label>Lui attribuer mes droits actuels de super administrateur</ion-label>
+                                    <ion-radio (click)="addSuperAdmin();"></ion-radio>
+                                </ion-item>
+                            </ion-list>
+
+
+                            <div *ngIf="warning">
+                                <p>
+                                    ATTENTION : vous êtes sur le point de vous défaire de votre droit de super
+                                    administrateur pour donner de droit à une autre personne. Ce changement est
+                                    irréversible ; vous ne pourrez plus vous réattribuer ces droits. Vous serez alors
+                                    simple administrateur.
+                                </p>
+                            </div>
+                            <button class="addButton button-big" ion-button color="primary" round>Valider</button>
+                            <!-- <button ion-button round>Valider</button> -->
+                        </form>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+
+        </div>
+        <ion-grid class="page-grid" text-center>
+
+
+        </ion-grid>
+    </div>
+    <div class="div-right" text-left>
+    </div>
+</ion-content>

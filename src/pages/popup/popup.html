@@ -1,0 +1,23 @@
+<!--
+  Generated template for the PopupPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-content>
+    <ion-grid class="no-padding messagePopup"> 
+        <ion-row>
+            <ion-col col-12 no-padding>
+                <div class="close-btn" (click)="Close()" float-end>
+                    <img class="icon-heart material-icons" src="assets/imgs/icons/image3.png">
+                </div>
+            </ion-col>
+            <ion-col col-12 text-left>
+                <div [innerHTML]="message"> </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

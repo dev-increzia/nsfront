@@ -1,0 +1,209 @@
+page-canteen-menu {
+  // ----------------------------------------------------------------------------------
+  // Page Styling
+  // ----------------------------------------------------------------------------------
+  .title-article {
+      font-size: 16px;
+  }
+  .select-filters {
+      background: color($colors, gray-select);
+  }
+  .select-fitler {
+      width: 100%;
+      max-width: 100%;
+      background: color($colors, gray-select);
+  }
+  // ----------------------------------------------------------------------------------
+  // Buttons
+  // ----------------------------------------------------------------------------------
+  .button-clear-ios-primary.activated,
+  .button-clear-md-primary.activated,
+  .button-clear-wp-primary.activated {
+      background-color: transparent;
+  }
+  // ----------------------------------------------------------------------------------
+  // Input
+  // ----------------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------------
+  // Select
+  // ----------------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------------
+  // Item
+  // ----------------------------------------------------------------------------------
+  // ----------------------------------------------------------------------------------
+  // class
+  // ----------------------------------------------------------------------------------
+  .icon-heart {
+      padding-right: 0.3em;
+  }
+  .icon-comm {
+      font-size: 2.5em;
+      padding-right: 0;
+      padding-left: 0.3em;
+  }
+  .icon-agenda {
+      font-size: 45px;
+  }
+  .registred-new-user {
+      position: absolute;
+      padding: 20px;
+      background: color($colors, white-color);
+      z-index: 999;
+      top: 50px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      height: 180px;
+      width: 280px;
+      border-radius: 25px;
+      font-size: 16px;
+      font-weight: $medium;
+      text-align: center;
+      .close-btn {
+          float: right;
+      }
+      .app-title {
+          font-size: 20px;
+          color: color($colors, primary);
+      }
+  }
+  ion-col.icon-right{
+    text-align: right !important;
+    margin-right: 50px;
+  }
+  .div-agenda {
+      width: 10%;
+      display: inline-block;
+      vertical-align: middle;
+  }
+  .div-more {
+      width: 4%;
+      display: inline-block;
+      vertical-align: middle;
+  }
+  .div-p {
+      width: 80%;
+      display: inline-block;
+  }
+  .publish {
+      margin-top: 10px;
+  }
+  .icon-modif {
+      display: inline-block;
+  }
+  .icon-create {
+      font-size: 20px;
+  }
+  .div-title {
+      font-family: "Montserrat Medium";
+      color: color($colors, light-black);
+      font-size: 18px;
+      line-height: 20px;
+  }
+  .news-comment-action {
+      width: 25px;
+      margin-right: 5px;
+      margin-left: 5px;
+      vertical-align: top;
+      position: relative;
+      top: 1px;
+  }
+  .icon-img-action {
+      width: 30px;
+      vertical-align: top;
+  }
+  .card-title-ios,
+  .card-title-md,
+  .card-title-wp {
+      font-family: "Montserrat Medium";
+      color: color($colors, light-black);
+      font-size: 18px;
+  }
+  .move-icon {
+      position: relative;
+      top: 5px;
+  }
+  .comments-nbr {
+      margin-right: 5px;
+      font-size: 22px;
+  }
+  .likes-nbr {
+      margin-left: 5px;
+      font-size: 22px;
+  }
+  .page-title{
+    color: #ffffff;
+    font-size: 16px !important;
+
+    text-overflow: clip !important;
+    font-weight: 600;
+  }
+  .mobile-header .toolbar-title {
+    color: #ffffff;
+    font-size: 16px !important;
+
+    text-overflow: clip !important;
+    font-weight: 600;
+  }
+  ion-avatar img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  // class mobile
+  // ----------------------------------------------------------------------------------
+  @media (max-width: 1022px) {
+      .scroll-content {
+          margin-bottom: 50px;
+      }
+      .move {
+          position: relative;
+          bottom: 25px;
+          margin-bottom: -20px;
+      }
+      .card-content-md,
+      .card-content-md,
+      .card-content-md {
+          padding: 5px 16px !important;
+          font-size: 1.4rem;
+          line-height: 1.5;
+      }
+      .card-title-ios,
+      .card-title-md,
+      .card-title-wp {
+          display: block;
+          font-size: 1.8rem;
+          line-height: 13px !important;
+          color: color($colors, light-black);
+          margin: 0px 0;
+          padding: 8px 0;
+          font-weight: 500;
+      }
+  }
+  // class desktop
+  // ----------------------------------------------------------------------------------
+  @media (min-width: 1023px) {
+      @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+          .swiper-slide {
+              display: block;
+          }
+          ion-slide.swiper-slide {
+              left: 0%;
+          }
+      }
+  }
+  .block-image {
+    width: 100%;
+  }
+
+  .news-align-center{
+    margin-left: -6% !important;
+  }
+
+  .comment-text-style{
+    display: -webkit-inline-box;
+    margin-bottom: 3% !important;
+  }
+
+}

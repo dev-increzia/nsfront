@@ -1,0 +1,154 @@
+<!--
+  Generated template for the EditAssociationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+
+                <ion-title text-capitalize>Profil</ion-title>
+            </ion-col>
+            <ion-col col-2>
+                <div class="item" text-right>
+
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+
+<ion-content padding>
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <div class="div-center div-margin-top" *ngIf="association">
+        <form (ngSubmit)="editAssociationForm(associationForm.invalid)" #associationForm="ngForm">
+            <ion-grid>
+                <ion-row>
+                    <div *ngIf="association.image_url || associationPhoto; else elseBlock" text-center>
+                        <img src="{{association.image_url}}" *ngIf="association.image_url && !associationPhoto" (click)="presentActionSheet()">
+                        <img src="{{associationPhoto}}" *ngIf="associationPhoto" (click)="presentActionSheet()">
+                        <ion-icon name="trash" class="icon-delete" (click)="deletePhoto();" *ngIf="association.image_url"></ion-icon>
+                    </div>
+                </ion-row>
+                <ng-template #elseBlock>
+
+                    <ion-col col-12 text-center> <img class="button-img" src="assets/imgs/icons/boutton-white.png"
+                            (click)="presentActionSheet()"></ion-col>
+
+                </ng-template>
+            </ion-grid>
+
+            <ion-grid class="padding-horizontal">
+
+                <ion-row>
+                    <ion-col col-12 text-center class="margin-top">
+                        <ion-label text-left color="light-black" stacked>Nom du groupe / association</ion-label>
+                        <ion-item class="item-input-white" [class.formError]="name.invalid && (name.dirty || submited || name.touched)">
+                            <ion-input name="name" type="text" id="name" [(ngModel)]="association.name" #name="ngModel"
+                                (focus)="checkFocus($event)" (change)="capitalize($event.target.value, 'title')"
+                                required text-capitalize></ion-input>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="name.invalid && (name.dirty || submited || name.touched)">
+                            <span class="error">Champs nom obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left color="light-black" stacked>Adresse</ion-label>
+                        <ion-item class="item-input-white">
+                            <ion-textarea name="address" [(ngModel)]="association.address" #address="ngModel" (focus)="checkFocus($event)"
+                                (change)="capitalize($event.target.value, 'address')"></ion-textarea>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left class="margin-bottom-ie" color="light-black" stacked>Ville</ion-label>
+                        <ion-item class="item-grey no-padding-left" [class.formError]="city.invalid && (city.dirty || submited || city.touched)">
+                            <ion-input (click)="SelectCity()"   readonly autocomplete="off" autocorrect="on" name="city" type="text" id="city" placeholder="Ville" [(ngModel)]="this.getCityIdFromName(selectedCity).name"
+                                       #city="ngModel" required></ion-input>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="city.invalid && (city.dirty || submited || city.touched)">
+                            <span class="error">Champs ville obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left class="margin-bottom-ie" color="light-black" stacked>Thèmes</ion-label>
+                        <ion-item class="item-input-white no-padding select-not-ie" [class.formError]="category.invalid && (category.dirty || submited || category.touched)">
+                            <ion-select class="select-white" name="category" submitText="Ok" cancelText="Annuler"
+                                [(ngModel)]="selectedCategory" #category="ngModel" (ionChange)="onChangeCategory($event)"
+                                required>
+                                <ion-option *ngFor="let category of categories" value={{category.id}}>{{category.name}}</ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-col class="item-input-white no-padding select-ie" [class.formError]="category.invalid && (category.dirty || submited || category.touched)">
+                            <select class="select-white input-select-ie" name="category" [(ngModel)]="selectedCategory"
+                                #category="ngModel" required>
+                                <option *ngFor="let category of categories" value={{category.id}} (Click)="onChangeCategory($event.srcElement.value)">{{category.name}}</option>
+                            </select>
+                        </ion-col>
+                        <div class="error-msg" *ngIf="category.invalid && (category.dirty || submited || category.touched)">
+                            <span class="error">Champs catégorie obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left color="light-black" stacked>Horaires d'ouverture</ion-label>
+                        <ion-item class="item-input-white">
+                            <ion-textarea class="textarea-timing" type="text" lang="fr" name="timing" [(ngModel)]="association.timing"
+                                (focus)="checkFocus($event)" #timing="ngModel" (change)="capitalize($event.target.value, 'timing')"></ion-textarea>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left color="light-black" stacked>Téléphone</ion-label>
+                        <ion-item class="item-input-white" [class.formError]="phone.invalid && (phone.dirty || submited || phone.touched)">
+                            <ion-input [pattern]="phoneRegexp" name="phone" type="tel" [(ngModel)]="association.phone" #phone="ngModel" (focus)="checkFocus($event)"
+                                required></ion-input>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="phone.invalid && (phone.dirty || submited || phone.touched)">
+                            <span class="error">Champs téléphone obligatoire. Exemple : 0999999999 ou 33999999999</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left color="light-black" stacked>Adresse mail</ion-label>
+                        <ion-item class="item-input-white" [class.formError]="email.invalid && (email.dirty || submited || email.touched)">
+                            <ion-input name="email" type="email" autocapitalize="none" [(ngModel)]="association.email"
+                                #email="ngModel" (focus)="checkFocus($event)" (mouseout)="onBlurEmail()" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                                required></ion-input>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="email.invalid && (email.dirty || submited || email.touched)">
+                            <span class="error">Champs adresse mail obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left color="light-black" stacked>Description</ion-label>
+                        <ion-item class="item-input-white">
+                            <ion-textarea class="height-textarea" name="description" [(ngModel)]="association.description"
+                                #description="ngModel" (focus)="checkFocus($event)" (change)="capitalize($event.target.value, 'description')"></ion-textarea>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <button ion-button full color="primary" type="submit" class="button-publish custom-button" round>Modifier l'association</button>
+                    </ion-col>
+                </ion-row>
+
+            </ion-grid>
+        </form>
+        <ion-grid class="padding-horizontal" *ngIf="association && association.role == 'superadmin'">
+            <ion-row>
+                <ion-col col-12 text-center>
+                    <button ion-button full color="primary" (click)="deleteAccount()" class="button-publish custom-button"
+                        round>Supprimer mon compte</button>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </div>
+    <div class="div-right"></div>
+</ion-content>

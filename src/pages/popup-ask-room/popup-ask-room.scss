@@ -1,0 +1,48 @@
+page-popup-ask-room {
+  .scroll-content{
+    margin-top: 20px !important;
+    background : white;
+  }
+  .content{
+    background : white;
+  }
+  form{
+    display:grid;
+    width: 100%;
+  }
+  .greenText{
+    color: color($colors, primary);
+    font-size: 17px;
+    padding: 0 35px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+  .littleText{
+    color: color($colors, h-color);
+    font-size: 16px;
+    text-align: left;
+    padding: 0 20px;
+    line-height: 18px;
+  }
+  .button-publish{
+    width: 65%;
+  }
+  .ion-item {
+    background: color($colors, h-color);
+  }
+  .header-popin button{
+    margin-right: 20px;
+    margin-top: 10px;
+  }
+}
+
+.style-modal.modalRoom .modal-wrapper{
+  height: 430px;
+  margin-top: 110px;
+}
+@media (min-width: 1023px) {
+  .style-modal.modalRoom .modal-wrapper{
+    height: 420px;
+    margin-top: 0;
+  }
+}

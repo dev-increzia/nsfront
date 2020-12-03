@@ -1,0 +1,119 @@
+page-popin-membership-association {
+
+  h6 {
+    font-weight: 600;
+    color: color($colors, p-color);
+  }
+  // ----------------------------------------------------------------------------------
+  // Buttons
+  // ----------------------------------------------------------------------------------
+  .scroll-content {
+    background-color: color($colors, white-color);
+    margin: 0 !important;
+  }
+  h2 {
+    margin-top: 0rem;
+    margin-bottom: 0;
+  }
+  .col-padding {
+    padding-top: 27px;
+  }
+  .primary-color {
+    color: color($colors, primary);
+    margin-top: 0 !important;
+  }
+  .icon-publish {}
+  // ----------------------------------------------------------------------------------
+  // Buttons
+  // ----------------------------------------------------------------------------------
+  .button-out {
+    position: absolute;
+    z-index: 9999;
+    top: 369px;
+    left: 78px;
+    border: 1px solid color($colors, white-color);
+  }
+  .imglock,.imgcalendar{
+    width: 15px;
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  .button-publish {
+    width: 65%;
+  }
+  // ----------------------------------------------------------------------------------
+  // Input
+  // ----------------------------------------------------------------------------------
+  .text-input {
+    border-left: none;
+  }
+  // ----------------------------------------------------------------------------------
+  // Select
+  // ----------------------------------------------------------------------------------
+  .select-ios .select-placeholder,
+  .select-md .select-placeholder,
+  .select-wp .select-placeholder {
+    color: color($colors, text-color);
+    font-weight: 400;
+    font-size: inherit;
+  }
+  .select-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100px;
+  }
+  // ----------------------------------------------------------------------------------
+  // Item
+  // ----------------------------------------------------------------------------------
+  .item-grey {
+    background-color: color($colors, grey-color);
+    border-radius: $button-round-border-radius;
+  }
+  // ----------------------------------------------------------------------------------
+  // class
+  // ----------------------------------------------------------------------------------
+  .img-logo {
+    width: 25%;
+  }
+  .header-popin {
+    padding: 15px;
+    background: color($colors, white-color);
+  }
+  .delete-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .margin-top {
+    margin-top: 20px;
+  }
+  .padding-top {
+    padding-top: 25px;
+  }
+  .title-popin {
+    padding-top: 5px;
+  }
+  .indication {
+    margin: 0;
+    width: 100%;
+  }
+  .popin {
+    z-index: 100;
+    transform: translateY(0%);
+    opacity: 1;
+    transition-property: none;
+    transition-delay: 0s;
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    margin: 30px auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+}

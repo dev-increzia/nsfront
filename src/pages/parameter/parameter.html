@@ -1,0 +1,230 @@
+<!--
+  Generated template for the ParameterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+
+                <ion-title> Réglages </ion-title>
+            </ion-col>
+            <ion-col col-2>
+                <div class="item" text-right>
+
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-content>
+    <div class="div-left"> </div>
+    <div class="div-center div-margin-top">
+        <ion-grid class="grid-white no-padding">
+            <div class="centre-desktop">
+                <ion-row class="grid-white" margin-top>
+                    <ion-col col-12 text-center class="padding-bottom" padding>
+                        <h5 class="title-content" text-capitalize>{{currentUser.firstname}}</h5>
+                    </ion-col>
+
+                    <ion-col col-12 text-center>
+                        <div *ngIf="user.image_url; else elseBlock" text-center>
+                            <img class="user-profil-center" src="{{user.image_url}}" (click)="presentActionSheet()"
+                                *ngIf="user.image_url">
+                            <ion-icon name="trash" class="icon-delete" (click)="deletePhoto();" *ngIf="user.image_url"></ion-icon>
+                        </div>
+                    </ion-col>
+                    <ng-template #elseBlock>
+
+                        <ion-col col-12 text-center> <img class="button-img" src="assets/imgs/icons/profil_background_empty.png" (click)="presentActionSheet()"></ion-col>
+
+                    </ng-template>
+                    <ion-col col-12 text-center>
+                        <button ion-button color="light" (click)=showEditPassword()>Changer mon mot de passe</button>
+                    </ion-col>
+                </ion-row>
+            </div>
+        </ion-grid>
+        <div padding>
+            <form (ngSubmit)="editForm(profileForm.invalid)" #profileForm="ngForm" class="editform">
+                <ion-grid class="padding-horizontal">
+                    <ion-row>
+                        <ion-col col-12 text-center class="margin-top">
+                            <ion-label text-left class="margin-bottom-ie" color="light-black" stacked>Ville</ion-label>
+                            <ion-item class="item-grey no-padding-left" [class.formError]="city.invalid && (city.dirty || submited || city.touched)">
+                                <ion-input (click)="SelectCity()"   readonly autocomplete="off" autocorrect="on" name="city" type="text" id="city" placeholder="Ville" [(ngModel)]="user.city.name"
+                                    #city="ngModel" required></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col class="item-input-white no-padding select-ie">
+                            <select class="select-white input-select-ie" id="city" name="city" [(ngModel)]="user.city"
+                                *ngIf="cities">
+                                <option *ngFor="let city of cities" value={{city.id}}>{{city.name}}</option>
+                            </select>
+                        </ion-col>
+                        <ion-col col-12 text-center>
+                            <ion-label text-left color="light-black" stacked>Nom</ion-label>
+                            <ion-item class="item-input-white" [class.formError]="lastname.invalid && (lastname.dirty || submited || lastname.touched)">
+                                <ion-input name="lastname" type="text" id="lastname" [(ngModel)]="user.lastname"
+                                    #lastname="ngModel" (change)="capitalize($event.target.value, 'lastname')" (focus)="checkFocus($event)"
+                                    required text-capitalize></ion-input>
+                            </ion-item>
+                            <div class="error-msg" *ngIf="lastname.invalid && (lastname.dirty || submited || lastname.touched)">
+                                <span class="error">Champs nom obligatoire</span>
+                            </div>
+                        </ion-col>
+                        <ion-col col-12 text-center>
+                            <ion-label text-left color="light-black" stacked>Prénom</ion-label>
+                            <ion-item class="item-input-white" [class.formError]="firstname.invalid && (firstname.dirty || submited || firstname.touched)">
+                                <ion-input name="firstname" type="text" id="firstname" [(ngModel)]="user.firstname"
+                                    #firstname="ngModel" (change)="capitalize($event.target.value, 'firstname')"
+                                    (focus)="checkFocus($event)" required text-capitalize></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col col-12 text-center>
+                            <ion-label text-left class="margin-bottom-ie" color="light-black" stacked>Année de
+                                naissance</ion-label>
+                            <ion-item class="item-input-white no-padding select-not-ie">
+                                <ion-select class="select-white" id="birth" name="birth" submitText="Ok" cancelText="Non"
+                                    [(ngModel)]="user.birth" #birth="ngModel">
+                                    <ion-option *ngFor="let n of yearsArray">{{n}}</ion-option>
+
+                                </ion-select>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col class="item-input-white no-padding select-ie">
+                            <select class="select-white input-select-ie" id="birth" name="birth" [(ngModel)]="user.birth"
+                                    #birth="ngModel">
+                                <option *ngFor="let n of yearsArray">{{n}}</option>
+
+                            </select>
+                        </ion-col>
+                        <ion-col col-12 text-center>
+                            <ion-label text-left color="light-black" stacked>Adresse e-mail</ion-label>
+                            <ion-item class="item-input-white" [class.formError]="email.invalid && (email.dirty || submited || email.touched)">
+                                <ion-input name="email" type="email" autocapitalize="none" [(ngModel)]="user.email"
+                                    #email="ngModel" (mouseout)="onBlurEmail()" (focus)="checkFocus($event)" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                                    required></ion-input>
+                            </ion-item>
+                            <div class="error-msg" *ngIf="email.invalid && (email.dirty || submited || email.touched)">
+                                <span class="error">Champs adresse e-mail obligatoire</span>
+                            </div>
+                        </ion-col>
+                        <ion-col col-12 text-center>
+                            <ion-label text-left color="light-black" stacked>Téléphone</ion-label>
+                            <ion-item class="item-input-white" [class.formError]="phone.invalid && (phone.dirty || submited || phone.touched)">
+                                <ion-input [pattern]="phoneRegexp" name="phone" type="tel" autocapitalize="none" [(ngModel)]="user.phone"
+                                           #phone="ngModel" (focus)="checkFocus($event)" required></ion-input>
+                            </ion-item>
+                            <div class="error-msg" *ngIf="phone.invalid && (phone.dirty || submited || phone.touched)">
+                                <span class="error">Champs téléphone obligatoire. Exemple : 0999999999 ou 33999999999</span>
+                            </div>
+                        </ion-col>
+                        <ion-col col-12 text-center>
+                            <button full ion-button color="primary" class="button-publish" type="submit" round>Modifier mes informations</button>
+                        </ion-col>
+                    </ion-row>
+
+                </ion-grid>
+            </form>
+
+            <ion-grid class="padding-horizontal">
+                <ion-row>
+                    <ion-col col-12 text-center>
+                        <button ion-button full color="primary" type="submit" (click)="deleteCitzenAccount()" class="button-publish"
+                            round>Supprimer mon compte</button>
+                    </ion-col>
+                </ion-row>
+
+            </ion-grid>
+        </div>
+    </div>
+    <div class="div-right"></div>
+</ion-content>
+
+<div class="overlay" *ngIf="changePassword" (click)="hideEditPassword()"></div>
+<div class="registred-new-user" *ngIf="changePassword">
+    <div class="close-btn" (click)="hideEditPassword()">
+        <ion-icon name="md-close"></ion-icon>
+    </div>
+    <ion-grid>
+
+        <form class="full-width" name="passwordForm" (ngSubmit)="passwordForm()" novalidate>
+
+            <ion-row justify-content-center class="frame-events passwordProfilePage">
+                <ion-col col-12 text-center>
+                    <div [formGroup]="slideOneForm">
+                        <ion-list no-margin>
+                            <ion-row>
+                                <ion-col col-12 text-center>
+                                    <ion-item class="item-input-white">
+                                        <ion-input formControlName="password_actual" type="password" id="fname"
+                                            [(ngModel)]="dataPassword.actual_password" name="actual_password"
+                                            placeholder="Mot de passe actuel *" (focus)="checkFocus($event)"></ion-input>
+                                    </ion-item>
+                                    <div class="error-msg" *ngIf="!slideOneForm.controls.password_actual.valid  && (slideOneForm.controls.password_actual.dirty)">
+                                        <span class="error">Veuillez entrer mot de passe valide.</span>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col col-12 text-center>
+                                    <ion-item class="item-input-white">
+                                        <ion-input (change)="numbrePassword($event.target.value, 'password')"
+                                            formControlName="password" type="password" id="fname" [(ngModel)]="dataPassword.password"
+                                            name="password" placeholder="Mot de passe*" (focus)="checkFocus($event)"></ion-input>
+                                    </ion-item>
+                                    <div class="error-msg" *ngIf="show_password">
+                                        <span class="error">Champs mot de passe obligatoire</span>
+                                    </div>
+                                    <div class="error-msg" *ngIf="show_erreur_password">
+                                        <span class="error">Utilisez au moins 6 caractères</span>
+                                    </div>
+                                    <div class="error-msg" *ngIf="!slideOneForm.controls.password.valid  && (slideOneForm.controls.password.dirty)">
+                                        <span class="error">Veuillez entrer mot de passe valide.</span>
+                                    </div>
+                                </ion-col>
+
+                            </ion-row>
+                            <ion-row>
+                                <ion-col col-12 text-center>
+                                    <ion-item class="item-input-white">
+                                        <ion-input (change)="numbrePassword($event.target.value, 'password_verification')"
+                                            formControlName="password_verification" type="password" id="fname"
+                                            [(ngModel)]="dataPassword.password_verification" name="password_verification"
+                                            placeholder="Mot de passe (vérification)*" (focus)="checkFocus($event)"></ion-input>
+                                    </ion-item>
+                                    <div class="error-msg" *ngIf="show_password_verification">
+                                        <span class="error">Champs obligatoire</span>
+                                    </div>
+                                    <div class="error-msg" *ngIf="show_erreur_password_verification">
+                                        <span class="error">Utilisez au moins 6 caractères</span>
+                                    </div>
+                                    <div class="error-msg" *ngIf="show2_password_verification">
+                                        <span class="error">Veuillez vérifier la confirmation de votre mot de passe</span>
+                                    </div>
+                                    <div class="error-msg" *ngIf="!slideOneForm.controls.password_verification.valid  && (slideOneForm.controls.password_verification.dirty)">
+                                        <span class="error">Champs obligatoire</span>
+                                    </div>
+                                </ion-col>
+
+                            </ion-row>
+                        </ion-list>
+                    </div>
+                </ion-col>
+                <ion-col col-12 text-center>
+                    <button ion-button color="light" (click)=showEditPassword() class="passwordbutton">Valider</button>
+                </ion-col>
+            </ion-row>
+        </form>
+
+    </ion-grid>
+</div>

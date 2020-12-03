@@ -1,0 +1,315 @@
+page-news {
+
+    .button-md,
+    .button-ios,
+    .button-wp {
+        height: auto;
+    }
+
+    .fixed-height {
+        height: 4.5rem;
+    }
+    .icon-agenda {
+       
+       cursor:none !important
+    }
+
+    // ----------------------------------------------------------------------------------
+    // Page Styling
+    // ----------------------------------------------------------------------------------
+    .title-article {
+        font-size: 16px;
+    }
+
+    ion-card-title {
+        width: 80% !important;
+    }
+
+    ion-card-title.titleAsso{
+       color: color($colors, primary) !important;
+       text-decoration: underline;
+       font-weight: bold;
+       font-family: 'Montserrat Medium';
+    }
+    ion-col.icon-right{
+        text-align: right !important;
+        margin-right: 50px;
+    }
+    .iconContainer{
+        width: 100%;
+        display: inline-block;
+        .pTextContainer{
+            float:left;
+            width: 80%;
+            text-align: left;
+        }
+        .pImgContainer{
+            float: right;
+            width: 20%;
+            text-align: right;
+        }
+    }
+    // ----------------------------------------------------------------------------------
+    // Buttons
+    // ----------------------------------------------------------------------------------
+    .button-clear-ios-primary.activated,
+    .button-clear-md-primary.activated,
+    .button-clear-wp-primary.activated {
+        background-color: transparent;
+    }
+
+    // ----------------------------------------------------------------------------------
+    // Input
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // Select
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // Item
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // class
+    // ----------------------------------------------------------------------------------
+    .icon-heart {
+        padding-right: 0.3em;
+    }
+    .survey-icons{
+        width: 22px !important;
+        margin-right: 0px;
+        bottom: 25px;
+        position: relative;
+        cursor: pointer;
+    }
+    .icon-comm {
+        font-size: 2.5em;
+        padding-right: 0;
+        padding-left: 0.3em;
+    }
+
+    .registred-new-user {
+        position: absolute;
+        padding: 20px;
+        background: color($colors, white-color);
+        z-index: 999;
+        top: 50px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 180px;
+        width: 280px;
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: $medium;
+        text-align: center;
+
+        .close-btn {
+            float: right;
+        }
+
+        .app-title {
+            font-size: 20px;
+            color: color($colors, primary);
+        }
+    }
+
+    .div-agenda {
+        width: 10%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .div-more {
+        width: 4%;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .div-p {
+        width: 80%;
+        display: inline-block;
+    }
+
+    .publish {
+        margin-top: 40px;
+        position: fixed;
+    }
+
+    .icon-modif {
+        display: inline-block;
+    }
+
+    .icon-create {
+        font-size: 20px;
+        display: flow-root;
+        width: 15%;
+        position: relative;
+        float: right;
+        height: 25px;
+        text-align: right;
+    }
+
+    .div-title {
+        font-family: "Montserrat Medium";
+        color: color($colors, light-black);
+        font-size: 18px;
+        line-height: 20px;
+    }
+
+    .news-comment-action {
+        width: 25px;
+        margin-right: 5px;
+        margin-left: 5px;
+        vertical-align: top;
+        position: relative;
+        top: 1px;
+    }
+
+    .news-align-center{
+        margin-right: 10% !important;
+    }
+
+    .icon-img-action {
+        width: 30px;
+        vertical-align: top;
+    }
+
+    .card-title-ios,
+    .card-title-md,
+    .card-title-wp {
+        font-family: "Montserrat Medium" !important;
+        color: color($colors, light-black);
+        font-size: 18px;
+    }
+
+    .comments-nbr {
+        margin-right: 5px;
+        font-size: 22px;
+    }
+
+    .likes-nbr {
+        margin-left: 5px;
+        font-size: 22px;
+    }
+
+    .je-suis {
+        margin-left: 5px;
+        font-size: 15px;
+    }
+
+    .div-progress {
+        text-align: center;
+        height: auto;
+        margin: 5px 5px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        font-size: 14px;
+        font-weight: 600;
+        border-color: transparent;
+        color: color($colors, primary) !important;
+        background-color: transparent;
+        padding: 0 0.9em;
+        position: relative;
+        z-index: 0;
+        display: inline-block;
+        text-overflow: ellipsis;
+        text-transform: none;
+        white-space: nowrap;
+        vertical-align: top;
+        vertical-align: -webkit-baseline-middle;
+        -webkit-transition: background-color, opacity 100ms linear;
+        transition: background-color, opacity 100ms linear;
+        -webkit-font-kerning: none;
+        font-kerning: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        contain: content;
+    }
+
+    .filterNews {
+        padding-top: 40px;
+
+        span {
+            background: white;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: inline-block;
+            font-family: 'Montserrat Medium';
+            font-weight: bold;
+            line-height: 45px;
+            color: color($colors, primary);
+            box-shadow: 0px 0px 20px color($colors, select-search);
+            -moz-box-shadow: 0px 0px 20px color($colors, select-search);
+            -webkit-box-shadow: 0px 0px 20px color($colors, select-search);
+            -o-box-shadow: 0px 0px 20px color($colors, select-search);
+        }
+
+        ion-badge {
+            position: absolute;
+            margin-left: -10px;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            line-height: 25px;
+            padding: 0;
+            top: 0;
+        }
+    }
+
+    // class mobile
+    // ----------------------------------------------------------------------------------
+    @media (max-width: 1022px) {
+        .scroll-content {
+            margin-bottom: 50px;
+            margin-top: 130px !important;
+        }
+
+        .move {
+            width: 30px;
+            margin-bottom: 5px;
+        }
+
+        .card-content-md,
+        .card-content-md,
+        .card-content-md {
+            padding: 5px 16px !important;
+            font-size: 1.4rem;
+            line-height: 1.5;
+        }
+
+        .card-title-ios,
+        .card-title-md,
+        .card-title-wp {
+            display: contents;
+            font-size: 1.8rem;
+            line-height: 13px !important;
+            color: color($colors, light-black);
+            margin: 0px 0;
+            padding: 8px 0;
+            font-weight: 500;
+            font-family: "Montserrat Medium" !important;
+        }
+    }
+
+    // class desktop
+    // ----------------------------------------------------------------------------------
+    @media (min-width: 1023px) {
+
+        .scroll-content {
+            margin-top: 110px !important;
+        }
+        
+        // class IE
+        // ----------------------------------------------------------------------------------
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            .swiper-slide {
+                display: block;
+            }
+        }
+    }
+
+    ion-fab[bottom] {
+        bottom: 120px !important;
+    }
+}

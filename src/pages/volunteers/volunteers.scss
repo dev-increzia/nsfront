@@ -1,0 +1,99 @@
+page-volunteers {
+    .volunteers-list{
+        margin-top: 20px;
+        padding: 0 15px;
+    }
+
+    .scroll-content{
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 90px !important;
+    }
+
+    .volunteer-item{
+        border: none !important;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .volunteer-email{
+        color: color($colors, primary);
+        text-decoration: underline;
+    }
+
+    .volunteer-img{
+        float: left;
+        height: 45px;
+        width: auto;
+        vertical-align: middle;
+        margin: auto;
+        margin-right: 20px;
+    }
+
+    .volunteers-mail{
+        margin: 20px 0 0 0;
+    }
+    ion-item.item-checkbox{
+        padding-left: 0 !important;
+    }
+
+    .checkbox-icon,.radio-icon {
+        background: color($colors, checkbox) !important;
+        border: color($colors, checkbox) !important;
+        border-radius: 2px !important;
+        width: 16px;
+        height: 16px;
+    }
+    .checkbox-icon.checkbox-checked,.radio-icon.radio-checked {
+        background: color($colors, primary) !important;
+        border: color($colors, primary) !important;
+    }
+    .checkbox-icon.checkbox-checked,.radio-icon.radio-checked {
+        background: color($colors, primary) !important;
+        border: color($colors, primary) !important;
+        .checkbox-inner{
+            border: none !important;
+        }
+    }
+    ion-list {
+        margin-bottom: 0 !important;
+    }
+    .item-checkbox{
+        border: none !important
+    }
+    .listScrolled{
+        height: 380px;
+        margin-bottom: 40px !important;
+        overflow: scroll;
+        overflow-x: hidden;
+        &::-webkit-scrollbar-thumb{
+            background-color: color($colors, primary) !important;
+        }
+        &::-webkit-scrollbar-track{
+            background-color: color($colors, checkbox) !important;
+            box-shadow: none;
+        }
+        &::-webkit-scrollbar{
+            background-color: color($colors, checkbox) !important;
+            border-radius: 10px;
+        }
+    }
+    .trashVolunteers{
+        width: 30px;
+    }
+    .rightItem{
+        width: 20%;
+        display: inline;
+        cursor: pointer;
+    }
+    .volunteer-item{
+        width: 80%;
+        display: inline-flex;
+    }
+
+    @media (max-width: 350px) {
+        .volunteers-mail{
+            font-size: 11px;
+        }
+    }
+}

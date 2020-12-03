@@ -1,0 +1,85 @@
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+
+                <ion-title> Supprimer compte </ion-title>
+            </ion-col>
+            <ion-col col-2>
+                <div class="item" text-right>
+
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-content>
+    <div class="div-left"> </div>
+    <div class="div-center div-margin-top">
+        <div padding>
+            <ion-grid class="padding-horizontal">
+                <ion-row>
+                    <div text-center>
+                        Pour supprimer votre compte, veuillez associer le rôle super administrateur de vos associations
+                        et commerçants à un autre utilisateur de nous ensemble.
+                    </div>
+                </ion-row>
+                <ion-row>
+                    <div class="form-item">
+                        <p class="error" *ngFor="let error of errors">{{error}}</p>
+                    </div>
+                </ion-row>
+                <form class="form" #associationsMerchantsForm="ngForm" text-center>
+                    <ion-row *ngIf="items">
+                        <div class="content-div" *ngFor="let item of items" text-center>
+                            <div text-center>
+                                <button ion-button color="white-color" round class="button-white" text-center
+                                    no-padding>
+                                    <div class="block-image" text-center>
+                                        <img *ngIf="item.imageURL" class="block-button-img" src="{{item.imageURL}}" />
+                                        <img *ngIf="!item.imageURL" class="block-button-img" src="assets/imgs/icons/user_default.png" />
+                                    </div>
+                                    <div class="block-name">{{item.name}}</div>
+                                    <div class="block-icon"></div>
+                                </button>
+
+                                <ion-item class="item-input-white item-input-white-custom">
+                                    <ion-input pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                                        class="form-input-text" [class.formError]="email.invalid && (email.dirty || submited || email.touched)"
+                                        type="email" id="suAdmin-{{item.type}}-{{item.id}}" [(ngModel)]="item.suAdmin"
+                                        #email="ngModel" name="suAdmin-{{item.type}}-{{item.id}}" placeholder="Email du nouveau super administrateur"
+                                        required></ion-input>
+                                </ion-item>
+                                <div class="error-msg">
+                                    <span class="error" *ngIf="email.invalid && (email.dirty || submited || email.touched)">Email
+                                        invalide</span>
+                                </div>
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+                    </ion-row>
+
+                    <div class="form-item">
+                        <button (click)="performFirstStepRemove(associationsMerchantsForm.invalid)" ion-button full
+                            class="button-valid res">Suivant</button>
+                    </div>
+
+                </form>
+            </ion-grid>
+
+        </div>
+    </div>
+    <div class="div-right"></div>
+</ion-content>

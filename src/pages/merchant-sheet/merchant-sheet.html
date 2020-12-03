@@ -1,0 +1,267 @@
+<!--
+  Generated template for the CommercialSheetPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item" (click)="goBack()">
+                    <ion-icon name="ios-arrow-back"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+                <ion-title>{{appGlobals.currentPageTitle}}</ion-title>
+            </ion-col>
+            <ion-col col-2>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-content>
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <!--bloc central -->
+    <div class="div-center">
+        <div *ngIf="merchant">
+            <ion-grid class="custom-grid">
+
+                <ion-row>
+
+                    <ion-col>
+
+                        <div text-left class="csm1">
+                            <span class="medium-text-title"> Description </span>
+
+                            <p class="excerpt">
+                                {{merchant.description}}
+                            </p>
+
+                            <span class="medium-text-title csm2"> Email </span>
+                            <span class="excerpt"> {{merchant.email}} </span>
+
+                            <div class="clear"></div>
+
+                            <span class="medium-text-title csm2"> Téléphone </span>
+                            <span class="excerpt"> {{merchant.phone}} </span>
+
+                            <div class="clear"></div>
+
+                            <span class="medium-text-title csm2"> Adresse </span>
+                            <span class="excerpt"> {{merchant.address}} </span>
+                        </div>
+
+                    </ion-col>
+
+                </ion-row>
+
+            </ion-grid>
+
+            <ion-card *ngFor="let item of items">
+                <ion-card-header>
+                    <ion-icon class="icon-agenda" name="md-calendar" float-end *ngIf="item.event" (click)="detailsEvent(item.event, item.title, false, item.moderateEvent)"></ion-icon>
+                    <span class="card-title"> {{item.merchantName}} </span>
+                    <span class="card-title-subtitle" *ngIf="item.type == 'merchant' && item.city.name">
+                        {{item.createAt| amLocale:'fr' | amTimeAgo}} à {{item.city.name}} </span>
+                </ion-card-header>
+                <ion-card-content>
+                    <div (click)="detailsArticle(item);">
+                        <div *ngIf="item.imageURL || item.images || item.videoFile">
+                            <div *ngIf="(item.imageURL && !item.images && !item.videoFile) || (!item.imageURL && !item.images && item.videoFile) || (item.images && !item.imageURL && item.images.length == 1); else elseBlock">
+                                <div *ngIf="item.imageURL" (click)="detailsArticle(item);">
+                                    <img data-src="{{item.imageURL}}">
+                                </div>
+                                <div *ngFor="let img of item.images" (click)="detailsArticle(item);">
+                                    <img data-src="{{img.url}}">
+                                </div>
+                                <video style="width: 100%; height: 100%" *ngIf="item.videoFile !== null" controls poster="assets/img/video_default.png">
+                                    <source [src]="item.videoFile" type="video/mp4">
+                                </video>
+                            </div>
+
+                            <ng-template #elseBlock>
+                                <ion-slides loop="true" pager>
+                                    <ion-slide *ngIf="item.videoFile != null">
+                                        <video style="width: 100%; height: 100%" controls poster="assets/img/video_default.png">
+                                            <source [src]="item.videoFile" type="video/mp4">
+                                        </video>
+                                    </ion-slide>
+                                    <ion-slide *ngIf="item.imageURL" (click)="detailsArticle(item);">
+                                        <img data-src="{{item.imageURL}}">
+                                    </ion-slide>
+                                    <ion-slide *ngFor="let img of item.images" (click)="detailsArticle(item);">
+                                        <img data-src="{{img.url}}">
+                                    </ion-slide>
+                                </ion-slides>
+                            </ng-template>
+                            <div class="separator"></div>
+                        </div>
+
+                        <span class="card-title"> {{item.title}} </span>
+                        <p class="excerpt" [innerHtml]="item.description|truncate|nl2br"></p>
+                    </div>
+                    <div text-center>
+                        <button ion-button icon-left clear small (click)="detailsArticleComment(item);">
+                            <div>{{item.nbreComments}}</div>
+                            <img src="assets/imgs/icons/comments.png" class="icon-img-action">
+                        </button>
+                        <button ion-button icon-right clear small *ngIf="!item.isLiked" (click)="like(item.id);">
+                            <img src="assets/imgs/icons/dislike.png" class="icon-img-action">
+                            <div>{{item.nbLikes}}</div>
+                        </button>
+                        <button ion-button icon-right clear small *ngIf="item.isLiked" (click)="unlike(item.id);">
+                            <img src="assets/imgs/icons/like.png" class="icon-img-action">
+                            <div>{{item.nbLikes}}</div>
+                        </button>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
+                <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Charger plus...">
+                </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
+    </div>
+    <!-- fin bloc central -->
+    <div class="div-right" text-center>
+    </div>
+</ion-content>
+
+
+
+<!--
+  Generated template for the CommercialSheetPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+
+<!--
+  Generated template for the AgendaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item" (click)="goBack()">
+                    <ion-icon name="ios-arrow-back"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+                <ion-title>{{appGlobals.currentPageTitle}}</ion-title>
+            </ion-col>
+            <ion-col col-2>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-content>
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <!--bloc central -->
+    <div class="div-center">
+        <div *ngIf="merchant">
+            <ion-grid class="custom-grid">
+
+                <ion-row>
+
+                    <ion-col>
+
+                        <div text-left class="csm1">
+                            <span class="medium-text-title"> Description </span>
+
+                            <p class="excerpt">
+                                {{merchant.description}}
+                            </p>
+
+                            <span class="medium-text-title csm2"> Email </span>
+                            <span class="excerpt"> {{merchant.email}} </span>
+
+                            <div class="clear"></div>
+
+                            <span class="medium-text-title csm2"> Téléphone </span>
+                            <span class="excerpt"> {{merchant.phone}} </span>
+
+                            <div class="clear"></div>
+
+                            <span class="medium-text-title csm2"> Adresse </span>
+                            <span class="excerpt"> {{merchant.address}} </span>
+                        </div>
+
+                    </ion-col>
+
+                </ion-row>
+
+            </ion-grid>
+
+            <ion-card *ngFor="let item of items">
+                <ion-card-header>
+                    <ion-icon class="icon-agenda" name="md-calendar" float-end *ngIf="item.event" (click)="linkTo()"></ion-icon>
+                    <span class="card-title"> {{item.merchantName}} </span>
+                    <span class="card-title-subtitle" *ngIf="item.type == 'merchant' && item.city.name">
+                        {{item.createAt| amLocale:'fr' | amTimeAgo}} à {{item.city.name}} </span>
+                </ion-card-header>
+                <ion-card-content>
+                    <div>
+                        <div *ngIf="item.imageURL || item.images">
+                            <div *ngIf="(item.imageURL && !item.images) || (item.images && !item.imageURL && item.images.length == 1); else elseBlock">
+                                <div *ngIf="item.imageURL" (click)="detailsArticle(item);">
+                                    <img data-src="{{item.imageURL}}">
+                                </div>
+                                <div *ngFor="let img of item.images" (click)="detailsArticle(item);">
+                                    <img data-src="{{img.url}}">
+                                </div>
+                            </div>
+
+                            <ng-template #elseBlock>
+                                <ion-slides loop="true" pager>
+                                    <ion-slide *ngIf="item.imageURL" (click)="detailsArticle(item);">
+                                        <img data-src="{{item.imageURL}}">
+                                    </ion-slide>
+                                    <ion-slide *ngFor="let img of item.images" (click)="detailsArticle(item);">
+                                        <img data-src="{{img.url}}">
+                                    </ion-slide>
+                                </ion-slides>
+                            </ng-template>
+                            <div class="separator"></div>
+                        </div>
+
+                        <span class="card-title"> {{item.title}} </span>
+                        <p class="excerpt" [innerHtml]="item.description|truncate|nl2br"></p>
+                    </div>
+                    <div text-center>
+                        <button ion-button icon-left clear small (click)="detailsArticleComment(item);">
+                            <span class="comments-nbr"> {{item.nbreComments}}</span>
+                            <img src="assets/imgs/icons/comments.png" class="icon-img-action">
+                        </button>
+                        <button ion-button icon-right clear small *ngIf="!item.isLiked" (click)="like(item.id);">
+                            <img src="assets/imgs/icons/dislike.png" class="icon-img-action">
+                            <span class="likes-nbr"> {{item.nbLikes}}</span>
+                        </button>
+                        <button ion-button icon-right clear small *ngIf="item.isLiked" (click)="unlike(item.id);">
+                            <img src="assets/imgs/icons/like.png" class="icon-img-action">
+                            <span class="likes-nbr"> {{item.nbLikes}}</span>
+                        </button>
+                    </div>
+                </ion-card-content>
+            </ion-card>
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
+                <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Charger plus...">
+                </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
+    </div>
+    <!-- fin bloc central -->
+    <div class="div-right" text-center>
+    </div>
+</ion-content>

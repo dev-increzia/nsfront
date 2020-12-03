@@ -1,0 +1,77 @@
+<ion-content>
+    <!--bloc central -->
+    <div class="div-center">
+        <ion-grid padding-bottom class="no-padding grid bar-custom margin-bottom-grid">
+
+            <ion-row>
+
+                <ion-col text-center>
+                    <p class="subcribe">S'enregistrer dans une ou plusieurs communautés</p>
+                    <button class="custom-button-links" color="light" text-start (click)="showHidePublicSearch()">
+                        <span class="button-sign-affirmation"> Communautés publiques </span>
+                        <!-- <ion-icon name="ios-arrow-forward" role="img" class="icon icon-md ion-ios-arrow-forward colorized"
+                            aria-label="arrow forward" ng-reflect-name="ios-arrow-forward"></ion-icon> -->
+                            <img item-end class="icon-arrow" src="assets/imgs/icons/arrow-down.png" />
+                        <img>
+                    </button>
+
+
+                    <button class="custom-button-links" color="light" text-start (click)="showHidePrivateSearch()">
+                        <span class="button-sign-affirmation"> Communautés privées </span>
+                        <img item-end class="icon-arrow" src="assets/imgs/icons/arrow-down.png" />
+                    </button>
+
+
+                </ion-col>
+
+            </ion-row>
+
+
+
+        </ion-grid>
+        <div class="follow-communities">
+            <h5>Suivre ses communautés</h5>
+            <p>
+                Une fois enregistré(e), cochez les communautés que vous souhaitez suivre et validez
+            </p>
+        </div>
+        <div class="communities-list">
+            <ion-row class="scrollRow">
+                <ion-col col-12 class="follow-text">
+                    <ion-item>
+                        <ion-checkbox [(ngModel)]="selectAll" (click)="checkUncheckAll()" color="primary"></ion-checkbox>
+                        <ion-label text-left color="light-black">Suivre toutes ses communautés</ion-label>
+                    </ion-item>
+                    <ion-item>
+                        <p text-left>ou cocher les communautés que vous<br> souhaitez suivre</p>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="scrollRow">
+                <ion-col col-12>
+                    <ion-list class="listScrolled" no-lines>
+                       
+                        <ion-item *ngFor="let community of communities">
+                            
+                                <img item-end class="icon-private" *ngIf="community.isPrivate" src="assets/imgs/icons/private.png" />
+                               <div class="trash-div" item-end  ion-item (click)="unfollow(community.id);$event.stopPropagation();"><img item-end  class="icon-trash" src="assets/imgs/icons/trash.png" (click)="unfollow(community.id);$event.stopPropagation();" /></div> 
+                                <ion-label>{{community.name}}</ion-label>
+                            <ion-checkbox  (click)="selectCommunity(community)" color="dark" Communautés publiques [(ngModel)]="community.follow"></ion-checkbox>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+            <ion-row class="note" text-center>
+                <ion-col col-12 >
+                    <p text-center>À tout moment, vous pourrez modifier et supprimer vos sélections en cliquant sur
+                        l'icône Communautés</p>
+                </ion-col>
+            </ion-row>
+
+            <button class="community-button" ion-button color="primary"  (click)= "followCOmmunities()" round>Valider</button>
+        </div>
+
+    </div>
+    <!-- fin bloc central -->
+</ion-content>

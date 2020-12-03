@@ -1,0 +1,30 @@
+<!--
+  Generated template for the NewsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content text-center>
+    <div class="div-left">
+    </div>
+
+    <div class="div-center empty">
+        <img class="hand" src="assets/imgs/icons/hand.png">
+       <div class="img-container"> <img class="emptyCommunity" src="assets/imgs/icons/emptyCommunity.png"> </div>
+        <p class="emptyText"> Cliquez sur <br> Communautés et <br> sélectionnez <br> celles qui vous <br>intéressent
+        </p>
+    </div>
+    <div class="div-right" text-left>
+        <img class="publish" src="assets/imgs/icons/2.png" (click)="publish()">
+    </div>
+
+    <div class="overlay" *ngIf="registredUser" (click)="hideConfirmationMessage()"></div>
+    <div class="registred-new-user" *ngIf="registredUser">
+        <div class="close-btn" (click)="hideConfirmationMessage()">
+            <ion-icon name="md-close"></ion-icon>
+        </div>
+        Votre compte <br>
+        <span class="app-title">Nous-Ensemble</span><br> a été bien créé ! <br> Vous avez reçu un email de <br>
+        confirmation avec votre <br> identifiant et votre mot de passe.
+    </div>
+</ion-content>

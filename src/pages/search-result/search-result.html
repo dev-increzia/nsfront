@@ -1,0 +1,170 @@
+<!--
+  Generated template for the SearchResultPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="desktop-header-white" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-4 text-right class="auto-margin">
+                <ion-icon class="search-icon" name="md-search"></ion-icon>
+            </ion-col>
+            <ion-col col-4>
+                <ion-item text-center>
+                    <ion-input text-capitalize class="search-input" type="text" id="key" name="key" placeholder="Rechercher"
+                        [(ngModel)]="searchCriteria.key" required></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col col-4 text-left class="auto-margin">
+                <ion-icon class="close-icon" name="md-close" (click)="quitSearchResult()"></ion-icon>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-header class="mobile-header-white" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-right class="auto-margin">
+                <ion-icon class="search-icon" name="md-search"></ion-icon>
+            </ion-col>
+            <ion-col col-8>
+                <ion-item text-center>
+                    <ion-input text-capitalize class="search-input" type="text" id="key" name="key" placeholder="Rechercher"
+                        [(ngModel)]="searchCriteria.key" required></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col col-2 text-left class="auto-margin">
+                <ion-icon class="close-icon" name="md-close" (click)="quitSearchResult()"></ion-icon>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-content>
+    <div class="div-left"></div>
+    <div class="div-center">
+        <ion-grid no-padding class="grid-resh">
+
+            <ion-row>
+                <ion-col text-left class="select-filter-search">
+
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-3 text-center>
+                    <div  class="search-accounts" [class.activate]="searchCriteria.account" (click)="searchAccount()">
+                        <div class="icon"></div>
+                        <p> groupes/<br/>établissements </p>
+                    </div>
+                </ion-col>
+                <ion-col col-3 text-center>
+                    <div class="search-articles" [class.activate]="searchCriteria.article" (click)="searchArticle()">
+                        <div class="icon"></div>
+                        <p> articles </p>
+                    </div>
+                </ion-col>
+                <ion-col col-3 text-center>
+                    <div class="search-events" [class.activate]="searchCriteria.event" (click)="searchEvent()">
+                        <div class="icon"></div>
+                        <p> évènements </p>
+                    </div>
+                </ion-col>
+                <ion-col col-3 text-center>
+                    <div class="search-goodplans" [class.activate]="searchCriteria.goodplans" (click)="searchGoodPlans()">
+                        <div class="icon"></div>
+                        <p> bons plans </p>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col>
+                    <div class="no-result" *ngIf="(!result.associations || result.associations.length == 0 )
+                         && (!result.merchants || result.merchants.length == 0)
+                         && (!result.articles || result.articles.length == 0)
+                         && (!result.events || result.events.length == 0)">
+                        <ion-col>
+                            <div>
+                                <p text-center class="no-result"> Pas de résultat correspondant à votre recherche.</p>
+                            </div>
+                        </ion-col>
+                    </div>
+                    <ion-list class="result-list" *ngIf="result.associations && result.associations.length > 0">
+
+                        <ion-list-header>
+                            <ion-icon name="ios-globe-outline" item-start></ion-icon>
+                            Groupes / associations
+                        </ion-list-header>
+                        <ion-item *ngFor="let association of result.associations" (click)="detailsAssociation(association)">
+                            <img *ngIf="association.imageURL" class="item-img" src="{{association.imageURL}}" />
+                            <h2 class="title-item"><strong text-capitalize>{{association.name}}</strong></h2>
+                            <ion-icon text-right item-right name="ios-arrow-forward"></ion-icon>
+                        </ion-item>
+                    </ion-list>
+                    <ion-list class="result-list" *ngIf="result.merchants && result.merchants.length > 0">
+                        <ion-list-header>
+                            <ion-icon name="md-cart" item-start></ion-icon>
+                            Commerces / partenaires
+                        </ion-list-header>
+                        <ion-item *ngFor="let merchant of result.merchants" (click)="detailsMerchant(merchant)">
+                            <img *ngIf="merchant.imageURL" class="item-img" src="{{merchant.imageURL}}" />
+                            <h2 class="title-item"><strong text-capitalize>{{merchant.name}}</strong></h2>
+                            <ion-icon text-right item-right name="ios-arrow-forward"></ion-icon>
+                        </ion-item>
+                    </ion-list>
+                    <ion-list class="result-list" *ngIf="result.events && result.events.length > 0">
+                        <ion-list-header>
+                            <ion-icon name="md-calendar" item-start></ion-icon>
+                            Agenda
+                        </ion-list-header>
+                        <ion-item *ngFor="let event of result.events" (click)="detailsEvent(event.id)">
+                            <img *ngIf="event.imageURL" class="item-img" src="{{event.imageURL}}" />
+                            <h2 class="title-item-obj"><strong>{{event.title}}</strong></h2>
+                            <p class="small-description">
+                                {{event.startAt| amLocale:'fr' | amDateFormat:'dddd Do MMMM YYYY'}} {{event.startAt|
+                                amLocale:'fr' | amDateFormat:'HH'}}H{{event.startAt| amLocale:'fr' |
+                                amDateFormat:'mm'}}
+                            </p>
+                            <ion-icon text-right item-right name="ios-arrow-forward"></ion-icon>
+                        </ion-item>
+                    </ion-list>
+
+
+                    <ion-list class="result-list" *ngIf="result.goodplans && result.goodplans.length > 0">
+                        <ion-list-header>
+                            <ion-icon name="md-calendar" item-start></ion-icon>
+                            Bon Plans
+                        </ion-list-header>
+                        <ion-item *ngFor="let event of result.goodplans" (click)="detailsGoodplan(event.id)">
+                            <img *ngIf="event.imageURL" class="item-img" src="{{event.imageURL}}" />
+                            <h2 class="title-item-obj"><strong>{{event.title}}</strong></h2>
+                            <p class="small-description">
+                                {{event.startAt| amLocale:'fr' | amDateFormat:'dddd Do MMMM YYYY'}} {{event.startAt|
+                                amLocale:'fr' | amDateFormat:'HH'}}H{{event.startAt| amLocale:'fr' |
+                                amDateFormat:'mm'}}
+                            </p>
+                            <ion-icon text-right item-right name="ios-arrow-forward"></ion-icon>
+                        </ion-item>
+                    </ion-list>
+
+
+                    <ion-list class="result-list" *ngIf="result.articles && result.articles.length > 0">
+                        <ion-list-header>
+                            <ion-icon name="ios-book" item-start></ion-icon>
+                            Articles
+                        </ion-list-header>
+                        <ion-item *ngFor="let article of result.articles" (click)="detailsArticle(article)">
+                            <img *ngIf="article.imageURL" class="item-img" src="{{article.imageURL}}" />
+                            <h2 class="title-item-obj"><strong>{{article.title}}</strong></h2>
+                            <p class="small-description">
+                                {{article.createAt| amLocale:'fr' | amDateFormat:'dddd Do MMMM YYYY'}}
+                            </p>
+                            <ion-icon text-right item-right name="ios-arrow-forward"></ion-icon>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div class="div-right"></div>
+
+</ion-content>

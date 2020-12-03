@@ -1,0 +1,53 @@
+page-association-list {
+    .mar {
+        margin-bottom: 6em;
+    }
+    .assoc-show-button {
+        width: 100%;
+        background: color($colors, white-color);
+        padding: 10px 20px;
+        border-radius: 20px;
+    }
+    .names {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        white-space: normal;
+        border-right: 2px solid color($colors, names);
+        font-size: 12px;
+        padding: 0px 5px;
+    }
+    .name {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        white-space: normal;
+        color: color($colors, h-color);
+        font-size: 12px;
+        padding: 0px 5px;
+    }
+    .logo_assoc {
+        width: 30px;
+        height: 30px;
+        vertical-align: middle;
+        border-radius: 30px;
+    }
+    .project_title {
+        padding-top: 0 !important;
+    }
+    .grid-bottom {
+        margin-bottom: 70px;
+    }
+    @media (min-width: 1023px) {
+        // class IE
+        // ----------------------------------------------------------------------------------
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            .swiper-slide {
+                display: block;
+            }
+            ion-slide.swiper-slide {
+                left: 0%;
+            }
+        }
+    }
+}

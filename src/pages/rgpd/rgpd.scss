@@ -1,0 +1,112 @@
+page-rgpd {
+    .toolbar-title-md, .toolbar-title-ios, .toolbar-title-wp {
+        color: color($colors, white-color) !important;
+        font-family: "Montserrat Bold", serif !important;
+        font-size: 20px;
+        text-align: center;
+        text-transform: capitalize;
+        position: relative;
+        top:10px;
+    }
+
+    .boxed-form {
+        background: color($colors, white-color);
+        -webkit-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+        box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+        padding:10px;
+        border-radius: 20px;
+    }
+
+    .lorem {
+        text-transform:uppercase;
+        color: color($colors, primary);
+    }
+
+    .hello-text {
+        display: block;
+        margin-bottom: 1em;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    li{
+        font-size: 13px;
+        line-height: 1.58;
+        font-weight: 400;
+        letter-spacing: -0.028em;
+        color: #4b4b4b;
+        text-align: justify;
+    }
+    p{
+        text-align: justify;
+    }
+    h4{
+        color: #00a99d;
+        font-size: 1.8rem;
+        font-family: "Montserrat Bold",serif;
+    }
+    .onlyDesktop{
+        text-align: center;
+        font-size: 20px;
+    }
+
+
+    .having-devoted-attention-to {
+        display: block;
+        margin-bottom: 1em;
+    }
+
+    .mailing {
+        font-weight: bold;
+    }
+
+
+    .phone {
+        font-weight: bold;
+        margin-bottom: 1em;
+    }
+
+    .phone-number {
+
+    }
+
+    .mail-address {
+        margin-bottom: 1em;
+        margin-top: 2em;
+        text-align: left;
+    }
+
+    .call-us {
+        margin-bottom: 1em;
+        text-align: left;
+    }
+
+    .logo-contact-container {
+        width: 130px;
+        position: relative;
+        margin: 3em auto;
+    }
+
+    .bordered {
+        border-bottom: 1px solid color($colors, dark);
+        padding-bottom: 1em;
+        margin-bottom: 1em;
+    }
+
+    .ion-page > ion-content {
+        position: absolute !important;
+        margin-top: 10px !important;
+    }
+    .mobile-header .toolbar-title{
+        white-space: normal;
+    }
+    .mobile-header .item .icon{
+        margin-top: 7px;
+    }
+    @media (min-width: 1023px) {
+        .bar-custom {
+            margin-top: 3em;
+        }
+    }
+}

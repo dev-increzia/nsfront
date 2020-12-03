@@ -1,0 +1,62 @@
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+
+                <ion-title> Supprimer compte </ion-title>
+            </ion-col>
+            <ion-col col-2>
+                <div class="item" text-right>
+
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-content>
+    <div class="div-left"> </div>
+    <div class="div-center div-margin-top">
+        <div padding>
+            <ion-grid class="padding-horizontal">
+                <ion-row>
+                    <div text-center>
+                        Etes-vous certain de vouloir supprimer votre compte citoyen? Si oui dites-nous ci-dessous la
+                        raison de cette suppression.
+                    </div>
+                </ion-row>
+                <form class="form" #deleteAccountForm="ngForm">
+                    <ion-row>
+
+                        <div class="form-item full-width-s">
+                            <ion-col col-12 text-center>
+                                <ion-item class="item-input-white" text-center>
+                                    <ion-textarea [class.formError]="cause.invalid && (cause.dirty || submited || cause.touched)"
+                                        class="form-input-text" #cause="ngModel" [(ngModel)]="reason" type="text" id="reason"
+                                        name="reason" placeholder="Motif*..." required>
+
+                                    </ion-textarea>
+                                </ion-item>
+                            </ion-col>
+                            <div class="error-msg">
+                                <span class="error" *ngIf="cause.invalid && (cause.dirty || submited || cause.touched)">Champs
+                                    motif obligatoire</span>
+                            </div>
+                            <div class="form-item">
+                                <button ion-button full class="button-valid res" (click)="deleteAccountConfirmation(deleteAccountForm.valid)">Supprimer
+                                    mon compte</button>
+                            </div>
+                        </div>
+                    </ion-row>
+                </form>
+            </ion-grid>
+
+        </div>
+    </div>
+    <div class="div-right"></div>
+</ion-content>

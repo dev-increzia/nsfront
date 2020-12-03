@@ -1,0 +1,198 @@
+<!--
+  Generated template for the ListArticlePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+                <ion-title *ngIf="!survey">Les articles</ion-title>
+                <ion-title *ngIf="survey">Les sondages</ion-title>
+            </ion-col>
+            <ion-col col-2>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-content text-center>
+    <div class="div-left">
+        <div text-center class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <div class="div-center">
+        <ion-refresher (ionRefresh)="doRefreshNews($event)">
+            <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+        <ion-card *ngFor="let item of items">
+            <ion-card-content>
+                <ion-card-title text-left *ngIf="item.type == 'association'" (click)="openAssociation(item.associationId, item.associationName)">
+                    {{item.associationName | capitalize}}
+                </ion-card-title>
+                <ion-card-title text-left *ngIf="item.type == 'merchant'" (click)="openMerchant(item.merchantId, item.merchantName)">
+                    {{item.merchantName | capitalize}}
+                </ion-card-title>
+                <ion-card-title text-left *ngIf="item.type == 'community'">
+                    {{item.associationName | capitalize}}
+                </ion-card-title>
+                <ion-card-title text-left *ngIf="item.type == 'cityhall'"> {{item.cityhall}} </ion-card-title>
+                <ion-card-title text-left *ngIf="item.type == 'user'"> {{item.userFirstname | capitalize}}
+                    {{item.userLastname | capitalize}}
+                </ion-card-title>
+                <ion-card-title class="display-block" text-left *ngIf="item.type == 'survey'" (click)="detailsSurvey(item);"> {{item.community}}
+                </ion-card-title>
+
+                <p text-left>
+                    <span *ngIf="item.type != 'survey'" (click)="detailsArticle(item);">
+                        {{item.createAt| amLocale:'fr' | amTimeAgo}}
+                        <span *ngIf="item.type == 'user' && item.city">à {{item.city}}</span>
+                        <span *ngIf="item.type == 'community' && item.city">à {{item.city}}</span>
+                        <span *ngIf="item.type == 'association' && item.city">à {{item.city}}</span>
+                        <span *ngIf="item.type == 'merchant' && item.city">à {{item.city}}</span>
+                        <span *ngIf="item.type == 'cityhall' && item.city">à {{item.city}}</span>
+                    </span>
+                    <span *ngIf="item.type == 'survey' && item.city" (click)="detailsSurvey(item);">
+                        {{item.createAt| amLocale:'fr' | amTimeAgo }}
+                        <span>à {{item.city}}</span>
+                    </span> 
+                    <img float-end *ngIf="item.event" (click)="detailsEvent(item.event, item.title, false, item.moderateEvent)"
+                         class="icon-agenda move img-calendar" src="assets/imgs/icons/calendar.png" alt="NOUS-Ensemble" />
+                    <img float-end *ngIf="item.private" class="move lock-icons" src="assets/imgs/icons/lock.png" alt="NOUS-Ensemble" />
+                    <img float-end *ngIf="item.type == 'survey'" class="move survey-icons" src="assets/imgs/icons/article.png" alt="NOUS-Ensemble" (click)="detailsSurvey(item);" />
+                </p>
+
+                <!--<img src="" (click)="publish()">-->
+                <div *ngIf="(item.imageURL || item.images || item.videoFile) && item.type != 'survey'">
+                    <div *ngIf="(item.imageURL && !item.images && !item.videoFile) || (!item.imageURL && !item.images && item.videoFile) || (item.images && !item.imageURL && item.images.length == 1); else elseBlock">
+                        <div *ngIf="item.imageURL" (click)="detailsArticle(item);">
+                            <img data-src="{{item.imageURL}}">
+                        </div>
+                        <div *ngFor="let img of item.images" (click)="detailsArticle(item);">
+                            <img data-src="{{img.url}}">
+                        </div>
+                        <video style="width: 100%; height: 100%" *ngIf="item.videoFile !== null" controls poster="assets/img/video_default.png">
+                            <source [src]="item.videoFile" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <ng-template #elseBlock>
+                        <ion-slides loop="true" pager>
+                            <ion-slide *ngIf="item.videoFile != null">
+                                <video style="width: 100%; height: 100%" controls poster="assets/img/video_default.png">
+                                    <source [src]="item.videoFile" type="video/mp4">
+                                </video>
+                            </ion-slide>
+                            <ion-slide *ngIf="item.imageURL" (click)="detailsArticle(item);">
+                                <img data-src="{{item.imageURL}}">
+                            </ion-slide>
+                            <ion-slide *ngFor="let img of item.images" (click)="detailsArticle(item);">
+                                <img data-src="{{img.url}}">
+                            </ion-slide>
+                        </ion-slides>
+                    </ng-template>
+                </div>
+
+                <div *ngIf="(item.imageURL || item.images) && item.type == 'survey'">
+                    <div *ngIf="(item.imageURL && !item.images) || (item.images && !item.imageURL && item.images.length == 1); else elseBlock">
+                        <div *ngIf="item.imageURL" (click)="detailsSurvey(item);">
+                            <img data-src="{{item.imageURL}}">
+                        </div>
+                        <div *ngFor="let img of item.images" (click)="detailsSurvey(item);">
+                            <img data-src="{{img.url}}">
+                        </div>
+                    </div>
+
+                    <ng-template #elseBlock>
+                        <ion-slides loop="true" pager>
+                            <ion-slide *ngIf="item.imageURL" (click)="detailsSurvey(item);">
+                                <img data-src="{{item.imageURL}}">
+                            </ion-slide>
+                            <ion-slide *ngFor="let img of item.images" (click)="detailsSurvey(item);">
+                                <img data-src="{{img.url}}">
+                            </ion-slide>
+                        </ion-slides>
+                    </ng-template>
+                </div>
+                <ion-card-title class="title-article" text-left>
+                    <div class="div-title" *ngIf="item.type != 'survey'"  (click)="detailsArticle(item);">{{item.title}}</div>
+                    <div class="div-title" *ngIf="item.type == 'survey'"  (click)="detailsSurvey(item);">{{item.title}}</div>
+                    <ion-fab  float-end *ngIf="account.role !='member' && item.type != 'survey'">
+                        <button ion-fab clear>
+                            <ion-icon name="md-more" float-end></ion-icon>
+                        </button>
+                        <ion-fab-list side="left">
+                            <button ion-fab (click)="editArticleNotParent(item);" *ngIf="item.hasParent ">
+                                <ion-icon name="md-create"></ion-icon>
+                            </button>
+                            <button ion-fab (click)="editArticle(item);" *ngIf="!item.hasParent ">
+                                <ion-icon name="md-create"></ion-icon>
+                            </button>
+                          
+
+                            <button ion-fab (click)="deleteArticleNotParent(item);" *ngIf="item.hasParent ">
+                                <ion-icon name="md-trash"></ion-icon>
+                            </button> 
+                           
+                            <button ion-fab (click)="deleteArticleAlert(item);" *ngIf="!item.isParent && !item.hasParent">
+                                <ion-icon name="md-trash"></ion-icon>
+                            </button> 
+
+                          
+
+                            <button ion-fab>
+                                <ion-checkbox [(ngModel)]="item.enabled" (ionChange)="updateStatusArticle(item)"></ion-checkbox>
+                            </button>
+                        </ion-fab-list>
+                    </ion-fab>
+                </ion-card-title>
+
+                <p text-left [innerHtml]="item.description|truncate|nl2br" *ngIf="item.type != 'survey'"  (click)="detailsArticle(item);"></p>
+                <p text-left [innerHtml]="item.description|truncate|nl2br" *ngIf="item.type == 'survey'"  (click)="detailsSurvey(item);"></p>
+            </ion-card-content>
+
+            <ion-row class="comment-text-style news-align-center" *ngIf="item.type != 'survey'">
+                <ion-col class="text-grey" *ngIf="item.type != 'community' || (item.addComments && item.type == 'community' ) ">
+                    <span  *ngIf="item.nbreComments <= 1">{{item.nbreComments}} Commentaire</span>
+                    <span  *ngIf="item.nbreComments > 1">{{item.nbreComments}} Commentaires</span>
+                </ion-col>
+                <ion-col>
+                    <img class="comment-img-style" src="assets/imgs/icons/list-divider.png">
+                </ion-col>
+                <ion-col class="text-grey">
+                    <span> {{item.nbLikes}} J'aime</span>
+                </ion-col> 
+            </ion-row> 
+
+            <ion-row padding-bottom *ngIf="item.type != 'survey'">
+                <ion-col class="no-padding " text-right *ngIf="item.type != 'community' || (item.addComments && item.type == 'community' ) ">
+                    <span class="disociate-actions" (click)="detailsArticleComment(item);" ><img class="news-comment-action dissociate-comment" src="assets/imgs/icons/comments.png"></span>
+                </ion-col>
+
+                <ion-col class="no-padding text-center" text-left>
+                    <span *ngIf="!item.isLiked" class="disociate-actions text-center" (click)="like(item.id);"><img class="news-comment-action dissociate-like"
+                                                                                                                    src="assets/imgs/icons/dislike.png"></span>
+
+                    <span *ngIf="item.isLiked" class="disociate-actions text-center" (click)="unlike(item.id);"> <img class="news-comment-action dissociate-like"
+                                                                                                                      src="assets/imgs/icons/like.png"></span>
+                </ion-col>
+
+                <ion-col class="no-padding " text-right>
+                    <span class="disociate-actions" (click)="ShareArticle(item);" ><img class="news-comment-action dissociate-share" src="assets/imgs/icons/share.png"></span>
+                </ion-col>
+
+            </ion-row>
+        </ion-card>
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Charger plus...">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </div>
+    <div class="div-right" text-left>
+        <!-- <img class="publish" src="assets/imgs/icons/2.png" (click)="publish(account)"> -->
+    </div>
+</ion-content>

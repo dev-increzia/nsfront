@@ -1,0 +1,203 @@
+page-dedicated {
+.toolbar-title > .page-title{
+  font-size: 16px !important;
+}
+  ion-avatar img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  .presentation{
+    width: 100%;
+  }
+  .presentation img{
+    height:200px;
+    max-width:100%;
+  }
+  [padding-bottom] {
+    width: 94%;
+  }
+  .page-title{
+    color: #ffffff;
+    font-size: 16px !important;
+
+    text-overflow: clip !important;
+    font-weight: 600;
+  }
+  .presentation-title {
+    font-family: "Montserrat Medium";
+    color: #4d4d4d;
+    font-size: 18px;
+  }
+  ion-icon {
+    display: inline-block;
+    font-size: 25px;
+    vertical-align: middle;
+    color: color($colors, white-color);
+  }
+  .button-outline-md-light,
+  .button-outline-ios-light,
+  .button-outline-wp-light {
+    border-color: color($colors, white-color);
+    color: color($colors, dark);
+    background-color: color($colors, white-color);
+    border-radius: 20px;
+  }
+  .colorized {
+    color: color($colors, primary) !important;
+    float: right;
+    position: relative;
+    right: 15px;
+    margin-left: -15px;
+    display: block;
+    vertical-align: bottom;
+    top: 2px;
+  }
+  [icon-right] ion-icon,
+  [icon-end] ion-icon {
+    font-size: 1.4em;
+    line-height: .67;
+    pointer-events: none;
+    padding-left: 5.4em;
+  }
+  .button-sign-affirmation {
+
+    font-family: "Montserrat Regular";
+    font-size: 15px;
+    line-height: 30px;
+    color: color($colors, light-black);
+    text-align: left;
+    font-weight: bold;
+    margin-left: 20px;
+    display: inline-block;
+    /* max-width: 70ch; */
+    width: 50px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 80%;
+
+  }
+  .listScrolled{
+    margin-top: 20px;
+    color: #4D4D4D;
+    max-height: 80%;
+    margin-bottom: 0% !important;
+    height: 370px;
+    padding-left: 0%;
+    //margin-bottom: 0px !important;
+    overflow: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    &::-webkit-scrollbar-thumb{
+      background-color: color($colors, primary) !important;
+    }
+    &::-webkit-scrollbar-track{
+      background-color: color($colors, checkbox) !important;
+      box-shadow: none;
+    }
+    &::-webkit-scrollbar{
+      background-color: color($colors, checkbox) !important;
+      border-radius: 10px;
+    }
+  }
+  .item{
+    background-color: transparent;
+    padding-left: 0px;
+  }
+  .label {
+    margin: 0;
+  }
+  .col-dedicated {
+    width: 80%
+  }
+  ion-label{
+    padding-left: 0px;
+  }
+  @media (min-width: 1023px) {
+    .bar-custom {
+      margin-top: 3em;
+    }
+    .custom-button-links {
+      width: 97%;
+      border-radius: 20px;
+      background: color($colors, white-color);
+      padding: 5px 0px;
+      margin-bottom: 1.5em;
+      -webkit-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+      box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+      margin-left: auto;
+      margin-right: 2%;
+      display: block;
+    }
+    .map-idicator {
+      width: 40%;
+      height: 150px;
+      border-radius: 20px;
+      display: block;
+      border: 2px solid color($colors, white-color) !important;
+      margin-bottom: 1.5em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+  }
+  @media (max-width: 1022px) {
+    .custom-button-links {
+      width: 97%;
+      border-radius: 20px;
+      background: color($colors, white-color);
+      padding: 5px 0px;
+      margin-bottom: 1.5em;
+      -webkit-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+      box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.2);
+      margin-left: auto;
+      margin-right: 2%;
+      display: block;
+    }
+    .map-idicator {
+      width: 70%;
+      height: 150px;
+      border-radius: 20px;
+      display: block;
+      border: 2px solid color($colors, white-color) !important;
+      margin-bottom: 1.5em;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .block-image {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: 600px) and (max-width: 1022px){
+    .button-sign-affirmation {
+
+      width: 46ch;
+
+    }
+  }
+
+  @media (max-width: 320px) {
+    .button-sign-affirmation {
+
+      width: 20ch;
+
+    }
+  }
+
+  @media (min-width: 1560px){
+    .button-sign-affirmation {
+
+      width: 46ch;
+
+    }
+  }
+
+
+}

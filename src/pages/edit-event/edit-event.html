@@ -1,0 +1,242 @@
+<!--
+  Generated template for the PublishPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-row class="header-popin" no-padding>
+        <ion-col class="no-padding " text-left>
+            <button ion-button clear small type="button" color="primary" no-margin no-padding>
+                <ion-icon name="ios-create-outline"></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col class="no-padding " text-center>
+            <h5 class="primary-color title-popin" no-margin>Publier</h5>
+        </ion-col>
+        <ion-col class="no-padding " text-right>
+            <button ion-button clear small color="primary" icon-start no-margin no-padding (click)="goBack()">
+                <img class="icon-heart" src="assets/imgs/icons/image3.png">
+
+            </button>
+        </ion-col>
+    </ion-row>
+</ion-header>
+<ion-content padding>
+    <ion-col col-12 text-centre class="padding-top">
+        <form  #publishArticleForm="ngForm">
+            <ion-grid margin-top>
+                <ion-row text-center>
+                    <ion-col col-12 text-center no-padding>
+                        <div>
+                            <ion-slides (ionSlideDidChange)="slideChanged()" *ngIf="deleteAll" class="image home-card-slides"
+                                loop="true" pager>
+                                <ion-slide *ngIf="currentEvent.imageURL">
+                                    <img data-src="{{currentEvent.imageURL}}">
+                                    <!--<img src="{{articleImgs.articlePhoto}}" *ngIf="articleImgs.articlePhoto">-->
+                                    <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhoto(-1, 0);"
+                                        *ngIf="currentEvent.imageURL || eventImgs.eventPhoto"></ion-icon>
+
+                                </ion-slide>
+                                <div *ngFor="let img of currentEvent.images; let i = index">
+                                    <ion-slide *ngIf="img.url">
+
+                                        <img src="{{img.url}}" *ngIf="img.url">
+                                        <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhoto(i, img.id);"
+                                            *ngIf="img.url"></ion-icon>
+
+                                    </ion-slide>
+                                </div>
+                                <div *ngFor="let item of eventImgs.photos let i = index">
+                                    <ion-slide *ngIf="item">
+
+                                        <img src="{{item}}" *ngIf="item">
+                                        <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhoto(i, '');"
+                                            *ngIf="item"></ion-icon>
+
+                                    </ion-slide>
+                                </div>
+                            </ion-slides>
+                        </div>
+                        <div *ngIf="currentEvent.thirdPhoto;">
+                            <div>
+                                <img src="{{currentEvent.thirdPhoto}}" *ngIf="currentEvent.thirdPhoto">
+                                <ion-icon name="trash" class="icon-delete" (click)="deletePhoto(3);" *ngIf="currentEvent.thirdPhoto"></ion-icon>
+                            </div>
+
+                        </div>
+                        <div>
+                            <div class="center" *ngIf="eventImgs.eventSecondPhoto">
+                                <img src="{{eventImgs.eventSecondPhoto}}" class="width-100" *ngIf="eventImgs.eventSecondPhoto">
+                                <ion-icon name="trash" class="icon-delete" (click)="deleteEditedPhoto(2);"></ion-icon>
+                            </div>
+                            <div class="center" *ngIf="eventImgs.eventThirdPhoto">
+                                <img src="{{eventImgs.eventThirdPhoto}}" class="width-100" *ngIf="eventImgs.eventThirdPhoto">
+                                <ion-icon name="trash" class="icon-delete" (click)="deleteEditedPhoto(3);"></ion-icon>
+                            </div>
+
+                        </div>
+                        <ion-col col-12 text-center>
+                            <!--  <button ion-button class="button-pic" color="grey-color" type="button" round (click)="presentActionSheet()">Photo</button>-->
+                            <img class="button-img" src="assets/imgs/icons/button.png" (click)="presentActionSheet()">
+                        </ion-col>
+                        <div *ngIf="currentEvent.videoFile" style="position: relative;">
+                                	<img class="button-img" src="assets/imgs/icons/video.png">
+                                    <ion-icon name="trash" 
+                                    	class="icon-delete delete-icon" 
+                                    	(click)="deleteVideo();"
+                                        *ngIf="currentEvent.videoFile">
+                                    </ion-icon>
+                        </div>
+                    </ion-col>
+                    <!-- <p class="indication" *ngIf="accountType == 'association' || this.accountType == 'merchant'">(Jusqu'à 3 photos)</p> -->
+                </ion-row>
+
+            </ion-grid>
+            <ion-grid class="padding-horizontal">
+
+                <ion-row>
+                    <ion-col col-12 text-center class="margin-top">
+
+                        <ion-item [class.formError]="titre.invalid && (titre.dirty || submited || titre.touched)">
+                            <ion-input name="titre" type="text" id="titre" placeholder="Titre" (focus)="checkFocus($event)"
+                                [(ngModel)]="currentEvent.title" #titre="ngModel" (change)="capitalize($event.target.value, 'title')"
+                                required></ion-input>
+                        </ion-item>
+
+                        <div style="width: 90%;
+                        text-align: right;">
+                            <button style="position: absolute;
+                            top: 70%;
+                            left: 1%;" ion-button clear icon-only (click)="toggled = !toggled"
+                            [(emojiPickerIf)]="toggled" [emojiPickerDirection]="'top'"
+                            (emojiPickerSelect)="handleSelection($event)">
+                            😃
+                            </button>
+                        </div>
+
+                        <div class="error-msg" *ngIf="titre.invalid && (titre.dirty || submited || titre.touched)">
+                            <span class="error">Champs titre obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <div style="width: 100%; height: 30px;"></div>
+
+                    <ion-col col-12 text-center>
+
+                        <ion-item [class.formError]="description.invalid && (description.dirty || submited || description.touched)">
+                            <ion-textarea name="description" style="padding-top: 15px;" placeholder="Description" (focus)="checkFocus($event)"
+                                [(ngModel)]="currentEvent.description" #description="ngModel" (change)="capitalize($event.target.value, 'description')"
+                                required></ion-textarea>
+                        </ion-item>
+
+                        <div style="width: 90%;
+                        text-align: right;">
+                        <button style="position: absolute;
+                        top: 85%;
+                        left: 1%;" ion-button clear icon-only (click)="toggledDes= !toggledDes"
+                        [(emojiPickerIf)]="toggledDes" [emojiPickerDirection]="'top'"
+                        (emojiPickerSelect)="handleDescription($event)">
+                        😃
+                        </button>
+                        </div>
+
+                        <div class="error-msg" *ngIf="description.invalid && (description.dirty || submited || description.touched)">
+                            <span class="error">Champs description obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <div style="width: 100%; height: 20px;"></div>
+
+                    <ion-col col-12 text-center>
+                        <ion-col col-12 class="no-pading-bottom" text-center>
+                            <ion-item class="item-grey select-not-ie " [class.formError]="category.invalid && (category.dirty || submited || category.touched)">
+                                <ion-select class="select-white" placeholder="Catégories" name="category" submitText="Ok"
+                                    cancelText="Annuler" multiple="true" [(ngModel)]="currentEvent.categories"
+                                    #category="ngModel" (ionChange)="onChangeCategory($event)" required>
+                                    <ion-option *ngFor="let category of allCategories" value={{category.id}}>{{category.name}}</ion-option>
+                                </ion-select>
+                            </ion-item>
+                            <ion-col style="padding: 0;" class="item-grey select-ie" [class.formError]="category.invalid && (category.dirty || submited || category.touched)">
+                                <select class="select-white input-select-ie select-multiple-ie" placeholder="Catégories"
+                                    name="category" multiple [(ngModel)]="currentEvent.categories" #category="ngModel"
+                                    required>
+                                    <option *ngFor="let category of allCategories" value={{category.id}} (click)="onChangeCategory($event)">{{category.name}}</option>
+                                </select>
+                            </ion-col>
+                            <div class="form-category">
+                                <div class="tags">
+                                    <div *ngFor="let category of categoryNames"><a>{{category.name}} <span (click)="removeCategory(category.id)">x</span></a></div>
+                                </div>
+                            </div>
+                            <div class="error-msg" *ngIf="category.invalid && (category.dirty || submited || category.touched)">
+                                <span class="error">Champs catégorie obligatoire</span>
+                            </div>
+                        </ion-col>
+                    </ion-col> 
+                    <ion-col col-12 text-center>
+                        <ion-item class="item-grey" no-padding>
+                            <ion-label class="toggle-label" no-padding>
+                                <div class="div-event without-icon">Envoyer une notification</div>
+                            </ion-label>
+                            <ion-toggle class="no-padding" [(ngModel)]="currentEvent.push.enabled" name="event"
+                                        checked="false" no-padding></ion-toggle>
+                        </ion-item> 
+                    </ion-col>
+                    <div *ngIf="currentEvent.push.enabled" col-12 text-center>
+
+                        <div class="form-item">
+                            <ion-item class="item-grey" [class.formError]="push_date.invalid && (push_date.dirty || submited || push_date.touched)">
+                                <ion-datetime #push_date="ngModel" name="push_date" placeholder="Date*" min="2017-08-31" minuteValues="0,5,10,15,20,25,30,35,40,45,50,55"
+                                              max="2030-12-31" displayFormat="DD/MM/YYYY HH:mm" pickerFormat="DD-MMMM-YYYY HH:mm"
+                                              name="push_date" [(ngModel)]="currentEvent.push.date ? currentEvent.push.date : dateNow " monthNames="Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre"
+                                              doneText="Ok" cancelText="Annuler" required>
+
+                                </ion-datetime>
+
+                            </ion-item>
+                            <div class="error-msg" *ngIf="push_date.invalid && (push_date.dirty || submited || push_date.touched)">
+                                <span class="error">Champs date obligatoire.</span>
+                            </div>
+                        </div>
+
+                        <div class="form-item">
+                            <ion-col col-12 text-center>
+                                <ion-item class="textAreaInput" style="padding-top: 15px;" [class.formError]="push_content.invalid && (push_content.dirty || submited || push_content.touched)">
+                                    <ion-textarea (change)="capitalize($event.target.value)" #push_content="ngModel"
+                                                  [(ngModel)]="currentEvent.push.content" class="form-input-text" name="push_content"
+                                                  maxlength="140" type="text" id="title"  placeholder="Description*..."
+                                                  required></ion-textarea>
+                                </ion-item>
+
+                                <div style="width: 100%;
+                                text-align: left;">
+                                <button style="position: absolute;
+                                top: 75%;
+                                " ion-button clear icon-only (click)="toggledDesPush= !toggledDesPush"
+                                [(emojiPickerIf)]="toggledDesPush" [emojiPickerDirection]="'top'"
+                                (emojiPickerSelect)="handleDescriptionPush($event)">
+                                😃
+                                </button>
+                                </div>
+
+                                <div class="error-msg" *ngIf="push_content.invalid && (push_content.dirty || submited || push_content.touched)">
+                                    <span class="error">Champs description obligatoire</span>
+                                </div>
+                            </ion-col>
+                        </div>
+                    </div>
+                    <div style="width: 100%; height: 20px;"></div>
+
+                    <ion-col col-12 text-center class="item-grey select-not-ie no-padding-left" [class.formError]="city.invalid && (city.dirty || submited || city.touched)">
+                        <ion-item class="item-grey no-padding-left" [class.formError]="city.invalid && (city.dirty || submited || city.touched)">
+                            <ion-input (click)="SelectCity()"   readonly autocomplete="off" autocorrect="on" name="city" type="text" id="city" placeholder="Ville" [(ngModel)]="currentEvent.cityName"
+                                       #city="ngModel" required></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <button (click)="editEvent(publishArticleForm.invalid)" ion-button color="primary" type="submit" class="button-publish" round>Modifier</button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </ion-col>
+</ion-content>

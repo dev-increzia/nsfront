@@ -1,0 +1,33 @@
+<!--
+  Generated template for the PublishPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-content>
+    <ion-grid class="no-padding ">
+        <ion-row>
+            <ion-col col-12 no-padding>
+                <div class="close-btn" (click)="close()" float-end>
+                    <img class="icon-heart material-icons" src="assets/imgs/icons/image3.png">
+                </div>
+            </ion-col>
+            <ion-col col-12>
+                <h6 class="centred-block-text">
+                    Renseignez le nombre des participants pour chaque événement terminé :
+
+                </h6>
+            </ion-col>
+            <ion-col col-12 text-center *ngFor='let event of events'>
+                <ion-label text-left color="light-black" stacked>{{event.title}}</ion-label>
+                <ion-item class="">
+                    <ion-input type="text" placeholder="Nombre des participants" [(ngModel)]="event.participantsNbre"></ion-input>
+                </ion-item>
+            </ion-col>
+            <ion-col col-12 text-center class="validButton">
+                <button ion-button color="primary" (click)='addParticipants()' class="button-publish" round>Valider</button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

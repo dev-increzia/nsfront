@@ -1,0 +1,508 @@
+page-change-su-admin {
+    // ----------------------------------------------------------------------------------
+    // Page Styling
+    // ----------------------------------------------------------------------------------
+    .input-text {
+        display: block;
+        font-weight: bold;
+        margin: 1em auto;
+        position:relative;
+    }
+
+    .res {
+        width: 150px;
+        position: relative;
+        margin: 20px auto;
+        border-radius: 20px;
+    }
+
+    .item-input-white-custom {
+        width: 270px;
+        position: relative;
+        margin: 1em auto;
+        font-size:12px;
+    }
+
+    .full-width-s {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    ion-label {
+        white-space: inherit;
+    }
+
+    .block-button-img {
+        width: 25px !important;
+        display: block;
+        vertical-align: middle;
+        margin-left: 10px;
+    }
+
+    .text-input-ios, .text-input-md, .text-input-wp {
+        margin: 7px 6px 7px 0 !important;
+        padding: 0;
+        width: calc(100% - 8px);
+    }
+
+
+    .button-white {
+        -webkit-box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+        box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.3);
+        width: 270px;
+        position: relative;
+        margin: auto;
+    }
+    // ----------------------------------------------------------------------------------
+    // Buttons
+    // ----------------------------------------------------------------------------------
+    .button-ios-white-color,
+    .button-md-white-color,
+    .button-wp-white-color {
+        color: color($colors, dark);
+    }
+
+    .button-ios-light,
+    .button-md-light,
+    .button-wp-light {
+        color: color($colors, primary);
+        background-color : color($colors, grey-color);
+    }
+
+    .button-md-light:hover:not(.disable-hover) {
+        background-color: color($colors, grey-color);
+    }
+
+    // ----------------------------------------------------------------------------------
+    // Input
+    // ----------------------------------------------------------------------------------
+    .textarea-timing {
+        .text-input {
+            height: 40px;
+        }
+    }
+    .text-input {
+        border-left: none;
+    }
+    // ----------------------------------------------------------------------------------
+    // Chexkbox
+    // ----------------------------------------------------------------------------------
+    .checkbox-ios-secondary .checkbox-checked {
+        border-color: color($colors, primary);
+        background-color: color($colors, primary);
+    }
+    .checkbox-md-secondary .checkbox-checked{
+        border-color: color($colors, primary);
+        background-color: color($colors, primary);
+    }
+    // ----------------------------------------------------------------------------------
+    // Select
+    // ----------------------------------------------------------------------------------
+    .select-text {
+        color: color($colors, h-color);
+        padding-left: 15px;
+    }
+    // ----------------------------------------------------------------------------------
+    // Item
+    // ----------------------------------------------------------------------------------
+    .item-ios.item-block .item-inner,
+    .item-md.item-block .item-inner,
+    .item-wp.item-block .item-inner {
+        padding: 0;
+    }
+    // ----------------------------------------------------------------------------------
+    // class
+    // ----------------------------------------------------------------------------------
+
+    .bordered {
+        border-bottom: 1px solid color($colors, dark);
+        text-align: center !important;
+        padding-bottom: 1em;
+    }
+
+    .div-icon-imge {
+        position: absolute;
+        z-index: 9999;
+        width: 100%;
+    }
+
+    .div-button-icon {
+        width: 100%;
+        position: absolute;
+        top: 40px;
+    }
+
+    .icon-delete {
+        font-size: 35px;
+    }
+
+    .overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        top: 0;
+        left: 0;
+    }
+
+    .full-width {
+        width: 100%;
+        overflow:auto;
+        min-height: 250px;
+        max-height: 350px;
+    }
+
+    .registred-new-user {
+        position: absolute;
+        padding: 20px 20px 0px 0px;
+        background: color($colors, white-color);
+        z-index: 999;
+        top: 100px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        @media (max-width: 1022px) { width: 80%;}
+        @media (min-width: 1023px) { width: 50%;}
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: $medium;
+        text-align: center;
+        .close-btn {
+            float: right;
+        }
+        .app-title {
+            font-size: 20px;
+            color: color($colors, primary);
+        }
+        .title-app {
+            font-size: 18px;
+            color: color($colors, primary);
+        }
+        .item-input-white {
+            font-size: 15px;
+            background: color($colors, grey-color);
+            border-radius: $button-round-border-radius;
+        }
+        .passwordButton{
+            font-size: 16px;
+        }
+
+        .toolbar-title-md, .toolbar-title-ios, .toolbar-title-wp {
+            color: white !important;
+            font-family: "Montserrat Bold", serif !important;
+            font-size: 20px;
+            text-align: center;
+            text-transform: capitalize;
+            position: relative;
+            top:10px;
+        }
+
+        .boxed-form {
+            background: white;
+            -webkit-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+            -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+            box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+            padding:10px;
+            border-radius: 20px;
+        }
+
+        .lorem {
+            text-transform:uppercase;
+            color: color($colors, primary);
+        }
+
+        .hello-text {
+            display: block;
+            margin-bottom: 1em;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+
+        .having-devoted-attention-to {
+            display: block;
+            margin-bottom: 1em;
+        }
+
+        .mailing {
+            font-weight: bold;
+        }
+
+
+        .phone {
+            font-weight: bold;
+            margin-bottom: 1em;
+        }
+
+
+        .mail-address {
+            margin-bottom: 1em;
+            margin-top: 2em;
+            text-align: left;
+        }
+
+        .call-us {
+            margin-bottom: 1em;
+            text-align: left;
+        }
+
+        .logo-contact-container {
+            width: 130px;
+            position: relative;
+            margin: 3em auto;
+        }
+
+
+
+
+    }
+    // ----------------------------------------------------------------------------------
+    // Page Styling
+    // ----------------------------------------------------------------------------------
+    h5 {
+        font-weight: 600;
+    }
+
+    .scroll-content {
+        display: block;
+        margin-bottom: 0 !important;
+        padding-top: 0 !important;
+        margin-top: 50px !important;
+    }
+    // ----------------------------------------------------------------------------------
+    // Buttons
+    // ----------------------------------------------------------------------------------
+    .button-height {
+        height: auto;
+        width: 75%;
+    }
+
+    .button-add {
+        height: 45px;
+        width: 60%;
+        margin-bottom: 60px;
+    }
+
+    .button-account {
+        height: 60px;
+        border-radius: 20px;
+    }
+
+    .button-create {
+        height: 75px;
+        width: 200px;
+        border-radius: 20px;
+    }
+
+    .text-button {
+        overflow: hidden;
+        word-wrap: break-word;
+        white-space: normal;
+        font-size: 19px;
+    }
+    // ----------------------------------------------------------------------------------
+    // Input
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // Select
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // Item
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // class
+    // ----------------------------------------------------------------------------------
+    .title-content {
+        display: inline-block;
+        vertical-align: -webkit-baseline-middle;
+        margin: 0;
+    }
+
+    .icon-agenda {
+        font-size: 40px;
+    }
+
+    .icon-notification {
+        width: 30%;
+    }
+
+    .groupes {
+        font-size: 16px;
+        color: color($colors, primary);
+    }
+
+    .padding-bottom {
+        padding-bottom: 10px;
+    }
+
+    .img-add {
+        width: 20px;
+        height: auto;
+    }
+
+    .span-admin {
+        display: block;
+        position: relative;
+        margin: auto;
+        background: color($colors, h6-color);
+        border-radius: 64px;
+        width: 60px;
+        z-index: 9999;
+        top: 13px;
+        color: color($colors, white-color);
+        font-size: 12px;
+    }
+
+    .span-no-admin {
+        margin-top: 15px;
+    }
+
+    .registred-new-user {
+        position: absolute;
+        padding: 20px;
+        background: color($colors, white-color);
+        z-index: 999;
+        top: 50px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 280px;
+        width: 280px;
+        border-radius: 25px;
+        font-size: 16px;
+        font-weight: $medium;
+        text-align: center;
+        .close-btn {
+            float: right;
+        }
+        .app-title {
+            font-size: 20px;
+            color: color($colors, primary);
+            width: 100%;
+        }
+        .title-app {
+            font-size: 18px;
+            color: color($colors, primary);
+            width: 100%;
+        }
+    }
+
+    .overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 999;
+        top: 0;
+        left: 0;
+    }
+
+    .margin-bootom {
+        margin-bottom: 85px;
+    }
+
+    .icon-button {
+        font-size: 30px;
+    }
+
+    .text-align-calender {
+        text-align: center;
+    }
+
+    .text-align-notification {
+        text-align: center;
+    }
+    // class mobile
+    // ----------------------------------------------------------------------------------
+    @media (max-width: 1022px) {
+        .icon-setting {
+            float: right;
+        }
+    }
+    // class desktop
+    // ----------------------------------------------------------------------------------
+    @media (min-width: 1023px) {
+        .icon-setting {
+            padding-left: 20px;
+        }
+
+        .centre-desktop {
+            width: 40%;
+            margin: auto;
+        }
+
+        .button-height {
+            height: auto;
+            width: 40%;
+        }
+
+        .button-add {
+            height: 55px;
+            width: 60%;
+        }
+
+        .registred-new-user {
+            top: 130px;
+        }
+
+        .groupes {
+            font-weight: 700;
+        }
+
+        .text-align-calender {
+            text-align: right;
+        }
+
+        .text-align-notification {
+            text-align: left;
+        }
+
+        .p-button {
+            font-weight: 600;
+        }
+
+        .mycalendar-button,
+        .mycalendar-text {
+            font-weight: bold;
+            margin-left: 50px;
+        }
+
+        .notification-button,
+        .notification-text {
+            font-weight: bold;
+            margin-right: 50px;
+        }
+    }
+
+    // class mobile
+    // ----------------------------------------------------------------------------------
+    @media (max-width: 1022px) {
+        .icon-img {
+            width: 20%;
+            background: color($colors, white-color);
+            border-radius: 20%;
+        }
+
+        .scroll-content {
+            margin-bottom: 75px;
+        }
+    }
+    // class desktop
+    // ----------------------------------------------------------------------------------
+    @media (min-width: 1023px) {
+        .icon-img {
+            width: 7%;
+            background: color($colors, white-color);
+            border-radius: 20%;
+        }
+
+        .div-margin-top {
+            margin-top: 20px;
+        }
+
+        .button-img {
+            width: 25%;
+        }
+    }
+}

@@ -1,0 +1,54 @@
+<!--
+  Generated template for the VolunteersMailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-row class="header-popin" no-padding>
+        <ion-col class="no-padding " text-left>
+        </ion-col>
+        <ion-col class="no-padding " col-8 text-center>
+            <h5 class="primary-color title-popin" no-margin>Envoyer email</h5>
+        </ion-col>
+        <ion-col class="no-padding " text-right>
+            <button ion-button clear small color="primary" icon-start no-margin no-padding (click)="goBack()">
+                <img class="icon-heart material-icons" src="assets/imgs/icons/image3.png">
+            </button>
+        </ion-col>
+    </ion-row>
+</ion-header>
+<ion-content padding>
+    <div class="padding-top">
+
+        <form class="form-send-volunteers-mail" (ngSubmit)="sendVolunteersMail(volunteersMailForm.invalid)"
+            #volunteersMailForm="ngForm">
+            <ion-grid class="padding-horizontal">
+                <ion-row>
+                    <ion-col col-12 text-center class="margin-top">
+                        <ion-item [class.formError]="object.invalid && (object.dirty || submited || object.touched)">
+                            <ion-input name="object" type="text" id="titre" placeholder="Objet du mail *" [(ngModel)]="mailing.objet"
+                                #object="ngModel" (change)="capitalizeData($event.target.value, 'object')" required></ion-input>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="object.invalid && (object.dirty || submited || object.touched)">
+                            <span class="error">Champs objet du mail obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+
+                        <ion-item [class.formError]="content.invalid && (content.dirty || submited || content.touched)">
+                            <ion-textarea name="content" placeholder="Corp du mail *" [(ngModel)]="mailing.email"
+                                #content="ngModel" (change)="capitalizeData($event.target.value, 'content')" required></ion-textarea>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="content.invalid && (content.dirty || submited || content.touched)">
+                            <span class="error">Champs corp du mail obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <button ion-button color="primary" type="submit" class="button-publish" round>Envoyer</button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+    </div>
+</ion-content>

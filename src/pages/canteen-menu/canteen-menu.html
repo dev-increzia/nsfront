@@ -1,0 +1,138 @@
+<!--
+  Generated template for the NewsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item" (click)="goBack()">
+                    <ion-icon name="ios-arrow-back"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+                <ion-title>{{community.name}}</ion-title>
+            </ion-col>
+            <ion-col col-2 text-right>
+                <ion-avatar class="blason">
+                    <img src="{{community.img_url}}">
+                </ion-avatar>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-content text-center>
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <div class="div-center">
+        <ion-grid class="grid-bottom">
+
+        </ion-grid>
+        <ion-refresher (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content></ion-refresher-content>
+        </ion-refresher>
+        <ion-card *ngFor="let item of items">
+            <ion-card-content>
+                <ion-card-title text-left *ngIf="item.type == 'cityhall'"> {{item.cityhallName}} </ion-card-title>
+
+                <p text-left>
+                    <span (click)="detailsArticle(item);">
+                        {{item.createAt | capitalize| amLocale:'fr' | amTimeAgo}}
+                    </span>
+                    <ion-icon class="icon-agenda move" name="md-calendar" float-end *ngIf="item.event" (click)="detailsEvent(item.event, item.title, false)"></ion-icon>
+                    <span *ngIf="item.type == 'cityhall' && item.city">à {{item.city}}</span>
+                </p>
+
+
+
+                <!--<img src="" (click)="publish()">-->
+                <div *ngIf="item.imageURL || item.images || item.videoFile">
+                    <div *ngIf="(item.imageURL && !item.images && !item.videoFile) || (!item.imageURL && !item.images && item.videoFile) || (item.images && !item.imageURL && item.images.length == 1); else elseBlock">
+                        <div *ngIf="item.imageURL" (click)="detailsArticle(item);">
+                            <img data-src="{{item.imageURL}}">
+                        </div>
+                        <div *ngFor="let img of item.images" (click)="detailsArticle(item);">
+                            <img data-src="{{img.url}}">
+                        </div>
+                        <video style="width: 100%; height: 100%" *ngIf="item.videoFile !== null" controls poster="assets/img/video_default.png">
+                            <source [src]="item.videoFile" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <ng-template #elseBlock>
+                        <ion-slides loop="true" pager>
+                            <ion-slide *ngIf="item.videoFile != null">
+                                <video style="width: 100%; height: 100%" controls poster="assets/img/video_default.png">
+                                    <source [src]="item.videoFile" type="video/mp4">
+                                </video>
+                            </ion-slide>
+                            <ion-slide *ngIf="item.imageURL" (click)="detailsArticle(item);">
+                                <img data-src="{{item.imageURL}}">
+                            </ion-slide>
+                            <ion-slide *ngFor="let img of item.images" (click)="detailsArticle(item);">
+                                <img data-src="{{img.url}}">
+                            </ion-slide>
+                        </ion-slides>
+                    </ng-template>
+                </div>
+                <ion-card-title class="title-article" text-left>
+                    <div class="div-title" (click)="detailsArticle(item);">{{item.title}}</div>
+                    <ion-icon name="md-create" class="icon-create" float-end *ngIf="currentUser.id == item.userId"
+                        (click)="editArticle(item, item.type, item.userId)"></ion-icon>
+                </ion-card-title>
+
+                <p text-left [innerHtml]="item.description|truncate|nl2br" (click)="detailsArticle(item);"></p>
+            </ion-card-content>
+            <div text-center>
+                <ion-row class="comment-text-style">
+                    <ion-col class="text-grey" *ngIf="item.addComments">
+                        <span  *ngIf="item.nbreComments <= 1">{{item.nbreComments}} Commentaire</span>
+                        <span  *ngIf="item.nbreComments > 1">{{item.nbreComments}} Commentaires</span>
+                    </ion-col>
+                    <ion-col *ngIf="item.addComments">
+                        <img class="comment-img-style" src="assets/imgs/icons/list-divider.png">
+                    </ion-col>
+                    <ion-col class="text-grey">
+                        <span> {{item.nbLikes}} J'aime</span>
+                    </ion-col>
+                </ion-row>
+            </div>
+            <ion-row padding-bottom >
+                <ion-col class="no-padding " *ngIf="item.addComments" text-right>
+                    <span class="disociate-actions" (click)="detailsArticleComment(item);">
+                        <!--<span class="comments-nbr">{{item.nbreComments}}</span>-->
+                        <img class="news-comment-action move-icon" src="assets/imgs/icons/comments.png">
+
+                    </span>
+                </ion-col>
+                <ion-col class="no-padding text-center" [class.icon-right]="!item.addComments" text-left>
+                    <span class="disociate-actions">
+                        <img class="news-comment-action" *ngIf="!item.isLiked" src="assets/imgs/icons/dislike.png"
+                            (click)="like(item.id);">
+                        <img class="news-comment-action" *ngIf="item.isLiked" src="assets/imgs/icons/like.png" (click)="unlike(item.id);">
+                        <!--<span class="likes-nbr"> {{item.nbLikes}}</span>-->
+
+                    </span>
+                </ion-col>
+                <ion-col class="no-padding ">
+                    <span class="disociate-actions" (click)="ShareArticle(item);">
+                        <!--<span class="comments-nbr">{{item.nbreComments}}</span>-->
+                        <img class="news-comment-action dissociate-share" src="assets/imgs/icons/share.png">
+                    </span>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
+            <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Charger plus...">
+            </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </div>
+    <div class="div-right">
+    </div>
+</ion-content>

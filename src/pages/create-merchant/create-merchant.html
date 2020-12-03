@@ -1,0 +1,209 @@
+<!--
+  Generated template for the CreateAssociationPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+
+                <ion-title>{{appGlobals.currentPageTitle}}</ion-title>
+            </ion-col>
+            <ion-col col-2>
+                <div class="item" text-right>
+
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-content padding>
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <div class="div-center div-margin-top">
+        <form (ngSubmit)="addMerchantForm(marchantForm.invalid)" #marchantForm="ngForm">
+            <ion-grid>
+                <ion-row>
+                    <div *ngIf="merchant.photo; else elseBlock" text-center>
+                        <img src="{{merchant.photo}}" *ngIf="merchant.photo" (click)="presentActionSheet()">
+                        <ion-icon name="trash" class="icon-delete" (click)="deletePhoto();" *ngIf="merchant.photo"></ion-icon>
+                    </div>
+                </ion-row>
+                <ng-template #elseBlock>
+                    <ion-col col-12 text-center> <img class="button-img" src="assets/imgs/icons/boutton-white.png"
+                            (click)="presentActionSheet()"></ion-col>
+                </ng-template>
+            </ion-grid>
+
+            <ion-grid class="padding-horizontal">
+
+                <ion-row>
+                    <ion-col col-12 text-center class="margin-top">
+                        <ion-label text-left color="light-black" stacked>Nom du commerce / partenaire</ion-label>
+                        <ion-item class="item-input-white" [class.formError]="name.invalid && (name.dirty || submited || name.touched)">
+                            <ion-input name="name" type="text" id="name" [(ngModel)]="merchant.name" #name="ngModel"
+                                (focus)="checkFocus($event)" (change)="capitalize($event.target.value, 'title')"
+                                required text-capitalize></ion-input>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="name.invalid && (name.dirty || submited || name.touched)">
+                            <span class="error">Champs nom obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left color="light-black" stacked>Adresse</ion-label>
+                        <ion-item class="item-input-white">
+                            <ion-textarea name="address" [(ngModel)]="merchant.address" (focus)="checkFocus($event)"
+                                #address="ngModel" (change)="capitalize($event.target.value, 'address')"></ion-textarea>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left color="light-black" stacked>Siret</ion-label>
+                        <ion-item class="item-input-white " [class.formError]="(siret.invalid && (siret.dirty || submited || siret.touched)) || (erreurSiret && submited) ">
+                            <ion-input name="siret" type="tel" [(ngModel)]="merchant.siret" (focus)="checkFocus($event)"
+                                       #siret="ngModel" required></ion-input>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="siret.invalid && (siret.dirty || submited || siret.touched)">
+                            <span class="error">Champs siret obligatoire</span>
+                        </div>
+                        <div class="error-msg" *ngIf="erreurSiret && submited">
+                            <span class="error">N° Siret existant</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left class="margin-bottom-ie" color="light-black" stacked>Ville</ion-label>
+                        <ion-item class="item-grey no-padding-left" [class.formError]="city.invalid && (city.dirty || submited || city.touched)">
+                            <ion-input (click)="SelectCity()"   readonly autocomplete="off" autocorrect="on" name="city" type="text" id="city" placeholder="Ville" [(ngModel)]="merchant.city"
+                                #city="ngModel" required></ion-input>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="city.invalid && (city.dirty || submited || city.touched)">
+                            <span class="error">Champs ville obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-item class="item-input-white no-padding select-not-ie"
+                                  [class.formError]="community.invalid && (community.dirty || submited || community.touched)">
+                            <ion-select (ionChange)="onChangeCommunity($event)" class="select-white"
+                                        required [(ngModel)]="merchant.community"
+                                        #community="ngModel" class="select-white no-padding-left"
+                                        placeholder="Communauté" name="communaute" submitText="Ok" cancelText="Annuler"
+                                        required>
+                                <ion-option *ngFor="let community of linkedCommunities" value={{community.id}}>
+                                    {{community.name}}
+                                </ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-col class="item-input-white no-padding select-ie"
+                                 [class.formError]="community.invalid && (community.dirty || submited || community.touched)">
+                            <select (ionChange)="onChangeCommunity($event)"
+                                    required [(ngModel)]="merchant.community" #community="ngModel"
+                                    class="select-white input-select-ie"
+                                    placeholder="Communauté" name="community" required>
+                                <option *ngFor="let community of linkedCommunities" value={{community.id}}>
+                                    {{community.name}}
+                                </option>
+                            </select>
+                        </ion-col>
+                        <div class="error-msg"
+                             *ngIf="community.invalid && (community.dirty || submited || community.touched)">
+                            <span class="error">Champs Communauté obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-item class="item-input-white no-padding select-not-ie"
+                                  [class.formError]="category.invalid && (category.dirty || submited || category.touched)">
+                            <ion-select [disabled]="disabledTheme" [required]="!disabledTheme"
+                                        class="select-white" placeholder="Thème" name="category"
+                                        submitText="Ok"
+                                        cancelText="Annuler" [(ngModel)]="merchant.category" #category="ngModel"
+                                        required>
+                                <ion-option *ngFor="let category of allCategories" value={{category.id}}>
+                                    {{category.name}}
+                                </ion-option>
+                            </ion-select>
+                        </ion-item>
+                        <ion-col class="item-grey select-ie"
+                                 [class.formError]="category.invalid && (category.dirty || submited || category.touched)">
+                            <select [disabled]="disabledTheme" [required]="!disabledTheme"
+                                    class="select-white input-select-ie"
+                                    placeholder="Thème" name="category" [(ngModel)]="merchant.category"
+                                    #category="ngModel"
+                                    required>
+                                <option></option>
+                                <option value={{category.id}} *ngFor="let category of allCategories">{{category.name}}
+                                </option>
+                            </select>
+                        </ion-col>
+                        <div class="error-msg"
+                             *ngIf="category.invalid && (category.dirty || submited || category.touched)">
+                            <span class="error">Champs Thèmes obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left color="light-black" stacked>Horaires d'ouverture</ion-label>
+                        <ion-item class="item-input-white">
+                            <ion-textarea class="textarea-timing" (focus)="checkFocus($event)" type="text" lang="fr"
+                                name="timing" [(ngModel)]="merchant.timing" #timing="ngModel" (change)="capitalize($event.target.value, 'timing')"></ion-textarea>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left color="light-black" stacked>Téléphone</ion-label>
+                        <ion-item class="item-input-white" [class.formError]="phone.invalid && (phone.dirty || submited || phone.touched)">
+                            <ion-input name="phone" type="tel" [(ngModel)]="merchant.phone" (focus)="checkFocus($event)"
+                                #phone="ngModel" required [pattern]="phoneRegexp"></ion-input>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="phone.invalid && (phone.dirty || submited || phone.touched)">
+                            <span class="error">Champs téléphone obligatoire. Exemple : 0999999999 ou 33999999999</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left color="light-black" stacked>Adresse mail</ion-label>
+                        <ion-item class="item-input-white" [class.formError]="email.invalid && (email.dirty || submited || email.touched)">
+                            <ion-input name="email" type="email" (focus)="checkFocus($event)" autocapitalize="none"
+                                [(ngModel)]="merchant.email" #email="ngModel" (mouseout)="onBlurEmail()" pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+                                required></ion-input>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="email.invalid && (email.dirty || submited || email.touched)">
+                            <span class="error">Champs adresse mail obligatoire</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-label text-left color="light-black" stacked>Description</ion-label>
+                        <ion-item class="item-input-white">
+                            <ion-textarea class="height-textarea" name="description" (focus)="checkFocus($event)"
+                                [(ngModel)]="merchant.description" #description="ngModel" (change)="capitalize($event.target.value, 'description')"></ion-textarea>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-item>
+                            <ion-label text-left color="light-black">Je déclare avoir l'autorisation du représentant de ce
+                                commerce/partenaire pour être administrateur de cette page</ion-label>
+                            <ion-checkbox color="primary" (ionChange)="logEvent($event)" required></ion-checkbox>
+                        </ion-item>
+                        <div class="error-msg" *ngIf="submited && !check">
+                            <span class="error">Veuillez valider la condition</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <button class="rounded-button" ion-button color="primary" type="submit" round>Valider la création</button>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <ion-item class="info-confirmation-title">
+                            <ion-label text-center color="light-black">Vous recevrez une notification lorsque l'administrateur de la
+                                communauté aura validé votre création de commerce/partenaire</ion-label>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+
+            </ion-grid>
+        </form>
+    </div>
+    <div class="div-right"></div>
+</ion-content>

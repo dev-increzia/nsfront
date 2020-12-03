@@ -1,0 +1,65 @@
+<!--
+  Generated template for the ParameterAssoMerchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+                <ion-title>Paramètres</ion-title>
+            </ion-col>
+            <ion-col col-2>
+                <div class="item" text-right>
+
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+
+<ion-content>
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <div class="div-center">
+        <ion-grid>
+
+            <ion-row>
+                <ion-col col-12 text-center>
+                    <div class="div-admin admin-margin-top">
+                        <span class="admin">Admin</span>
+                        <ion-icon name="md-swap"></ion-icon>
+                    </div>
+                </ion-col>
+                <ion-col col-12 text-center>
+                    <button ion-button color="white-color" class="button-white button-admin" text-center icon-start
+                        (click)="information()">
+                        <div>
+                            <img class="img-modify" src="assets/imgs/icons/modify.png">
+                            <div class="text-admin">Modifier le<br/>profil</div>
+                        </div>
+                    </button>
+                </ion-col>
+                <ion-col col-12 text-center>
+                    <button (click)="adminList()" ion-button color="white-color" class="button-white button-admin"
+                        text-center icon-start>
+                        <div><img class="img-bene" src="assets/imgs/icons/adminShow.png">
+                            <div class="text-admin">Admin</div>
+                        </div>
+                    </button>
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+
+    </div>
+    <div class="div-right"></div>
+</ion-content>

@@ -1,0 +1,167 @@
+<!--
+  Generated template for the MySpacePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item" (click)="globalSearch()">
+                    <img class="icon-search" src="assets/imgs/icons/search.png" alt="NOUS-Ensemble" />
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+
+<ion-content>
+    <div class="div-left">
+
+    </div>
+    <!--bloc central -->
+    <div class="div-center">
+        <ion-grid class="no-padding top-grid">
+            <ion-row>
+                <ion-col text-center class="light-container">
+                    <span class="panel-heading" text-capitalize *ngIf="currentUser">{{currentUser.firstname}}
+                        {{currentUser.lastname}}</span>
+                    <!-- <ion-icon name="ios-settings-outline" class="panel-control pos" (click)="parameter()"></ion-icon> -->
+                    <div class="clear"></div>
+                    <ion-row class="icon-myspace">
+                        <div col-6>
+                            <img (click)="parameter()" class="panel-control" src="assets/imgs/icons/profile-settings.png">
+                            <div class="clear"></div>
+                            <div class="panel-control-details">Réglages</div>
+                        </div>
+                        <div col-6>
+                            <div class="notifications-mySpace-2" *ngIf="appGlobals.nbrNotification != 0"><span>{{appGlobals.nbrNotification}}</span></div>
+                            <img (click)="notification()" class="panel-control" src="assets/imgs/icons/notifications.png">
+                            <div class="panel-control-details">Notifications</div>
+                        </div>
+
+                        <div class="clear"></div>
+                    </ion-row>
+                </ion-col>
+            </ion-row>
+            <div class="clear"></div>
+        </ion-grid>
+
+        <ion-grid class="margin-bottom">
+            <ion-row text-center>
+                <ion-col col-12 text-center>
+                    <h5 class="second-panel-heading">Mes groupes</h5>
+                </ion-col>
+
+                <ion-col col-12 text-center *ngFor="let account of listAccount">
+                    <span class="span-admin" *ngIf="account.role == 'superadmin' || account.role == 'admin' || (account.type =='community' && account.isAdminPublish)">Admin</span>
+                    <span class="span-admin" *ngIf="account.role == 'member' || (account.type =='community' && !account.isAdminPublish)">Adhérent</span>
+                    <button ion-button color="white-color" round class="button-white" text-capitalize no-padding
+                        (click)="espaceAssoMerch(account)">
+                        <div class="block-image"> <img src="assets/imgs/icons/user_default.png" class="user-img" *ngIf="!account.image_url">
+                            <img class="user-img" src="{{account.image_url}}" *ngIf="account.image_url"></div>
+                        <div class="block-name">{{account.name}}</div>
+                        <div class="block-icon">
+                            <ion-icon name="ios-arrow-forward"></ion-icon>
+                        </div>
+                    </button>
+                </ion-col>
+                <ion-col col-12 text-center>
+                    <img (click)="showMessage()" class="img-add" src="assets/imgs/icons/add.png">
+                    <!-- <button ion-button color="white-color" round class="button-whites button-add" (click)="showMessage()" text-capitalize no-padding>
+
+                    </button> -->
+                </ion-col>
+                <ion-col col-12 text-center>
+                    <button (click)="help()" ion-button color="white-color" round class="button-white" text-center
+                        no-padding>
+                        <div class="block-image-hidden">
+                            <img src="assets/imgs/icons/user_default.png" style="visibility:hidden;" class="user-img">
+                        </div>
+                        <div class="block-name-help">Aide</div>
+                        <div class="block-icon" float-end>
+                            <ion-icon float-end name="ios-arrow-forward"></ion-icon>
+                        </div>
+                    </button>
+                </ion-col>
+                <!-- <ion-col col-12 text-center>
+                    <button (click)="goto()" ion-button color="white-color" round class="button-white" text-center no-padding>
+                        <div class="block-image-hidden" >
+                            <img src="assets/imgs/icons/user_default.png" style="visibility:hidden;" class="user-img">
+                        </div>
+                        <div class="block-name-help">Informations pratiques</div>
+                        <div class="block-icon" float-end><ion-icon float-end name="ios-arrow-forward"></ion-icon></div>
+                    </button>
+                </ion-col> -->
+
+                <ion-col col-12 text-center>
+                    <button (click)="logOut()" class="logout" ion-button clear color="primary" icon-start text-center
+                        no-padding>
+                        <img class="panel-control" src="assets/imgs/icons/logout.png">
+                    </button>
+                    <div class="clear"></div>
+                    <div class="panel-control-details">Déconnexion</div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </div>
+    <!-- fin bloc central -->
+    <div class="div-right" text-center>
+    </div>
+</ion-content>
+<div class="overlay" *ngIf="choiceAccount" (click)="hideChoiceAccount()"></div>
+<div class="registred-new-user" *ngIf="choiceAccount">
+    <div class="close-btn" (click)="hideChoiceAccount()">
+        <ion-icon name="md-close"></ion-icon>
+    </div>
+
+    <ion-grid class="diplay-contents">
+        <ion-row text-center>
+            <span class="title-app">Vous souhaitez <br> créer</span>
+            <ion-col col-12 text-center>
+                <button ion-button color="white-color" class="buttons-whites button-create" text-center no-padding
+                    (click)="goToPageFromChoice('association')">
+                    <span class="text-button">Un groupe/ <br>association</span>
+                </button>
+            </ion-col>
+            <ion-col col-12 text-center>
+                <button ion-button color="white-color" class="buttons-whites button-create" text-center no-padding
+                    (click)="goToPageFromChoice('merchant')">
+                    <span class="text-button"> Un commerce/ <br>partenaire</span>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</div>
+<div class="overlay" *ngIf="createAccount" (click)="hideCreateAccount()"></div>
+<div class="registred-new-user" *ngIf="createAccount">
+    <div class="close-btn" (click)="hideCreateAccount()">
+        <ion-icon name="md-close"></ion-icon>
+    </div>
+
+    <ion-grid class="diplay-contents">
+        <ion-row>
+            <span class="app-title"> Groupe/ <br>établissement </span>
+            <ion-col col-12 text-center>
+
+                <button ion-button color="white-color" class="buttons-whites button-create" text-center icon-start
+                    (click)="searchAccounts()">
+                    <!--<ion-icon name="md-search" class="icon-button"></ion-icon>-->
+                    <span class="text-button"> Rejoindre </span>
+                </button>
+            </ion-col>
+            <ion-col col-12 text-center>
+                <button ion-button color="white-color" class="buttons-whites button-create" text-center icon-start
+                    (click)="pageCreate()">
+                    <!--<ion-icon name="md-add" class="icon-button"></ion-icon>-->
+                    <span class="text-button"> Créer </span>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</div>

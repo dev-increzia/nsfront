@@ -1,0 +1,135 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "call-number": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "com-sarriaroman-photoviewer": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-android-firebase-gradle-release": {
+      "FIREBASE_VERSION": "12.+",
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-android-play-services-gradle-release": {
+      "PLAY_SERVICES_VERSION": "12.+",
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-fabric-plugin": {
+      "FABRIC_API_KEY": "9649998d10e1b1ed1a9885656127b1a5bd3ca7f7",
+      "FABRIC_API_SECRET": "dd5c71797a98cad3a746e3b4962f27c1a8f2d35a9691ede5eca3c992cdd296f2",
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-crop": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-file-opener2": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-google-analytics": {
+      "GMS_VERSION": "11.0.1",
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-market": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-media-capture": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-x-socialsharing": {
+      "ANDROID_SUPPORT_V4_VERSION": "24.1.1+",
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "ionic-plugin-deeplinks": {
+      "URL_SCHEME": "NOUS-Ensemble",
+      "DEEPLINK_SCHEME": "https",
+      "DEEPLINK_HOST": "nous-ensemble.com",
+      "ANDROID_PATH_PREFIX": "/",
+      "ANDROID_2_PATH_PREFIX": "/",
+      "ANDROID_3_PATH_PREFIX": "/",
+      "ANDROID_4_PATH_PREFIX": "/",
+      "ANDROID_5_PATH_PREFIX": "/",
+      "DEEPLINK_2_SCHEME": " ",
+      "DEEPLINK_2_HOST": " ",
+      "DEEPLINK_3_SCHEME": " ",
+      "DEEPLINK_3_HOST": " ",
+      "DEEPLINK_4_SCHEME": " ",
+      "DEEPLINK_4_HOST": " ",
+      "DEEPLINK_5_SCHEME": " ",
+      "DEEPLINK_5_HOST": " ",
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "integrator-cordova-plugin-downloader": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-filepath": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-fcm": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-filechooser": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-calendar": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-plugin-badge": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    },
+    "cordova-documentpicker": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    }
+  },
+  "dependent_plugins": {
+    "es6-promise-plugin": {
+      "PACKAGE_NAME": "app.io.nousensemble2"
+    }
+  }
+}

@@ -1,0 +1,75 @@
+page-moderation {
+
+    .scroll-content {
+        margin-top: 0 !important;
+        background: color($colors, white-color);
+      }
+      .register-title {
+        width: 90%;
+        background: color($colors, primary);
+        padding: 10px;
+        border-radius: 30px;
+        color: color($colors, white-color);
+        font-size: 17px;
+        margin: auto;
+        font-weight: 600; 
+        font-family: 'Montserrat Regular';
+      }
+      .img-cloud {
+        width: 90px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+      }
+      .notice-register {
+        margin-top: 15px;
+        font-family: 'Montserrat Regular';
+      }
+      ion-label{
+        font-family: 'Montserrat Regular';
+      }
+      form {
+        width: 100%;
+      }
+      .col-img {
+        padding: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+      div-img {
+        position: relative;
+      }
+      .img-bottom {
+        position: absolute;
+        max-width: 200%;
+        width: 110%;
+        left: -16px;
+    
+      }
+      .separator {
+        height: 300px;
+      }
+      // class mobile
+      // ----------------------------------------------------------------------------------
+      @media (max-width: 1022px) {
+        .img-logo {
+          width: 20%;
+        }
+      }
+      // class desktop
+      // ----------------------------------------------------------------------------------
+      @media (min-width: 1023px) {
+        .img-logo {
+          width: 10%;
+        }
+        .br {
+          display: block;
+        }
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+          /* IE10+ CSS styles go here */
+          .grid {
+            display: block;
+          }
+        }
+      }
+    }

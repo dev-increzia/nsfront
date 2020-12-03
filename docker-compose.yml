@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  ubuntu-v3:
+    image: nous-ensemble-front
+    build: ./conf/
+    volumes:
+      - "./:/nev3"
+    tty: true
+    ports:
+    - "8100:8100"
+    - "8200:8200"
+    - "53703:53703"
+    - "35729:35729"

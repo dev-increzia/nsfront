@@ -1,0 +1,79 @@
+<!--
+  Generated template for the DetailArticlePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header MMS" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+
+                <ion-title></ion-title>
+            </ion-col>
+            <ion-col col-2>
+                <div class="item" text-right *ngIf="currentArticle">
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-content no-padding>
+    <div class="div-left">
+        <div text-center class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <div class="div-center" *ngIf="currentArticle">
+        <ion-card>
+            <ion-card-content>
+                <ion-card-title text-left>
+                    {{currentArticle.community | capitalize}}</ion-card-title>
+                <p text-left>
+                    <span>
+                        {{currentArticle.createAt| amLocale:'fr' | amTimeAgo | capitalize}}
+                        <span>à
+                            {{currentArticle.city}}</span>
+                    </span>
+                    <img float-end class="icon-agenda move img-calendar" src="assets/imgs/icons/survey-detail.png" alt="NOUS-Ensemble" />
+                </p>
+
+                <div *ngIf="currentArticle.image ">
+                    <div class="image home-card-slides">
+                        <div *ngIf="currentArticle.imageURL">
+                            <img data-src="{{currentArticle.imageURL}}" imageViewer>
+                        </div>
+                    </div>
+                </div>
+
+                <ion-col col-12>
+                    <h5>{{currentArticle.title}}</h5>
+                    <h6 [innerHtml]="appGlobals.linky(currentArticle.description)|nl2br"></h6>
+                </ion-col>
+                 <ion-col col-12 *ngFor="let question of currentArticle['questions']">
+                     <p text-center class="black-text" *ngIf="question.alreadyAnswer">Résultats <span class="text-gris">({{currentArticle.nbrResponse}} votant<span *ngIf="currentArticle.nbrResponse > 1">s</span>)</span></p>
+                        <ion-list radio-group class="listScrolled">
+                            <div *ngFor="let answer of question['choices']">
+                            <ion-item class="no-padding">
+                                <ion-label>{{answer.title}}</ion-label>
+                                <ion-radio [disabled]="question.alreadyAnswer" [checked]="answer.id == question.alreadyAnswer" (ionSelect)="choiceSelected(answer.id,question.alreadyAnswer)"></ion-radio>
+                            </ion-item>
+                                <div id="progressBarContainer" *ngIf="question.alreadyAnswer">
+                                    <span>{{(answer.responseNumbr * 100)/currentArticle.nbrResponse | number:'1.0-0'}} %</span>
+                                  <div id="progressbar">
+                                    <div [ngStyle]="{'width': (answer.responseNumbr * 100)/currentArticle.nbrResponse +'%'}"></div>
+                                  </div>
+                                </div>
+                            </div>
+                        </ion-list>
+                 </ion-col>
+
+            </ion-card-content>
+        </ion-card>
+    </div>
+    <div class="div-right"></div>
+</ion-content>

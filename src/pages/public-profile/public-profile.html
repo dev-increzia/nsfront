@@ -1,0 +1,81 @@
+<!--
+  Generated template for the PublicProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+                <ion-title>Publications</ion-title>
+            </ion-col>
+            <ion-col col-2>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-content>
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <div class="div-center">
+        <ion-grid>
+
+            <ion-row>
+                <ion-col col-12 text-center>
+                    <div class="div-admin admin-margin-top">
+                        <span *ngIf="account.role == 'superadmin' || account.role == 'admin' || (account.type =='community' && account.isAdminPublish)" class="admin">Admin</span>
+                        <span *ngIf="account.role == 'member' || (account.type =='community' && !account.isAdminPublish)" class="admin">Adhérent</span>
+                        <ion-icon name="md-swap"></ion-icon>
+                    </div>
+                </ion-col>
+                <ion-col col-12 text-center  *ngIf="account.type == 'association' || account.type == 'community'">
+                    <button ion-button color="white-color" class="button-white button-admin" text-center icon-start
+                        (click)="listArticles()">
+                        <div>
+                            <img class="img-bene" src="assets/imgs/icons/articlePublish.png">
+                            <div class="text-admin">Articles</div>
+                        </div>
+                    </button>
+                </ion-col>
+                <ion-col col-12 text-center  *ngIf="account.type == 'merchant'">
+                    <button ion-button color="white-color" class="button-white button-admin" text-center icon-start
+                            (click)="listGoodPlan()">
+                        <div>
+                            <img class="img-bene" src="assets/imgs/icons/articlePublish.png">
+                            <div class="text-admin">Bons Plans</div>
+                        </div>
+                    </button>
+                </ion-col>
+                <ion-col col-12 text-center  *ngIf="account.type == 'community'">
+                    <button ion-button color="white-color" class="button-white button-admin" text-center icon-start
+                            (click)="listSurvey()">
+                        <div>
+                            <img class="img-bene" src="assets/imgs/icons/article.png">
+                            <div class="text-admin">Sondages</div>
+                        </div>
+                    </button>
+                </ion-col>
+                <ion-col col-12 text-center  *ngIf="(account.type == 'association' &&  account.role && account.role !='member') || account.type == 'community'">
+                    <button ion-button color="white-color" class="button-white button-admin" text-center icon-start
+                        (click)="listEvent()">
+                        <div>
+                            <img class="img-bene" src="assets/imgs/icons/eventPublish.png">
+                            <div class="text-admin">Evènements</div>
+                        </div>
+                    </button>
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+
+    </div>
+    <div class="div-right"></div>
+</ion-content>

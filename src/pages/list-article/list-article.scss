@@ -1,0 +1,89 @@
+page-list-article {
+    // ----------------------------------------------------------------------------------
+    // Page Styling
+    // ----------------------------------------------------------------------------------
+    .scroll-content {
+        margin-top: 90px !important;
+        margin-bottom: 30px;
+    }
+    .survey-icons{
+        width: 22px !important;
+        margin-right: 0px;
+        bottom: 25px;
+        position: relative;
+        cursor: pointer;
+    }
+    // ----------------------------------------------------------------------------------
+    // Buttons
+    // ----------------------------------------------------------------------------------
+    .fab-ios,
+    .fab-wp {
+        background: none;
+        bottom: 16px;
+        box-shadow: none;
+    }
+    .fab-md {
+        background: none;
+        bottom: 16px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        left: 3px;
+    }
+    .fab-ios.activated,
+    .fab-md.activated,
+    .fab-wp.activated {
+        background: none;
+        box-shadow: none;
+        margin: 2px !important;
+        padding: 0 !important;
+    }
+    ion-fab-list[side=left] {
+        margin: 0 50px;
+        .fab-in-list{
+            margin: 2px !important;
+            padding: 0 !important;
+        }
+    }
+    .fab-in-list.show {
+        background: color($colors, grey-clear) !important;
+    }
+    .checkbox {
+        margin: 0 !important;
+    }
+    ion-fab{
+        right: 15px;
+    }
+    // ----------------------------------------------------------------------------------
+    // Input
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // Select
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // Item
+    // ----------------------------------------------------------------------------------
+    // ----------------------------------------------------------------------------------
+    // class
+    // ----------------------------------------------------------------------------------
+    // class mobile
+    // ----------------------------------------------------------------------------------
+    @media (max-width: 1022px) {}
+    // class desktop
+    // ----------------------------------------------------------------------------------
+    @media (min-width: 1023px) {
+        // class IE
+        // ----------------------------------------------------------------------------------
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            .swiper-slide {
+                display: block;
+            }
+            ion-slide.swiper-slide {
+                left: 0%;
+            }
+            .fab-list-active {
+                display: inline-block;
+                margin-top: 5px !important;
+            }
+        }
+    }
+}

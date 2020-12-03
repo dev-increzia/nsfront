@@ -1,0 +1,193 @@
+page-butalso {
+    ion-content.has-refresher>.scroll-content {
+        background-color: color($colors, grey-color);
+    }
+
+    .select-filters {
+        background: color($colors, gray-select);
+    }
+
+    .select-fitler {
+        width: 100%;
+        max-width: 100%;
+        background: color($colors, gray-select);
+    }
+
+    .event-item {
+        border-top: 0.55px solid color($colors, light-black);
+        margin-top: -20px;
+        padding-top: 15px;
+    }
+
+    .first-event-item {
+        margin-top: -20px;
+        padding-top: 15px;
+    }
+
+    .content-first {
+        display: list-item;
+        padding-top: 0;
+    }
+
+    .select-placeholder.select-text {
+        font-size: 17px;
+        color: color($colors, light-grey);
+        font-family: "Montserrat Regular";
+        font-weight: 200;
+    }
+
+    .card {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .start-hour {
+        font-size: 20px;
+    }
+
+    .event-title {
+        font-size: 18px;
+    }
+
+    .title-day {
+        color: color($colors, h-color);
+        font-size: 20px;
+    }
+
+    .title-date {
+        font-size: 25px;
+    }
+
+    .weekend-button.activate {
+        background: color($colors, primary);
+        color: color($colors, white-color);
+        font-family: "Montserrat Bold";
+        font-size: 17px;
+        font-weight: bold;
+    }
+
+    .comments-nbr {
+        margin-right: 5px;
+        font-size: 22px;
+    }
+
+    .likes-nbr {
+        margin-left: 5px;
+        font-size: 22px;
+    }
+
+    .grid-bottom {
+        margin-bottom: 50px;
+    }
+
+    .same-post {
+        background: color($colors, list-admin-items);
+        margin-top: 4em;
+    }
+
+    .special-card-position {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .card-header-ios,
+    .card-header-md,
+    .card-header-wp {
+        font-size: 1.6rem;
+        font-weight: 500;
+        color: color($colors, card-header);
+    }
+
+    .item-ios,
+    .item-md,
+    .item-wp {
+        background-color: color($colors, primary);
+        color: white;
+        font-weight: bold;
+    }
+
+    .same-post-h2,
+    .same-post-h6 {
+        color: white;
+        font-weight: bold;
+    }
+
+    .max-width {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .custom-card {
+        margin: 0;
+    }
+
+    .same-post-h2,
+    .same-post-h2 {
+        color: white;
+    }
+
+    .custom-item-agenda {
+        padding: 0 !important;
+    }
+
+    .icon-img-action {
+        width: 30px;
+        vertical-align: top;
+    }
+
+    .icon-img-action {
+        width: 30px;
+    }
+
+    .bottom-margin-8 {
+        margin-bottom: 8px;
+    }
+
+    // class desktop
+    // ----------------------------------------------------------------------------------
+    @media (min-width: 1023px) {
+        .agenda-filter {
+            margin-top: 20px;
+        }
+
+        .div-right {
+            padding-top: 20px;
+        }
+
+        .same-post-date {
+            font-family: "Montserrat Regular";
+            color: color($colors, light-black);
+            font-size: 15px;
+            display: block;
+            font-weight: normal;
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+
+        .event-excerpt {
+            display: block;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    }
+    // class mobile
+    // ----------------------------------------------------------------------------------
+    @media (max-width: 1022px) {
+        .same-post-date {
+            margin-top: 8px;
+            font-family: "Montserrat Regular";
+            color: color($colors, light-black);
+            display: block;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.5;
+        }
+
+        .event-excerpt {
+            display: block;
+            font-size: 1.7rem;
+            font-weight: bold;
+        }
+    }
+}

@@ -1,0 +1,63 @@
+<!--
+  Generated template for the MapPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+                <ion-title>{{community.name}}</ion-title>
+            </ion-col>
+            <ion-col col-2 text-right>
+                <ion-avatar class="blason">
+                    <img src="{{community.img_url}}">
+                </ion-avatar>
+
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-content padding>
+    <div class="div-left">
+        <div text-right class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <!--bloc central -->
+    <div class="div-center">
+
+        <div class="content-page-list bar-custom">
+            <div class="map-filter">
+                <!--ion-icon class="icon" name="md-arrow-dropdown"></ion-icon-->
+                <div (click)="toggleCategoryChange();">
+                    <ion-icon class="icon" name="md-arrow-dropright" *ngIf="!showFilter"></ion-icon>
+                    <ion-icon class="icon" name="md-arrow-dropdown" *ngIf="showFilter"></ion-icon>
+                    <span>Filtres</span>
+                </div>
+
+                <ion-grid *ngIf="showFilter">
+                    <ion-row>
+                        <ion-item col-6 *ngFor="let category of categories">
+                            <ion-label>{{category.name}}</ion-label>
+                            <ion-checkbox value="category.id"
+                                          (ionChange)="categoriesChange(category.id, $event.checked)"></ion-checkbox>
+                        </ion-item>
+
+                    </ion-row>
+                </ion-grid>
+                <button class="filter-map-button button-ok" ion-button color="primary" round *ngIf="showFilter"
+                        (click)="mapFilter()">OK
+                </button>
+            </div>
+            <div #map id="map"></div>
+        </div>
+    </div>
+    <!-- fin bloc central -->
+    <div class="div-right" text-center>
+    </div>
+</ion-content>

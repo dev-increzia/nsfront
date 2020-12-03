@@ -1,0 +1,32 @@
+page-admin-list {
+    .current-admin-name {
+        float: left;
+        font-family: "Montserrat Medium" !important;
+        color: color($colors, light-black);
+        font-size: 18px;
+    }
+    .list-admin-items {
+        background: color($colors, white-color);
+        width: 100%;
+        position: relative;
+        margin: auto;
+        text-align: left;
+        border-bottom: 1px solid color($colors, list-admin-items);
+        padding: 10px 15px;
+        line-height: 25px;
+        border-radius: 2px;
+    }
+    .clear {
+        clear: both;
+    }
+    img.img-add {
+        width: 70px;
+        margin-top: 40px;
+    }
+    .no-padding,.scroll-content{
+        padding: 0 !important;
+    }
+    .div-center {
+        margin-top: 50px;
+    }
+}

@@ -1,0 +1,56 @@
+<!--
+  Generated template for the PopupAskRoomPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-row class="header-popin" no-padding>
+        <ion-col class="no-padding " text-right>
+            <button ion-button clear small color="primary" icon-start no-margin no-padding (click)="Close()">
+                <img class="icon-heart material-icons" src="assets/imgs/icons/image3.png">
+            </button>
+        </ion-col>
+    </ion-row>
+</ion-header>
+<ion-content>
+    <ion-grid class="messagePopup">
+        <ion-row class="padding-horizontal">
+            <ion-col col-12 text-center>
+                <p class="greenText">Souhaitez vous demander à reserver une salle ou un terrain mis à disposition par la
+                    communauté ?</p>
+                <p class="littleText">Rédigez votre message ci-dessous, il sera envoyé à l'administrateur de la
+                    communauté qui vous contactera.</p>
+            </ion-col>
+            <form (ngSubmit)="saveRoomEmail(publishForm.invalid,description)" #publishForm="ngForm">
+                <ion-col col-12 text-center class="select-not-ie">
+                    <ion-item class="no-padding-left"
+                              [class.formError]="description.invalid && (description.dirty || submited || description.touched)">
+                        <ion-textarea [(ngModel)]="mail.description" name="description" placeholder="Ma demande*"
+                                      #description="ngModel" required></ion-textarea>
+                    </ion-item>
+                    <div class="error-msg"
+                         *ngIf="description.invalid && (description.dirty || submited || description.touched)">
+                        <span class="error">Champs de demande obligatoire</span>
+                    </div>
+                </ion-col>
+                <ion-col col-12 text-center class="select-ie">
+
+                    <ion-item class="no-padding-left">
+                        <ion-textarea name="description" [(ngModel)]="mail.description" placeholder="Ma demande*"
+                                      #description="ngModel"
+                                      required></ion-textarea>
+                    </ion-item>
+                    <div class="error-msg" *ngIf="invalidDesc">
+                        <span class="error">Champs de demande obligatoire</span>
+                    </div>
+                </ion-col>
+                <ion-col col-12 text-center>
+                    <button ion-button color="primary" type="submit" class="button-publish" round>
+                        Valider
+                    </button>
+                </ion-col>
+            </form>
+        </ion-row>
+    </ion-grid>
+</ion-content>

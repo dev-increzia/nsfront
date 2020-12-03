@@ -1,0 +1,48 @@
+<ion-content>
+    <div class="div-left">
+
+    </div>
+    <div class="div-center">
+        <div text-center>
+            <img class='headerImg' src="assets/imgs/register.png">
+        </div>
+        <ion-grid padding-bottom>
+            <ion-row>
+                <ion-col col-12 class="no-padding " text-center>
+                    <button ion-button class="mt-medium" color="grey-color" round (click)="LoginPage()">Je me connecte</button>
+                </ion-col>
+                <ion-col col-12 class="no-padding mt-regular" text-center>
+                    <h6>OU</h6>
+                </ion-col>
+                <ion-col col-12 class="no-padding mt-regular" text-center>
+                    <p>Je crée mon compte</p>
+                </ion-col>
+                <ion-col col-12 text-center>
+                    <div class="div-select-rond">
+                        <ion-item>
+                            <ion-input (click)="SelectCity()"   readonly autocomplete="off" autocorrect="on" name="city" type="text" id="city" placeholder="Ville" [(ngModel)]="newUser.city"
+                                #city="ngModel" required></ion-input>
+                            <ion-icon name="pin" item-left> </ion-icon> 
+                        </ion-item>
+<!--                        <ion-select text-center class="select-grey select-not-ie mt-medium" (ionChange)="registerPageForward()"
+                            placeholder="Votre Ville (ou code postal)" interface="popover" [(ngModel)]="newUser.city"
+                            *ngIf="appGlobals.allCities">
+                            <ion-option *ngFor="let city of appGlobals.allCities" value={{city.id}}>{{city.name}}</ion-option>
+                        </ion-select>
+
+                        <select text-center class="select-grey select-ie mt-medium" (ionChange)="registerPageForward()"
+                            [(ngModel)]="newUser.city" *ngIf="appGlobals.allCities">
+                            <option value="null">Votre Ville (ou code postal)</option>
+                            <option *ngFor="let city of appGlobals.allCities" value={{city.id}}>{{city.name}}</option>
+                        </select>-->
+                    </div>
+                </ion-col>
+
+                <!-- <ion-col class="col-submit submit-ne" col-12 text-center>
+                    <button ion-button color="primary" round class="button-big" (click)="registerPageForward()">Suivant</button>
+                </ion-col> -->
+            </ion-row>
+        </ion-grid>
+    </div>
+    <div class="div-right"></div>
+</ion-content>

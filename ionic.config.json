@@ -1,0 +1,8 @@
+{
+  "name": "NOUS-Ensemble",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "dev_push": false
+}

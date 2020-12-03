@@ -1,0 +1,71 @@
+page-emergency-phones {
+    .div-left-top {
+        @media screen and (min-width: 1023px) {
+            margin-top: 50px;
+        }
+    }
+    grid-white {
+        background: color($colors, white-color);
+    }
+    .scroll-content {
+        margin-top: 30px !important;
+        padding-top: 5px !important;
+    }
+    .number-cat-icon {
+        float: right;
+        vertical-align: middle;
+    }
+    .number-cat-item {
+        font-weight: bold;
+        float: left;
+        position: relative;
+        top: 5px;
+        font-family: "Montserrat Medium";
+        color: color($colors, light-black);
+        font-size: 17px;
+        vertical-align: middle;
+    }
+    .full-width {
+        width: 90%;
+        display: block;
+        background: color($colors, light-meduim);
+        padding: 15px 15px;
+        border-bottom: 1px solid color($colors, grey-simple);
+        margin-bottom: 5px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .category-number {
+        margin-bottom: 60px;
+    }
+    @media (min-width: 1000px) {
+        .category-number {
+            margin-top: 0rem;
+            margin-bottom: 10px;
+            background: color($colors, white-color);
+        }
+        a ion-label,
+        button ion-label {
+            pointer-events: none;
+            line-height: 32px;
+            overflow: visible;
+            font-size: 1.6rem;
+            font-weight: normal;
+        }
+        .scroll-content {
+            background: color($colors, white-color);
+        }
+        .grid-bottom {
+            margin-top: 20px;
+        }
+    }
+    @media (min-width: 1023px) {
+        .grid-bottom {
+            margin-top: 20px;
+        }
+    }
+    .block-image {
+      width: 100%;
+    }
+
+}

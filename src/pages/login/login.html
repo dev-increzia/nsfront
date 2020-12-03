@@ -1,0 +1,69 @@
+<ion-content>
+    <div class="div-left">
+    </div>
+    <div class="div-center">
+        <ion-grid class="no-padding ">
+            <ion-row>
+
+                <ion-col class="no-padding " col-12 col-sm>
+
+                    <div>
+                        <div class="back-page" (click)="back()">
+                            <ion-icon name="ios-arrow-back-outline"></ion-icon>
+                        </div>
+
+                    </div>
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+        <div text-center>
+            <img class="home-img" src="assets/imgs/connexion5.png">
+        </div>
+        <ion-grid class="no-padding connexion">
+            <form [formGroup]="signInForm" novalidate>
+                <ion-row>
+
+                    <ion-col col-12 class="col-input">
+                        <ion-label color="light-black" stacked>Adresse mail</ion-label>
+                        <ion-item [class.formError]="( signInForm.get('email').hasError('required') || signInForm.get('email').hasError('email') ) && submited">
+                            <ion-input type="email" id="email" name="email" required [(ngModel)]="loginUser.email"
+                                formControlName="email" (focus)="checkFocus($event)"></ion-input>
+                        </ion-item>
+                        <div class="error-msg" text-center *ngIf="signInForm.get('email').hasError('required') && submited">
+                            <span class="error">Veuillez indiquer votre email</span>
+                        </div>
+                        <div class="error-msg" text-center *ngIf="signInForm.get('email').hasError('email') && !signInForm.get('email').hasError('required') && submited">
+                            <span class="error">Veuillez indiquer un email valide</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-12 class="col-input">
+                        <ion-label color="light-black" stacked>Mot de passe</ion-label>
+                        <ion-item>
+                            <ion-input type="password" name="password" required [(ngModel)]="loginUser.password"
+                                (focus)="checkFocus($event)" formControlName="password"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <a (click)="forgetPassword()"><small>Mot de passe oublié</small></a>
+                    </ion-col>
+                    <ion-col class="col-input-desktop" col-12 text-center>
+                        <ion-item>
+                            <ion-label>Se souvenir de moi</ion-label>
+                            <ion-toggle [(ngModel)]="loginUser.rememberMe" formControlName="rememberMe" name="rememberMe"></ion-toggle>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <button ion-button color="primary" style="width: 85%;" round class="button-big" (click)="loginForm(signInForm.invalid)">C'est
+                            parti !</button>
+                    </ion-col>
+                    <ion-col col-12 text-center>
+                        <small class="terms">En cliquant sur C'est parti!, vous acceptez nos <a (click)="cgu()"><b>Conditions générales </b></a>et notre <a (click)="rgpd()"><b>politique de protection des données</b></a></small>
+                    </ion-col>
+
+                </ion-row>
+            </form>
+        </ion-grid>
+    </div>
+    <div class="div-right"></div>
+</ion-content>

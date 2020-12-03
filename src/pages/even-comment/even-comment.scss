@@ -1,0 +1,25 @@
+page-even-comment {
+  .header-popin {
+      padding: 15px;
+    background: color($colors, white-color);
+  }
+  .padding-top {
+      padding-top: 25px;
+  }
+  .title-popin {
+      padding-top: 5px;
+      font-size: 22px;
+  }
+  .indication {
+      margin: 0;
+      width: 100%;
+  }
+  .scroll-content {
+      background-color: color($colors, white-color);
+  }
+  .primary-color {
+      color: color($colors, primary);
+      margin-top: 0 !important;
+  }
+
+}

@@ -1,0 +1,154 @@
+page-contact {
+    .toolbar-title-md, .toolbar-title-ios, .toolbar-title-wp {
+        color: white !important;
+        font-family: "Montserrat Bold", serif !important;
+        font-size: 20px;
+        text-align: center;
+        text-transform: capitalize;
+        position: relative;
+    }
+
+    .boxed-form {
+        background: color($colors, white-color);
+        -webkit-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+        -moz-box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+        box-shadow: 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+        padding:10px;
+        border-radius: 20px;
+    }
+
+    .select-md .select-icon .select-icon-inner, .select-wp .select-icon .select-icon-inner, .select-ios .select-icon .select-icon-inner {
+        left: 5px;
+        top: 50%;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 5px solid;
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+        color: color($colors, h-color);
+        pointer-events: none;
+    }
+
+
+    .custom-submit {
+        width: 160px;
+        position: relative;
+        margin: 2em auto;
+        border-radius: 20px;
+        padding: 10px 10px;
+    }
+
+    .lorem {
+        text-transform:uppercase;
+        color: color($colors, primary);
+    }
+
+    // ----------------------------------------------------------------------------------
+    // Page Styling
+    // ----------------------------------------------------------------------------------
+    ion-label {
+        white-space: inherit;
+    }
+
+    .title {
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+    // ----------------------------------------------------------------------------------
+    // Buttons
+    // ----------------------------------------------------------------------------------
+    .button-ios-white-color,
+    .button-md-white-color,
+    .button-wp-white-color {
+        color: color($colors, light-grey);
+    }
+    // ----------------------------------------------------------------------------------
+    // Input
+    // ----------------------------------------------------------------------------------
+    .textarea-timing {
+        .text-input {
+            height: 40px;
+        }
+    }
+    .text-input {
+        border-left: none;
+    }
+    // ----------------------------------------------------------------------------------
+    // Select
+    // ----------------------------------------------------------------------------------
+    .select-text {
+        color: color($colors, h-color);
+        padding-left: 15px;
+        text-align: left;
+    }
+    // ----------------------------------------------------------------------------------
+    // Item
+    // ----------------------------------------------------------------------------------
+    .item-ios.item-block .item-inner,
+    .item-md.item-block .item-inner,
+    .item-wp.item-block .item-inner {
+        padding: 0;
+    }
+    // ----------------------------------------------------------------------------------
+    // class
+    // ----------------------------------------------------------------------------------
+    .div-icon-imge {
+        position: absolute;
+        z-index: 9999;
+        width: 100%;
+    }
+
+    .div-button-icon {
+        width: 100%;
+        position: absolute;
+        top: 40px;
+    }
+
+    .icon-delete {
+        font-size: 35px;
+    }
+
+    .div-margin-top {
+        margin-top: 20px;
+    }
+
+    .contact-fields{
+        width: 100%;
+    }
+
+    // class mobile
+    // ----------------------------------------------------------------------------------
+    @media (max-width: 1022px) {
+        .icon-img {
+            width: 20%;
+            background: color($colors, white-color);
+            border-radius: 20%;
+        }
+
+        .scroll-content {
+            margin-bottom: 75px;
+        }
+    }
+    // class desktop
+    // ----------------------------------------------------------------------------------
+    @media (min-width: 1023px) {
+        .icon-img {
+            width: 7%;
+            background: color($colors, white-color);
+            border-radius: 20%;
+        }
+
+        .div-margin-top {
+            margin-top: 20px;
+        }
+
+        .button-img {
+            width: 25%;
+        }
+    }
+}

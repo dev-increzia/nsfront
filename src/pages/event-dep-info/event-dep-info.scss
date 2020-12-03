@@ -1,0 +1,419 @@
+page-event-dep-info {
+    .with-bkg {
+        background: color($colors, grey-color);
+        padding: 10px;
+        width: 100%;
+    }
+    .likes-nbr {
+        font-family: "Montserrat Medium" !important;
+        font-size: 20px !important;
+    }
+    .participantsNbre {
+        color: color($colors, primary);
+    }
+    .event-date {
+        font-family: "Montserrat Bold";
+        font-size: 18px;
+        color: color($colors, light-black);
+        letter-spacing: -1px;
+        display: inline;
+        float: left;
+        margin-right: 10px;
+    }
+    .event-name {
+        font-family: "Montserrat Bold";
+        font-size: 18px;
+        color: color($colors, light-black);
+        letter-spacing: -1px;
+        display: block;
+    }
+    .event-reservation {
+        float: right;
+        margin-top: 0px !important;
+    }
+    .event-day {
+        font-family: "SourceSansPro Regular";
+        font-size: 17px;
+        color: color($colors, h-color);
+        text-transform: capitalize;
+        display: inline;
+        margin-bottom: 10px;
+    }
+    .event-hour {
+        font-family: "Montserrat Medium";
+        font-size: 18px;
+        color: color($colors, dark);
+        opacity: 0.8;
+        margin-bottom: 10px;
+    }
+    .event-location {
+        font-family: "SourceSansPro Bold";
+        font-size: 15px;
+        color: color($colors, light-black);
+        display: inline;
+        margin-bottom: 10px;
+    }
+    .csm1 {
+        margin-top: 10px;
+    }
+    .csm2 {
+        margin-top: 10px;
+    }
+    .scroll-content {
+        /*background-color: color($colors, white-color);*/
+        margin-bottom: 60px !important;
+    }
+    .numberParagraph {
+        font-size: 1.2rem;
+    }
+    img.dot-icon {
+        display: inline;
+        width: 6px;
+        vertical-align: middle;
+        margin: 0 10px;
+    }
+    .agenda-icons {
+        width: 25px;
+        margin: 0 auto;
+        display: inline;
+        vertical-align: -webkit-baseline-middle;
+
+        &.icons-car {
+            width: 40px;
+        }
+
+        &.icons-stars {
+            width: 30px;
+        }
+    }
+    .bordred {
+        border-bottom: 1px solid color($colors, dark);
+        padding: 5px 0 !important;
+        margin: 0px 10px;
+    }
+    .excerpt {
+        color: color($colors, primary) !important;
+        text-decoration: underline;
+        font-weight: 100;
+        font-family: 'Montserrat Medium';
+        display:block;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    .icon-img-action {
+        border-radius: 2px;
+        width: 30px;
+        margin-right: 5px;
+        margin-left: 5px;
+        vertical-align: top;
+    }
+    .icon-thumb-action {
+        border-radius: 2px;
+        margin-top: 10px;
+    }
+    .text-input {
+        margin-top: 8px;
+        height: 23px;
+    }
+    .custom-footer {
+        @media (max-width: 1022px) {
+            background-image: url("../../assets/imgs/footer/mobile-footer.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            padding-top: 25px;
+            background-color: color($colors, grey-color);
+            background-position: 50% 5px;
+        }
+        @media (min-width: 1023px) {
+            background-image: url("../../assets/imgs/footer/footer.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding-top: 25px;
+            background-color: color($colors, grey-color);
+        }
+    }
+    .space-comment {
+        background: color($colors, white-color);
+        position: relative;
+        bottom: 0;
+        display: block;
+        margin-top: 5em;
+        padding: 20px;
+        margin-bottom: 0;
+    }
+    .comment-zone-footer {
+        width: 250px;
+        position: relative;
+        background: color($colors, grey-clear);
+        border-radius: 20px;
+        height: 35px;
+        margin: auto;
+        display: block;
+        border: 1px solid color($colors, grey-simple);
+    }
+    .footer-comment-item > .icon-close {
+        padding: 0;
+        padding-top: 12px;
+        transition: none 0s ease 0s;
+        position: relative;
+        display: inline-block;
+        vertical-align: super;
+        min-width: .9em;
+        width: 30px;
+    }
+    .comment-zone-reply {
+        width: 50%;
+        position: relative;
+        background: #f2f2f2;
+        border-radius: 20px;
+        height: 80%;
+        margin: 0;
+        margin-left: 20px;
+        display: inline-block;
+        border: 1px solid #cccccb;
+        vertical-align: sub;
+    }
+    .text-input:focus {
+        color: color($colors, h-color);
+    }
+    .go-to {
+        width: 20px;
+        position: absolute;
+        right: 15px;
+        top: 35px;
+    }
+    .button-small-md,
+    .button-small-ios,
+    .button-small-wp {
+        height: auto;
+        font-size: 1.3rem;
+    }
+    .custom-div {
+        background: color($colors, grey-color);
+        padding-top: 5px;
+        padding-bottom: 0;
+        padding-left: 0;
+        padding-right: 0;
+        border-radius: 5px;
+        margin: 0;
+    }
+    .comment {
+        font-family: "SourceSansPro Regular";
+        font-size: 15px;
+        color: color($colors, light-grey);
+        display: block;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 5px;
+        background: white;
+        padding: 8px 8px;
+        border-radius: 20px;
+        text-align: left;
+        overflow: hidden;
+        text-overflow-multiline: ellipsis;
+    }
+    .answer {
+        font-family: "SourceSansPro Regular";
+        font-size: 15px;
+        color: color($colors, light-grey);
+        display: block;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 5px;
+        background: color($colors, white-color);
+        padding: 8px 8px;
+        border-radius: 20px;
+        text-align: left;
+        overflow: hidden;
+        text-overflow-multiline: ellipsis;
+        position: relative;
+        left: 15px;
+    }
+    .comment-user {
+        font-weight: bold;
+        display: block;
+        text-align: left;
+        font-size: 14px;
+    }
+    .comment-date {
+        font-weight: bold;
+        display: block;
+        text-align: left;
+        font-size: 12px;
+        color: color($colors, dark-grey);
+    }
+    .delete {
+        font-weight: bold;
+        font-size: 12px;
+        color: color($colors, primary);
+    }
+    .full {
+        width: 100% !important;
+    }
+    .buttons-container {
+        margin-bottom: 30px;
+        width: 100%;
+    }
+    .load-comment {
+        width: 100%;
+        text-align: center;
+        padding-bottom: 25px;
+    }
+    .text-comment {
+        margin-bottom: 5px;
+        margin-top: 5px;
+        display: block;
+    }
+    .text-input {
+        margin: 8px 0px;
+        height: calc(100% - 16px);
+        width: 100%;
+        padding: 0px 15px;
+    }
+    .comment-zone {
+        width: 50%;
+        position: relative;
+        background: #f2f2f2;
+        border-radius: 20px;
+        height: 80%;
+        margin: 0;
+        margin-left: 20px;
+        display: inline-block;
+        border: 1px solid #cccccb;
+        vertical-align: sub;
+    }
+      
+    .footer-item-content {
+        margin-top: 10%;
+    }
+    @media (min-width: 1023px) {
+        .space-comment {
+            background: color($colors, white-color);
+            position: relative;
+            bottom: 0;
+            display: block;
+            margin-top: 5em;
+            padding: 20px;
+            margin-bottom: 0;
+            border-top: 2px solid color($colors, grey-simple);
+        }
+        .custom-div {
+            border: 2px solid color($colors, grey-simple);
+        }
+        .footer-desktop {
+            display: none;
+        }
+        .comment-zone-footer {
+            width: 66.66666%;
+            position: relative;
+            background: color($colors, grey-clear);
+            border-radius: 20px;
+            height: 45px;
+            margin: auto;
+            display: inline-block;
+            border: 1px solid color($colors, grey-simple);
+            margin-left: 10px;
+        }
+        .text-input {
+            margin-top: 10px !important;
+            width: 100% !important;
+            height: 75% !important;
+            font-size: 16px;
+        }
+        .next-icon {
+            display: inline-block;
+            width: 30px;
+            margin-top: 8px;
+            margin-left: 10px;
+            margin-bottom: 8px;
+        }
+        .scroll-content {
+            /*background-color: color($colors, white-color);*/
+            margin-bottom: 0px !important;
+        }
+        // class IE
+        // ----------------------------------------------------------------------------------
+        @media all and (-ms-high-contrast: none),
+        (-ms-high-contrast: active) {
+            .swiper-slide {
+                display: block;
+            }
+            ion-slide.swiper-slide {
+                left: 0%;
+            }
+            .grid {
+                display: block;
+            }
+        }
+    }
+    @media (max-width: 1022px) {
+        .space-comment {
+            display: none;
+        }
+        // class IE
+        // ----------------------------------------------------------------------------------
+        @media all and (-ms-high-contrast: none),
+        (-ms-high-contrast: active) {
+            .swiper-slide {
+                display: block;
+            }
+            ion-slide.swiper-slide {
+                left: 0%;
+            }
+        }
+    }
+    .icon-comment {
+        padding: 0;
+        padding-top: 12px;
+        transition: none 0s ease 0s;
+        position: relative;
+        display: inline-block;
+        vertical-align: super;
+        min-width: .9em;
+        width: 30px;
+        margin-left: 3px;
+    }
+    .icon-close {
+        margin-top: 6px;
+        margin-left: 10px;
+    }
+    ion-slide.swiper-slide {
+        left: 25%;
+        position: initial;
+    }
+    .participant-number {
+        margin-left: -30px;
+    }
+    .footer-comment {
+        text-align: center;
+        margin: auto;
+    }
+    .footer-comment-photo {
+        margin: auto;
+        height: 160px;
+        bottom: -30px;
+    }
+    .photo-comment {
+        width: 50px;
+        display: block;
+        margin-bottom: 20px;
+    }
+    .delete-icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .photo-bloc {
+        position: relative;
+        width: 50px;
+        margin-left: 35px;
+    }
+    .delete-icon {
+        position: absolute;
+        right: -5px;
+        top: -10px;
+        font-size: 25px;
+    }
+}

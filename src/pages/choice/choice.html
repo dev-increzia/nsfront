@@ -1,0 +1,109 @@
+<!--
+  Generated template for the ChoicePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-content>
+    <ion-grid class="no-padding ">
+        <ion-row>
+            <ion-col col-12 no-padding>
+                <div class="close-btn" (click)="Close()" float-end>
+                    <img class="icon-heart material-icons" src="assets/imgs/icons/image3.png">
+                </div>
+            </ion-col>
+            <ion-col col-12 text-center>
+                <h6 text-left class="wishPublish">
+                    Souhaitez vous publier
+                    <br> En tant que :
+
+                </h6>
+            </ion-col>
+            <ion-col col-12 text-center>
+                <button ion-button color="white-color" round class="button-white" text-capitalize no-padding (click)="popPublish(currentUser, 'citoyen')">
+                    <div class="block-image"><img src="assets/imgs/icons/user.png" class="user-img" *ngIf="!currentUser.image_url">
+                        <img class="user-img" src="{{currentUser.image_url}}" *ngIf="currentUser.image_url"></div>
+                    <div class="block-name">{{currentUser.firstname}} {{currentUser.lastname}}</div>
+                    <div class="block-icon">
+                        <ion-icon name="ios-arrow-forward"></ion-icon>
+                    </div>
+                </button>
+            </ion-col>
+            <ion-col col-12 text-center>
+                <button ion-button color="white-color" round class="button-white only-text" text-capitalize no-padding
+                    (click)="popPublish('association', 'association')">
+                    <!-- <div class="block-image"><img src="assets/imgs/icons/user_default.png" class="user-img" *ngIf="!association.image_url">
+                        <img class="user-img" src="{{association.image_url}}" *ngIf="association.image_url"></div> -->
+                    <div class="block-name">Administrateur de <br />groupe / association</div>
+                    <div class="block-icon">
+                        <ion-icon name="ios-arrow-forward"></ion-icon>
+                    </div>
+                </button>
+            </ion-col>
+            <ion-col col-12 text-center>
+                <button ion-button color="white-color" round class="button-white only-text" text-capitalize no-padding
+                    (click)="popPublish('merchant', 'merchant')">
+                    <!-- <div class="block-image">   <img src="assets/imgs/icons/user_default.png" class="user-img" *ngIf="!merchant.image_url">
+                        <img class="user-img" src="{{merchant.image_url}}" *ngIf="merchant.image_url"></div> -->
+                    <div class="block-name">Administrateur de <br />commerce / partenaire</div>
+                    <div class="block-icon">
+                        <ion-icon name="ios-arrow-forward"></ion-icon>
+                    </div>
+                </button>
+            </ion-col>
+            <ion-col col-12 text-center>
+                <button ion-button color="white-color" round class="button-white only-text" text-capitalize no-padding
+                        (click)="popPublish('community', 'community')">
+                    <!-- <div class="block-image">   <img src="assets/imgs/icons/user_default.png" class="user-img" *ngIf="!merchant.image_url">
+                        <img class="user-img" src="{{merchant.image_url}}" *ngIf="merchant.image_url"></div> -->
+                    <div class="block-name">Administrateur de <br />communauté</div>
+                    <div class="block-icon">
+                        <ion-icon name="ios-arrow-forward"></ion-icon>
+                    </div>
+                </button>
+            </ion-col>
+            <!--<ion-col col-12 text-center *ngIf="currentUser.role == 'cityhall'">-->
+                <!--<button ion-button color="white-color" round class="button-white only-text" text-capitalize no-padding-->
+                    <!--(click)="popPublish(currentUser, 'cityhall')">-->
+                    <!--&lt;!&ndash; <div class="block-image">   <img src="assets/imgs/icons/user_default.png" class="user-img" *ngIf="!currentUser.cityhall.image_url">-->
+                        <!--<img class="user-img" src="{{currentUser.cityhall.image_url}}" *ngIf="currentUser.cityhall.image_url"></div> &ndash;&gt;-->
+                    <!--<div class="block-name">Administrateur de <br />{{currentUser.cityhall.name}}</div>-->
+                    <!--<div class="block-icon">-->
+                        <!--<ion-icon name="ios-arrow-forward"></ion-icon>-->
+                    <!--</div>-->
+                <!--</button>-->
+            <!--</ion-col>-->
+            <!--<ion-col col-12 *ngIf="currentUser.role == 'cityhall'" text-center>-->
+                <!--<h6 text-left class="wishPublish">-->
+                    <!--Souhaitez vous publier-->
+                    <!--<br> Dans :-->
+
+                <!--</h6>-->
+            <!--</ion-col>-->
+            <!--<ion-col col-12 text-center *ngIf="currentUser.role == 'cityhall'">-->
+                <!--<button ion-button color="white-color" round class="button-white" text-capitalize no-padding (click)="popPublish(currentUser, 'project')">-->
+                    <!--<div class="block-image"><img src="assets/imgs/icons/user_default.png" class="user-img" *ngIf="!currentUser.cityhall.image_url">-->
+                        <!--<img class="user-img" src="{{currentUser.cityhall.image_url}}" *ngIf="currentUser.cityhall.image_url">-->
+                    <!--</div>-->
+                    <!--<div class="block-name">Grands projets de ma ville</div>-->
+                    <!--<div class="block-icon">-->
+                        <!--<ion-icon name="ios-arrow-forward"></ion-icon>-->
+                    <!--</div>-->
+                <!--</button>-->
+            <!--</ion-col>-->
+            <!--<ion-col col-12 text-center *ngIf="currentUser.role == 'cityhall'">-->
+                <!--<button ion-button color="white-color" round class="button-white" text-capitalize no-padding (click)="popPublish(currentUser, 'canteen')">-->
+                    <!--<div class="block-image"><img src="assets/imgs/icons/user_default.png" class="user-img" *ngIf="!currentUser.cityhall.image_url">-->
+                        <!--<img class="user-img" src="{{currentUser.cityhall.image_url}}" *ngIf="currentUser.cityhall.image_url"></div>-->
+                    <!--<div class="block-name">Menus des cantines</div>-->
+                    <!--<div class="block-icon">-->
+                        <!--<ion-icon name="ios-arrow-forward"></ion-icon>-->
+                    <!--</div>-->
+                <!--</button>-->
+            <!--</ion-col>-->
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

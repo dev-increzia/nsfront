@@ -1,0 +1,342 @@
+<!--
+  Generated template for the DetailArticlePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header class="mobile-header MMS" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item">
+                    <ion-icon name="ios-arrow-back" (click)="goBack()"></ion-icon>
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title">
+
+                <ion-title></ion-title>
+            </ion-col>
+            <ion-col col-2>
+                <div class="item" text-right *ngIf="currentArticle">
+                    <ion-icon name="md-more" float-end *ngIf="idUsers && currentArticle.type == 'association' && (idUsers.associations.indexOf(currentArticle.associationId) > -1)"
+                        (click)="editArticle(currentArticle, currentArticle.type, currentArticle.associationId)"></ion-icon>
+                    <ion-icon name="md-more" float-end *ngIf="idUsers && currentArticle.type == 'merchant' && (idUsers.merchants.indexOf(currentArticle.merchantId) > -1)"
+                        (click)="editArticle(currentArticle, currentArticle.type, currentArticle.userId)"></ion-icon>
+                    <ion-icon name="md-more" float-end *ngIf="idUsers && currentArticle.type == 'user' && (idUsers.users.indexOf(currentArticle.userId) > -1)"
+                        (click)="editArticle(currentArticle, currentArticle.type, currentArticle.merchantId)"></ion-icon>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+<ion-content no-padding>
+    <div class="div-left">
+        <div text-center class="back"><img src="assets/imgs/icons/1.png" (click)="goBack()"></div>
+    </div>
+    <div class="div-center" *ngIf="currentArticle">
+        <ion-card>
+            <ion-card-content>
+                <ion-card-title class="div-title" text-left *ngIf="currentArticle.type == 'association'">
+                    {{currentArticle.associationName | capitalize}}</ion-card-title>
+                <ion-card-title class="div-title" text-left *ngIf="currentArticle.type == 'merchant'">
+                    {{currentArticle.merchantName | capitalize}}</ion-card-title>
+                <ion-card-title class="div-title" text-left *ngIf="currentArticle.type == 'community'"> {{currentArticle.community | capitalize}}
+                </ion-card-title>
+                <ion-card-title class="div-title" text-left *ngIf="currentArticle.type == 'survey'"> {{currentArticle.community | capitalize}}
+                </ion-card-title>
+                <ion-card-title class="div-title" text-left *ngIf="currentArticle.userFirstname && currentArticle.type == 'user'">
+                    {{currentArticle.userFirstname | capitalize}} {{currentArticle.userLastname | capitalize}}</ion-card-title>
+                <p text-left>
+                    <span>
+                        {{currentArticle.createAt| amLocale:'fr' | amTimeAgo | capitalize}}
+                        <span *ngIf="currentArticle.type == 'user' && currentArticle.city">à {{currentArticle.city}}</span>
+                        <span *ngIf="currentArticle.type == 'association' && currentArticle.city">à
+                            {{currentArticle.city}}</span>
+                        <span *ngIf="currentArticle.type == 'merchant' && currentArticle.city">à
+                            {{currentArticle.city}}</span>
+                        <span *ngIf="currentArticle.type == 'survey' && currentArticle.city">à
+                            {{currentArticle.city}}</span>
+                    </span>
+                    <img float-end *ngIf="currentArticle.event" class="icon-agenda move img-calendar" src="assets/imgs/icons/calendar.png"
+                        alt="NOUS-Ensemble" />
+                    <img float-end *ngIf="currentArticle.private" class="move lock-icons" src="assets/imgs/icons/lock.png"
+                        alt="NOUS-Ensemble" />
+                    <!-- <ion-icon class="icon-agenda move" name="md-calendar" float-end *ngIf="item.event" (click)="detailsEvent(item.event, item.title, false, item.moderateEvent)"></ion-icon> -->
+                    <span *ngIf="currentArticle.type == 'community' && currentArticle.city">à {{currentArticle.city}}</span>
+                </p>
+
+
+                <div *ngIf="currentArticle.imageURL || currentArticle.images || currentArticle.videoFile; else elseBlockImg ">
+                    <div *ngIf="(currentArticle.imageURL && !currentArticle.images && !currentArticle.videoFile) || (!currentArticle.imageURL && !currentArticle.images && currentArticle.videoFile) || (currentArticle.images && !currentArticle.imageURL && currentArticle.images.length == 1); else elseBlock"
+                        class="image home-card-slides">
+                        <div *ngIf="currentArticle.imageURL">
+                            <img data-src="{{currentArticle.imageURL}}" imageViewer>
+                        </div>
+                        <div *ngFor="let img of currentArticle.images">
+                            <img data-src="{{img.url}}" imageViewer>
+                        </div>
+                        <video style="width: 100%; height: 100%" *ngIf="currentArticle.videoFile != null" controls poster="assets/img/video_default.png">
+                            <source [src]="currentArticle.videoFile" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <ng-template #elseBlock>
+                        <ion-slides loop="true" pager>
+                            <ion-slide *ngIf="currentArticle.videoFile != null">
+                                <video style="width: 100%; height: 100%" controls poster="assets/img/video_default.png">
+                                    <source [src]="currentArticle.videoFile" type="video/mp4">
+                                </video>
+                            </ion-slide>
+                            <ion-slide class="image home-card-slides" *ngIf="currentArticle.imageURL">
+                                <img data-src="{{currentArticle.imageURL}}" imageViewer>
+                            </ion-slide>
+                            <ion-slide *ngFor="let img of currentArticle.images">
+                                <img data-src="{{img.url}}" imageViewer>
+                            </ion-slide>
+                        </ion-slides>
+                    </ng-template>
+                </div>
+
+                <ng-template #elseBlockImg>
+                    <ion-slides loop="true" pager>
+                        <ion-slide class="image home-card-slides" *ngIf="currentArticle.associationImage">
+                            <img data-src="{{currentArticle.associationImage}}" imageViewer>
+                        </ion-slide>
+                        <ion-slide *ngIf="currentArticle.merchantImage">
+                            <img data-src="{{currentArticle.merchantImage}}" imageViewer>
+                        </ion-slide>
+                    </ion-slides>
+                </ng-template>
+
+                <ion-col col-12>
+                    <h5 class="div-title">{{currentArticle.title | capitalize}}</h5>
+                    <h6 [innerHtml]="appGlobals.linky(currentArticle.description)|nl2br"></h6>
+                </ion-col>
+                <ion-col col-12 *ngIf="currentArticle.participantsNbre">
+                    <span class="participantsNbre">Nombre de participants : {{currentArticle.participantsNbre}}</span>
+                </ion-col>
+            </ion-card-content>
+            <ion-row  *ngIf="currentArticle.document">
+                <ion-col text-center><ion-icon name="attach" (click)="download(currentArticle.document)" style="font-size:40px"></ion-icon></ion-col>
+
+            </ion-row>
+            <div text-center>
+                <ion-row class="comment-text-style">
+                    <ion-col class="text-grey" *ngIf="currentArticle.addComments">
+                        <span  *ngIf="currentArticle.nbreComments <= 1">{{currentArticle.nbreComments}} Commentaire</span>
+                        <span  *ngIf="currentArticle.nbreComments > 1">{{currentArticle.nbreComments}} Commentaires</span>
+                    </ion-col>
+                    <ion-col *ngIf="currentArticle.type != 'community' || (currentArticle.addComments && currentArticle.type == 'community' )">
+                        <img class="comment-img-style" src="assets/imgs/icons/list-divider.png">
+                    </ion-col>
+                    <ion-col class="text-grey">
+                        <span> {{currentArticle.nbLikes}} J'aime</span>
+                    </ion-col>
+                </ion-row>
+            </div>
+            <ion-row padding-bottom *ngIf="currentArticle.type != 'survey'">
+                <ion-col class="no-padding " *ngIf="currentArticle.addComments" text-right>
+                    <span class="disociate-actions" (click)="detailsArticleComment(currentArticle);" ><img class="news-comment-action dissociate-comment" src="assets/imgs/icons/comments.png"></span>
+                </ion-col>
+
+                <ion-col class="no-padding text-center" [class.icon-right]="!currentArticle.addComments && currentArticle.type == 'community'" text-left>
+                    <span *ngIf="!currentArticle.isLiked" class="disociate-actions text-center" (click)="like(currentArticle);"><img class="news-comment-action dissociate-like"
+                                                                                                                    src="assets/imgs/icons/dislike.png"></span>
+
+                    <span *ngIf="currentArticle.isLiked" class="disociate-actions text-center" (click)="unlike(currentArticle);"> <img class="news-comment-action dissociate-like"
+                                                                                                                      src="assets/imgs/icons/like.png"></span>
+                </ion-col>
+
+                <ion-col class="no-padding " text-right>
+                    <span class="disociate-actions" (click)="ShareArticle(currentArticle);" ><img class="news-comment-action dissociate-share" src="assets/imgs/icons/share.png"></span>
+                </ion-col>
+
+               
+                <ion-col   class="no-padding " style="margin-left: -10%;" (click)="dupliquer(currentArticle);" text-left *ngIf="currentArticle.type == 'community' && (idUsers.communities.indexOf(currentArticle.communityId) > -1)">
+                    <ion-icon name="copy" ></ion-icon>
+                </ion-col> 
+                <ion-col   class="no-padding " style="margin-left: -10%;" (click)="dupliquer(currentArticle);" text-left *ngIf="idUsers && currentArticle.type == 'merchant' && (idUsers.merchants.indexOf(currentArticle.merchantId) > -1)">
+                    <ion-icon name="copy" ></ion-icon>
+                </ion-col>
+                <ion-col   class="no-padding " style="margin-left: -10%;" (click)="dupliquer(currentArticle);" text-left *ngIf="idUsers && currentArticle.type == 'user' && (idUsers.users.indexOf(currentArticle.userId) > -1)">
+                    <ion-icon name="copy" ></ion-icon>
+                </ion-col>
+                <ion-col   class="no-padding " style="margin-left: -10%;" (click)="dupliquer(currentArticle);" text-left *ngIf="idUsers && currentArticle.type == 'association' && (idUsers.associations.indexOf(currentArticle.associationId) > -1 )">
+                    <ion-icon name="copy" ></ion-icon>
+                </ion-col>
+
+            </ion-row>
+        </ion-card>
+
+        <ion-grid no-padding >
+            <div class="custom-div" *ngIf="currentArticle.addComments">
+                <div *ngFor="let comment of commentsItem">
+                    <div class="comment">
+                        <span class="comment-user" *ngIf="comment.type == 'citizen'" text-capitalize>{{comment.firstname}}
+                            {{comment.lastname}}</span>
+                        <span class="comment-user" *ngIf="comment.type == 'association'" text-capitalize>{{comment.associationName}}</span>
+                        <span class="comment-user" *ngIf="comment.type == 'merchant'" text-capitalize>{{comment.merchantName}}</span>
+                        <span class="comment-date">{{comment.updateAt| amLocale:'fr' | amTimeAgo}}</span>
+                        <span class="text-comment" [innerHtml]="appGlobals.linky(comment.content)|nl2br"></span>
+
+                        
+
+                        <div class="div-image">
+                            <div *ngIf="comment.commentImg" class="image home-card-slides">
+                                <div>
+                                    <img data-src="{{comment.commentImg}}" imageViewer>
+                                </div>
+                            </div>
+                        </div>
+                        <div  *ngIf="comment.document">
+                            <ion-icon name="attach" (click)="download(comment.document)" style="font-size:40px"></ion-icon>
+
+                        </div>
+
+                        <div col-12 text-right>
+                            <span float-left class="delete" (click)="showReplyForm(comment)">Répondre</span>
+                            <span float-end class="delete" *ngIf="comment.userId == currentUser.id" (click)="deleteConfirmation(comment)">Supprimer</span>
+                        </div>
+                    </div>
+
+                    <div class="answer" *ngFor="let replie of comment.replies">
+                        <span class="comment-user" *ngIf="replie.type == 'citizen'" text-capitalize>{{replie.firstname}}
+                            {{replie.lastname}}</span>
+                        <span class="comment-user" *ngIf="replie.type == 'association'" text-capitalize>{{replie.associationName}}</span>
+                        <span class="comment-user" *ngIf="replie.type == 'merchant'" text-capitalize>{{replie.merchantName}}</span>
+                        <span class="comment-date"> {{replie.updateAt| amLocale:'fr' | amTimeAgo}}</span>
+                        <span class="text-comment" [innerHtml]="appGlobals.linky(replie.content)|nl2br"></span>
+
+                        <div class="div-image">
+                            <div *ngIf="replie.commentImg" class="image home-card-slides">
+                                <div>
+                                    <img data-src="{{replie.commentImg}}" imageViewer>
+                                </div>
+                            </div>
+                        </div>
+                        <div  *ngIf="replie.document">
+                            <ion-icon name="attach" (click)="download(replie.document)" style="font-size:40px"></ion-icon>
+
+                        </div>
+                        <div col-12 *ngIf="comment.userId == currentUser.id" text-right>
+                            <span float-end class="delete" (click)="deleteReplyConfirmation(replie)">Supprimer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="load-comment" *ngIf="currentArticle.nbreComments > 0">
+                    <a (click)="showMoreComments()">Tout Afficher ({{restNumbreComment}}) </a>
+                </div>
+
+
+                <p class="space-comment" *ngIf="!showReply">
+                    <span class="photo-bloc" *ngIf="comment.photo">
+                        <img class="photo-comment" data-src="{{comment.photo}}">
+                        <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhoto('comment');"></ion-icon>
+                    </span>
+                    <ion-textarea class="comment-zone-footer" [(ngModel)]="comment.content" placeholder="Commenter"
+                        text-left>
+                    </ion-textarea>
+                    <img class="next-icon" src="assets/imgs/icons/icon-photo.png" (click)="presentActionSheet('comment')">
+                    <img class="next-icon icon-next" src="assets/imgs/icons/next.png" (click)="addComment()">
+                </p>
+                <p class="space-comment" *ngIf="showReply">
+                    <span class="photo-bloc" *ngIf="reply.photo">
+                        <img class="photo-comment" data-src="{{reply.photo}}">
+                        <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhoto('reply');"></ion-icon>
+                    </span>
+                    <ion-icon float-start name="md-close" class="icon-close" (click)="showReplyForm(comment)"></ion-icon>
+                    <ion-textarea class="comment-zone-footer" [(ngModel)]="reply.content" placeholder="Répondre"
+                        text-left>
+                    </ion-textarea>
+                    <img class="next-icon " src="assets/imgs/icons/icon-photo.png" (click)="presentActionSheet('reply')">
+                    <img class="next-icon icon-next" src="assets/imgs/icons/next.png" (click)="addReplyComment()">
+
+                </p>
+                <div class="clear"></div>
+
+            </div>
+        </ion-grid>
+    </div>
+    <div class="div-right"></div>
+</ion-content>
+<ion-footer class="footer-comment-photo footer-desktop" *ngIf="appGlobals.token && (comment.photo || reply.photo || comment.document || reply.document) ">
+
+    <div class="footer-comment-item" *ngIf="!showReply">
+	    <div text-center>
+	        <div class="photo-bloc" style="position: absolute; width: 40px; top: 28px; left: 5px; margin-left: 0;" *ngIf="comment.photo">
+	            <img class="photo-comment" style="" data-src="{{comment.photo}}">
+	            <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhoto('comment');"></ion-icon>
+	        </div>
+	        <div class="photo-bloc" *ngIf="comment.document">
+	            <img class="photo-comment" src="assets/imgs/icons/doc-icon.png">
+	            <ion-icon name="trash" class="icon-delete delete-icon" (click)="deleteDocument('comment');"></ion-icon>
+	        </div>
+	        <ion-textarea style="margin-left: 33px;" item-start autocomplete="true" class="comment-zone" [(ngModel)]="comment.content" placeholder="Commenter" text-left>
+	        </ion-textarea>
+	        <button  class="icon-comment" style="padding-top: 12px;" ion-button clear icon-only (click)="toggled = !toggled"
+	        [(emojiPickerIf)]="toggled" [emojiPickerDirection]="'top'"
+	        (emojiPickerSelect)="handleSelection($event)">
+	        😃
+	        </button>
+	        <img class="icon-comment" src="assets/imgs/icons/icon-photo.png" (click)="presentActionSheet('comment')">
+	        <img class="icon-comment icon-next" src="assets/imgs/icons/next.png" (click)="addComment()">
+	        <input type="file" id="fileInput" (change)="onFileChange($event,'comment')" >
+	    </div>
+    </div>
+
+    <div class="footer-comment-item" *ngIf="showReply">
+        <div class="photo-bloc" *ngIf="reply.photo">
+            <img class="photo-comment" data-src="{{reply.photo}}">
+            <ion-icon name="trash" class="icon-delete delete-icon" (click)="deletePhoto('reply');"></ion-icon>
+        </div>
+        <div class="photo-bloc" *ngIf="reply.document">
+            <img class="photo-comment" src="assets/imgs/icons/doc-icon.png">
+            <ion-icon name="trash" class="icon-delete delete-icon" (click)="deleteDocument('reply');"></ion-icon>
+        </div>
+        <ion-icon float-start name="md-close" class="icon-close" (click)="showReplyForm(comment)"></ion-icon>
+        <ion-textarea item-center autocomplete="true" class="comment-zone" [(ngModel)]="reply.content" placeholder="Répondre" text-left>
+        </ion-textarea>
+        <img class="icon-comment" src="assets/imgs/icons/icon-photo.png" (click)="presentActionSheet('reply')">
+        <img class="icon-comment icon-next" src="assets/imgs/icons/next.png" (click)="addReplyComment()">
+        <input type="file" id="fileInput" (change)="onFileChange($event,'reply')" >
+    </div>
+
+
+</ion-footer>
+<ion-footer class="footer-comment footer-desktop" *ngIf="(appGlobals.token && !comment.photo) && (appGlobals.token && !reply.photo) && (appGlobals.token && !comment.document) && (appGlobals.token && !reply.document)">
+
+    <div class="footer-comment-item" *ngIf="!showReply">
+        <div text-center>
+           
+           
+            <ion-textarea item-start autocomplete="true" class="comment-zone" [(ngModel)]="comment.content" placeholder="Commenter " text-left>
+            </ion-textarea>
+            <button  class="icon-comment" style="padding-top: 12px;" ion-button clear icon-only (click)="toggled = !toggled"
+            [(emojiPickerIf)]="toggled" [emojiPickerDirection]="'top'"
+            (emojiPickerSelect)="handleSelection($event)">
+            😃
+            </button>
+            <img class="icon-comment" src="assets/imgs/icons/icon-photo.png" (click)="presentActionSheet('comment')">
+            <img class="icon-comment icon-next" src="assets/imgs/icons/next.png" (click)="addComment()">
+            <input type="file" id="fileInput" (change)="onFileChange($event, 'comment')" >
+        </div>
+    </div>
+
+    <div class="footer-comment-item" *ngIf="showReply">
+        <ion-icon float-start name="md-close" class="icon-close" (click)="showReplyForm(comment)"></ion-icon>
+        
+        <ion-textarea item-center autocomplete="true" class="comment-zone-reply" [(ngModel)]="reply.content" placeholder="Répondre" text-left>
+        </ion-textarea>
+        <button  class="icon-comment" style="padding-top: 12px;" ion-button clear icon-only (click)="toggledReply = !toggledReply"
+                [(emojiPickerIf)]="toggledReply" [emojiPickerDirection]="'top'"
+                (emojiPickerSelect)="handleReply($event)">
+                😃
+                </button>
+        <img class="icon-comment" src="assets/imgs/icons/icon-photo.png" (click)="presentActionSheet('reply')">
+        <img class="icon-comment icon-next" src="assets/imgs/icons/next.png" (click)="addReplyComment()">
+        <input type="file" id="fileInput" (change)="onFileChange($event,'reply')" >
+    </div>
+
+
+</ion-footer>

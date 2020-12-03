@@ -1,0 +1,614 @@
+<ion-header class="desktop-header" *ngIf="appGlobals.token">
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <img class="header-app-icon" src="assets/imgs/icons/logo.png" />
+            </ion-col>
+            <ion-col col-auto>
+                <div class="menu-top">
+                    <div class="menu-item">
+                        <div class="menu-item-content" (click)="communities()">
+                            <img class="" src="assets/imgs/icons/comunitydesktop.png">
+                            <p class="communityDesktop"> Communautés </p>
+                        </div>
+                    </div>
+                    <div class="menu-item" (click)="MyTownHall()" [class.activated]="appGlobals.currentPageid=='MyTownHall'">
+                        <div class="menu-item-content">
+                            <img *ngIf="appGlobals.currentPageid != 'MyTownHall'" class="" id="dedicated-menu" src="assets/imgs/icons/dedicatedhover.png">
+                            <img *ngIf="appGlobals.currentPageid == 'MyTownHall'" id="dedicated-menu" src="assets/imgs/icons/dedicated.png">
+                            <p> Page dédiée </p>
+                        </div>
+                    </div>
+                    <div class="menu-item" (click)="news()" [class.activated]="appGlobals.currentPageid=='news'">
+                        <div class="menu-item-content">
+                            <img *ngIf="appGlobals.currentPageid != 'news'" class="" id="news-menu" src="assets/imgs/icons/newshover.png">
+                            <img *ngIf="appGlobals.currentPageid == 'news'" id="news-menu" src="assets/imgs/icons/news.png">
+                            <p> A la Une </p>
+                        </div>
+                    </div>
+                    <div class="menu-item" (click)="agenda()" [class.activated]="appGlobals.currentPageid=='agenda'">
+                        <div class="menu-item-content">
+                            <img *ngIf="appGlobals.currentPageid != 'agenda'" class="" id="agenda-menu" src="assets/imgs/icons/agendahover.png">
+                            <img *ngIf="appGlobals.currentPageid == 'agenda'" id="agenda-menu" src="assets/imgs/icons/agenda.png">
+                            <p> Agenda </p>
+                        </div>
+                    </div>
+                    <div class="menu-item" (click)="goodplans()"  [class.activated]="appGlobals.currentPageid=='goodplans'">
+                        <div class="menu-item-content">
+                            <img *ngIf="appGlobals.currentPageid != 'goodplans'" class="" id="plans-menu" src="assets/imgs/icons/planshover.png">
+                            <img *ngIf="appGlobals.currentPageid == 'goodplans'" id="plans-menu" src="assets/imgs/icons/plans.png">
+                            <p> Bon Plans </p>
+                        </div>
+                    </div>
+                    <div class="menu-item" (click)="mySpace()" [class.activated]="appGlobals.currentPageid =='mySpace'">
+
+                        <div class="menu-item-content">
+                            <img *ngIf="appGlobals.currentPageid != 'mySpace'" class="" id="space-menu" src="assets/imgs/icons/spacehover.png">
+                            <img *ngIf="appGlobals.currentPageid == 'mySpace'" id="space-menu" src="assets/imgs/icons/space.png">
+                            <div class="number-notifications" *ngIf="appGlobals.nbrNotification != 0"><span>{{appGlobals.nbrNotification}}</span></div>
+                            <p> Mon Espace </p>
+                        </div>
+                    </div>
+
+                </div>
+            </ion-col>
+            <ion-col text-right>
+                <div class="search-link" (click)="showHideSearch()">
+                    <ion-icon name="md-search"></ion-icon>
+                    <span>Rechercher</span>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-header class="mobile-header" *ngIf="appGlobals.token && appGlobals.showHeader">
+    <ion-grid>
+        <ion-row>
+            <ion-col col-2 text-left>
+                <div class="item iconheader" (click)="showHideSearch()">
+                    <img class="icon-search" src="assets/imgs/icons/search.png" alt="NOUS-Ensemble" />
+                </div>
+            </ion-col>
+            <ion-col col-8 text-center class="page-title iconheader">
+                <div class="communities-div" (click)="communities()">
+                    <img class="icon-community" src="assets/imgs/icons/comunity.png" alt="NOUS-Ensemble" />
+                    <ion-title class="communityHeader">Communautés</ion-title>
+                </div>
+            </ion-col>
+            <ion-col col-2>
+                <div class="item iconheader" text-right (click)="pop_publish()">
+                    <img class="icon-new" src="assets/imgs/icons/new.png" alt="NOUS-Ensemble" />
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+<ion-grid class="filterNewsHeader" *ngIf="appGlobals.token && appGlobals.showSearchNews" [class.filterOpenTheme]="appGlobals.themeFilter"
+          [class.filterOpenVille]="appGlobals.villeFilter">
+    <ion-row class="filterDesktopRow">
+        <ion-col col-6 class="villeParagraph">
+            <p text-center (click)='showHideFilterVille()'>Villes <br>
+                <img class="icon-grey" src="assets/imgs/icons/arrow-down-grey.png" alt="NOUS-Ensemble" />
+                <img class="icon-green" src="assets/imgs/icons/arrow-down-green.png" alt="NOUS-Ensemble" />
+
+            </p>
+        </ion-col>
+        <ion-col col-6 class="themeParagraph">
+            <p text-center (click)='showHideFilterTheme()'>Thèmes <br>
+                <img class="icon-grey" src="assets/imgs/icons/arrow-down-grey.png" alt="NOUS-Ensemble" />
+                <img class="icon-green" src="assets/imgs/icons/arrow-down-green.png" alt="NOUS-Ensemble" />
+            </p>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<ion-grid class="filterAgendaHeader" *ngIf="appGlobals.token && appGlobals.showSearchAgenda" [class.filterOpenTheme]="appGlobals.themeFilter"
+          [class.filterOpenVille]="appGlobals.villeFilter">
+    <ion-row class="filterDesktopRow">
+
+        <ion-col col-4 class="villeParagraph">
+            <p text-center (click)='showHideFilterVille()'>Villes <br>
+                <img class="icon-grey" src="assets/imgs/icons/arrow-down-grey.png" alt="NOUS-Ensemble" />
+                <img class="icon-green" src="assets/imgs/icons/arrow-down-green.png" alt="NOUS-Ensemble" />
+
+            </p>
+        </ion-col>
+        <ion-col class="dateParagraph" col-4 (click)="showDatePicker()">
+            <p text-center>Date <br>
+                <img class="icon-grey" src="assets/imgs/icons/arrow-down-grey.png" alt="NOUS-Ensemble" />
+                <img class="icon-green" src="assets/imgs/icons/arrow-down-green.png" alt="NOUS-Ensemble" />
+            </p>
+        </ion-col>
+        <ion-col col-4 class="themeParagraph">
+            <p text-center (click)='showHideFilterTheme()'>Thèmes <br>
+                <img class="icon-grey" src="assets/imgs/icons/arrow-down-grey.png" alt="NOUS-Ensemble" />
+                <img class="icon-green" src="assets/imgs/icons/arrow-down-green.png" alt="NOUS-Ensemble" />
+            </p>
+        </ion-col>
+    </ion-row>
+</ion-grid>
+<div class="div-left">
+</div>
+<div class="div-center">
+    <div [@flyInTopSlow]="searchBar" class="search-div " [class.negativeTop]="appGlobals.onNegativeTopSearch" [class.filterHere]="appGlobals.showSearchNews || appGlobals.showSearchAgenda"
+         *ngIf="appGlobals.appSearch">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-2 text-center class="auto-margin">
+                    <ion-icon class="search-search search-icon" name="md-search"></ion-icon>
+                </ion-col>
+                <ion-col col-8>
+                    <ion-item text-center>
+                        <ion-input text-capitalize type="text" id="key" name="key" placeholder="Rechercher" [(ngModel)]="appGlobals.searchCriteria.key"
+                                   required></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-2 text-left class="auto-margin">
+                    <img class="close-search icon-heart material-icons" src="assets/imgs/icons/image3.png" (click)="showHideSearch()">
+                </ion-col>
+            </ion-row>
+
+            <ion-row text-center>
+
+                <ion-col text-center class="text-and">
+                    Et / ou
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-2></ion-col>
+                <ion-col text-center col-8>
+                    <ion-item class="item-input-white no-padding select-search-item select-not-ie">
+                        <ion-select class="select-white select-search" (ionCancel)="onCancel()" name="theme" submitText="Ok"
+                                    cancelText="Effacer" placeholder="Thème" [(ngModel)]="appGlobals.searchCriteria.theme"
+                                    required>
+                            <ion-option *ngFor="let category of categories" value={{category.id}}>{{category.name}}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                    <ion-col class="item-input-white no-padding select-search-item select-ie">
+                        <select class="select-white select-search input-select-ie" name="theme" placeholder="Thème"
+                                [(ngModel)]="appGlobals.searchCriteria.theme" required>
+                            <option *ngFor="let category of categories" value={{category.id}}>{{category.name}}</option>
+                        </select>
+                    </ion-col>
+                </ion-col>
+                <ion-col col-2></ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-3 text-center>
+                    <div class="search-accounts" [class.activate]="appGlobals.searchCriteria.account" (click)="searchAccount()">
+                        <div class="icon"></div>
+                        <p> groupes/<br/>établissements </p>
+                    </div>
+                </ion-col>
+                <ion-col col-3 text-center>
+                    <div class="search-articles" [class.activate]="appGlobals.searchCriteria.article" (click)="searchArticle()">
+                        <div class="icon"></div>
+                        <p> articles </p>
+                    </div>
+                </ion-col>
+                <ion-col col-3 text-center>
+                    <div class="search-events" [class.activate]="appGlobals.searchCriteria.event" (click)="searchEvent()">
+                        <div class="icon"></div>
+                        <p> évènements </p>
+                    </div>
+                </ion-col>
+                <ion-col col-3 text-center>
+                    <div class="search-goodplans" [class.activate]="appGlobals.searchCriteria.goodplans" (click)="searchGoodPlans()">
+                        <div class="icon"></div>
+                        <p> bons plans </p>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <button class="search-button button-big" ion-button color="primary" round (click)="searchAction()">Valider</button>
+    </div>
+    <!-- FILTER VILLE -->
+    <div [@flyInTopSlow]="villeFilter" class="showVilleFilter" *ngIf="appGlobals.villeFilter">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-2 text-center class="auto-margin">
+                    <ion-icon class="search-search search-icon" name="md-search"></ion-icon>
+                </ion-col>
+                <ion-col col-8>
+                    <ion-item text-center>
+                        <ion-input text-capitalize type="text" id="key" name="key" placeholder="Rechercher" (input)="filterVilles($event)" ></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-2 text-left class="auto-margin">
+                    <img class="close-search icon-heart material-icons" src="assets/imgs/icons/image3.png" (click)="showHideFilterVille()">
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-12>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Toutes les villes</ion-label>
+                            <ion-checkbox (click)="selectAllVilles(city)" [(ngModel)]="allCitiesChecked"></ion-checkbox>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+                <ion-col class="AgendaTextTopDiv" col-12>
+                    <p>ou cochez les villes que vous souhaitez suivre</p>
+                </ion-col>
+                <ion-col col-12>
+                    <ion-list class="listScrolled">
+                        <ion-item *ngFor="let city of allCitiesFilter">
+                            <ion-label>{{city.name}} ({{city.code}})</ion-label>
+                            <ion-checkbox (click)="selectVilles(city)" [(ngModel)]="city.filtered"></ion-checkbox>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <button class="search-button button-big" ion-button color="primary" (click)="submitVilles()" round>Valider</button>
+    </div>
+    <!-- FILTER THEME -->
+    <div [@flyInTopSlow]="themeFilter" class="showThemeFilter" *ngIf="appGlobals.themeFilter">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-2 text-center class="auto-margin">
+                    <ion-icon class="search-search search-icon" name="md-search"></ion-icon>
+                </ion-col>
+                <ion-col col-8>
+                    <ion-item text-center>
+                        <ion-input text-capitalize type="text" id="key" name="key" placeholder="Rechercher" (input)="filterThemes($event)"></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-2 text-left class="auto-margin">
+                    <img class="close-search icon-heart material-icons" src="assets/imgs/icons/image3.png" (click)="showHideFilterTheme()">
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-12>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label>Sans filtre</ion-label>
+                            <ion-checkbox (click)="selectAllThemes()" [(ngModel)]="allThemesChecked"></ion-checkbox>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+                <ion-col class="AgendaTextTopDiv" col-12>
+                    <p>ou cochez les thèmes que vous souhaitez suivre</p>
+                </ion-col>
+                <ion-col col-12>
+                    <ion-list class="listScrolled">
+                        <ion-item *ngFor="let theme of allThemesFilter">
+                            <ion-label>{{theme.name}}</ion-label>
+                            <ion-checkbox (click)="selectTheme(theme)" [(ngModel)]="theme.filtered"></ion-checkbox>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <button class="search-button button-big" ion-button color="primary" (click)="submitThemes()" round>Valider</button>
+    </div>
+
+    <div [@flyInTopSlow]="benevoleBar" [class.m-t-event]="appGlobals.onEventDetails" class="showBenevoleAgenda" *ngIf="appGlobals.showBenevoleAgenda">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-2 text-right class="auto-margin">
+                    <ion-item text-center>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-8>
+                    <ion-item text-center>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-2 text-left class="auto-margin">
+                    <img class="close-search icon-heart material-icons" src="assets/imgs/icons/image3.png" (click)="showHideAgendaBenevole()">
+                </ion-col>
+                <ion-col col-12>
+                    <p>Souhaitez-vous être bénévole ?</p>
+                </ion-col>
+                <ion-col class="AgendaTextTopDiv" col-10>
+                    <p>L'organisateur va vous contacter par email ou par téléphone. Veuillez svp renseigner votre
+                        numéro.</p>
+                </ion-col>
+                <ion-col class="AgendaTextTopDiv" text-center col-10>
+                    <ion-item>
+                        <ion-input name="phone" type="tel" id="phoneNumber"  disabled="{{isDisabled}}" [(ngModel)]="phoneNumber" placeholder="Numéro de téléphone*"> </ion-input>
+                    </ion-item>
+                    <p *ngIf="badPhone" class="badPhone">Le numéro n'est pas valide. Exemple : 0999999999 ou 33999999999</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <button class="search-button button-big" ion-button color="primary" round (click)="volunteerContact()">Valider</button>
+    </div>
+
+    <div [@flyInTopSlow]="contactBar" [class.m-t-event]="appGlobals.onEventDetails" class="showBenevoleAgenda" *ngIf="appGlobals.showcontactBar">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-2 text-right class="auto-margin">
+                    <ion-item text-center>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-8>
+                    <ion-item text-center>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-2 text-left class="auto-margin">
+                    <img class="close-search icon-heart material-icons" src="assets/imgs/icons/image3.png" (click)="showHideContactBar()">
+                </ion-col>
+                <ion-col col-12 text-left>
+                    <p>Prenez contact avec le commerçant/partenaire</p>
+                </ion-col>
+                <ion-col class="AgendaTextTopDiv" text-center col-10>
+                    <ion-item>
+                        <ion-textarea name="demande" type="text" [(ngModel)]='this.appGlobals.goodPlanMessage' placeholder="Ma demande*"> </ion-textarea>
+                    </ion-item>
+                </ion-col>
+                <ion-col class="AgendaTextTopDiv" col-10>
+                    <p>Votre adresse email et votre message seront envoyés au commerçant/partenaire.</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <button class="search-button button-big" ion-button color="primary" round (click)="googPlanContact()">Valider</button>
+    </div>
+
+    <div [@flyInTopSlow]="proposeCarpooling" class="showBenevoleAgenda proposeCarpooling" [class.m-t-event]="appGlobals.onEventDetails" *ngIf="appGlobals.showproposeCarpooling">
+        <ion-grid class="padding-30" >
+            <ion-row>
+                <ion-col col-2 text-right class="auto-margin">
+                    <ion-item text-center>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-8>
+                    <ion-item text-center>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-2 text-right class="auto-margin">
+                    <img class="close-search icon-heart material-icons" src="assets/imgs/icons/image3.png" (click)="showHideProposeCarpooling()">
+                </ion-col>
+                <div class="carpooling-scroll">
+                <ion-col col-10>
+                    <p text-left>Nous cherchons des bonnes volontés pour le covoiturage, merci pour votre aide</p>
+                </ion-col>
+                <ion-col col-12>
+                    <ion-item>
+                        <ion-input (input)="carpoolRallyChange()" [(ngModel)]="rallyPoint" type='text' placeholder='Point de ralliement souhaité'>
+                        </ion-input>
+                    </ion-item>
+                    <p [hidden]="!requiredRallyPoint" class="color-red text-center">Champs ralliement obligatoire</p>
+                </ion-col>
+                <ion-col class="display-inline-flex" col-12>
+                    <ion-label>Heure de rendez-vous</ion-label>
+                    <ion-item text-left col-4>
+                        <ion-datetime (ionChange)="carpoolRdvHoursChange()" doneText="Ok" cancelText="Annuler" [(ngModel)]="rdvHours" placeholder="08:15" displayFormat="HH:mm"></ion-datetime>
+                    </ion-item>
+                </ion-col>
+                <p [hidden]="!requiredRdvHours" class="color-red text-center full-width">Champs horraire obligatoire</p>
+                <ion-col class="display-inline-flex" col-12>
+                    <ion-label>Nombre de places disponibles</ion-label>
+                    <ion-item text-left col-3>
+                        <ion-input (input)="carpoolSeatedChange()" [(ngModel)]="seatedFree" class="seatedFree" min="1" max="9" type='number' placeholder='1'></ion-input>
+                    </ion-item>
+                </ion-col>
+                <p [hidden]="!requiredSeatedFree" class="color-red text-center full-width">Champs places disponibles obligatoire</p>
+                <ion-col col-12>
+                    <ion-label class="margin-b-20">Renseignez votre numéro de téléphone <br> pour être contacté(e)</ion-label>
+                    <ion-item text-center>
+                        <ion-input (input)="carpoolPhoneChange()" type='tel' [(ngModel)]="phoneNumber" placeholder='Numéro de téléphone*'></ion-input>
+                    </ion-item>
+                    <p [hidden]="!requiredCarpool" class="badPhone margin-b-40 color-red text-center">Le numéro n'est pas valide. Exemple : 0999999999 ou 33999999999</p>
+                </ion-col>
+                </div>
+            </ion-row>
+        </ion-grid>
+        <button class="search-button button-big" (click)="carpoolAdd()" ion-button color="primary" round>Valider</button>
+    </div>
+
+    <div [@flyInTopSlow]="needCarpooling" class="showVilleFilter showFilterNeedCarpooling" [class.m-t-event]="appGlobals.onEventDetails" *ngIf="appGlobals.showNeedCarpooling">
+        <ion-grid class="padding-30">
+            <ion-row>
+                <ion-col col-2 text-right class="auto-margin">
+                    <ion-item text-center>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-8>
+                    <ion-item text-center>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-2 text-right class="auto-margin">
+                    <img class="close-search icon-heart material-icons" src="assets/imgs/icons/image3.png" (click)="showHideNeedCarpooling(null)">
+                </ion-col>
+                <ion-col col-10>
+                    <p text-left>Vous cherchez quelqu'un pour vous emmener en voiture ?<br>Sélectionnez le point de ralliement qui vous convient dans la liste ci-dessous.</p>
+                </ion-col>
+            </ion-row>
+            <ion-row class="card-item-divider">
+                <ion-col col-12>
+                    <ion-list radio-group class="listScrolled" [class.margin-b-0]="requiredCarpool">
+                        <ion-item class="no-padding" *ngFor="let carpool of appGlobals.currentEvent['needCarpool']">
+                            <ion-label>{{carpool.relayPoint}}</ion-label>
+                            <ion-radio [disabled]="carpool.placeLeft == 0" (ionSelect)="carpoolChange(carpool.id)"></ion-radio>
+                            <ion-label float-right color="danger" *ngIf="carpool.placeLeft == 0">complet</ion-label>
+                            <ion-label float-right *ngIf="carpool.placeLeft != 0">{{carpool.placeLeft}}</ion-label>
+                        </ion-item>
+                    </ion-list>
+                    <p [hidden]="!requiredCarpool" class="margin-b-40 color-red">Champs de sélection obligatoire</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <button class="search-button button-big" (click)="carpoolAnswer()" ion-button color="primary" round>Valider</button>
+    </div>
+
+    <div [@flyInTopSlow]="answerCarpooling" class="showBenevoleAgenda showAnswerCarpooling" [class.m-t-event]="appGlobals.onEventDetails" *ngIf="appGlobals.showAnswerCarpooling">
+        <ion-grid class="padding-30">
+            <ion-row>
+                <ion-col col-2 text-right class="auto-margin">
+                    <ion-item text-center>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-8>
+                    <ion-item text-center>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-2 text-right class="auto-margin">
+                    <img class="close-search icon-heart material-icons" src="assets/imgs/icons/image3.png" (click)="showHideAnswerCarpooling()">
+                </ion-col>
+                <ion-col col-12>
+                    <p>Validez votre demande de covoiturage ?</p>
+                </ion-col>
+                <ion-col class="AgendaTextTopDiv" col-10>
+                    <p>Renseignez votre numéro de téléphone pour être contacté(e)</p>
+                </ion-col>
+                <ion-col class="AgendaTextTopDiv" text-center col-10>
+                    <ion-item>
+                        <ion-input name="phone" type="tel" id="phoneNumber" (input)="carpoolNumberChange()"  disabled="{{isDisabled}}" [(ngModel)]="phoneNumber" placeholder="Numéro de téléphone*"> </ion-input>
+                    </ion-item>
+                    <p [hidden]="!requiredCarpool" class="margin-b-40 color-red text-center badPhone">Le numéro n'est pas valide. Exemple : 0999999999 ou 33999999999</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <button class="search-button button-big" ion-button color="primary" round (click)="addCarpoolAnswer()">Valider</button>
+    </div>
+
+    <div [@flyInTopSlow]="putAgendaBar" [class.m-t-event]="appGlobals.onEventDetails" class="putInAgenda" *ngIf="appGlobals.showPutAgenda">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-2 text-right class="auto-margin">
+                    <ion-item text-center>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-8>
+                    <ion-item text-center>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-2 text-left class="auto-margin">
+                    <img class="close-search icon-heart material-icons" src="assets/imgs/icons/image3.png" (click)="showHidePutAgenda()">
+                </ion-col>
+                <ion-col class="auto-margin" col-10>
+                    <p>Voulez-vous le noter dans votre agenda ?</p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <button class="search-button button-big" ion-button color="primary" round (click)="addAgenda()">Valider</button>
+    </div>
+
+    <div [@flyInTopSlow]="publicSearch" class="showPublicSearch" *ngIf="appGlobals.publicSearch">
+        <ion-grid>
+            <ion-row>
+                <ion-col text-center class="auto-margin">
+                    <h5 class="inline-block">Communautés publiques</h5>
+                    <img float-right class="close-search icon-heart material-icons mt-7" src="assets/imgs/icons/image3.png" (click)="showHidePublicSearch()">
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-2 text-center class="auto-margin">
+                    <ion-icon class="search-search search-icon" name="md-search"></ion-icon>
+                </ion-col>
+                <ion-col col-8>
+                    <ion-item text-center>
+                        <!-- <ion-searchbar placeholder="Rechercher" (ionInput)="filterCommunities($event)"></ion-searchbar> -->
+                        <ion-input text-capitalize type="text" id="key" name="key" placeholder="Rechercher" (input)="filterPublicCommunities($event)" ></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-2 text-left class="auto-margin">
+                </ion-col>
+            </ion-row>
+            <ion-row class="scrollRow">
+                <ion-col col-12>
+                    <ion-list class="listScrolled" no-lines >
+                        <ion-item *ngFor="let community of publicCommunities">
+                            <ion-label>{{community.name}}</ion-label>
+                            <ion-checkbox (ionChange)="publicChange(community.id, $event.checked)"></ion-checkbox>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <button [disabled]="!publicChecked || publicChecked.length === 0" class="search-button button-big" ion-button color="primary" round (click)="addPublicCommunities()" >Valider</button>
+    </div>
+    <div [@flyInTopSlow]="privateSearch" class="showPrivateSearch" *ngIf="appGlobals.privateSearch">
+        <ion-grid>
+            <ion-row>
+                <ion-col text-center class="auto-margin">
+                    <div class="private-title"><img  class="private-title-img" src="assets/imgs/icons/private.png" /> <h5 class="private-title-h">Communautés privées</h5>
+                        <img float-right class="close-search icon-heart material-icons inline-block-top mt-7" src="assets/imgs/icons/image3.png" (click)="showHidePrivateSearch()">
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-2 text-center class="auto-margin">
+                    <ion-icon class="search-search search-icon" name="md-search"></ion-icon>
+                </ion-col>
+                <ion-col col-8>
+                    <ion-item text-center>
+                        <ion-input text-capitalize type="text" id="key" name="key" placeholder="Rechercher" (input)="filterPrivateCommunities($event)"  ></ion-input>
+                    </ion-item>
+                </ion-col>
+                <ion-col col-2 text-left class="auto-margin">
+                </ion-col>
+            </ion-row>
+            <ion-row class="scrollRow">
+                <ion-col col-12 text-center>
+                    <ion-list radio-group class="listScrolled" no-lines >
+                        <ion-item *ngFor="let community of privateCommunities" class="radio-item">
+                            <ion-label class="radio-label">{{community.name}}</ion-label>
+                            <ion-radio name="privateradio" (click)="privateChange(community.id,community.name, $event)"></ion-radio>
+                        </ion-item>
+                    </ion-list>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <button [disabled]="!privateChecked || privateChecked === 0" class="search-button button-big" ion-button color="primary" round (click)="addPrivateCommunities()" >Valider</button>
+    </div>
+
+</div>
+<div class="div-right">
+</div>
+<ion-nav [root]="rootPage"></ion-nav>
+<ion-footer class="show-footer" *ngIf="appGlobals.token && appGlobals.showFooter">
+    <div class="footer-content">
+        <div class="footer-item" (click)="MyTownHall()" [class.activated-footer]="appGlobals.currentPageid=='MyTownHall'">
+            <div class="footer-item-content">
+                <img *ngIf="appGlobals.currentPageid == 'MyTownHall'" class="" id="dedicated-footer" src="assets/imgs/icons/dedicatedhover.png">
+                <img *ngIf="appGlobals.currentPageid != 'MyTownHall'" id="dedicated-footer" src="assets/imgs/icons/dedicated.png">
+                <p> Page dédiée </p>
+            </div>
+        </div>
+        <div class="footer-item" (click)="news()" [class.activated-footer]="appGlobals.currentPageid=='news'">
+            <div class="footer-item-content">
+                <img *ngIf="appGlobals.currentPageid == 'news'" class="" id="news-footer" src="assets/imgs/icons/newshover.png">
+                <img *ngIf="appGlobals.currentPageid != 'news'" id="news-footer" src="assets/imgs/icons/news.png">
+                <p> A la Une </p>
+            </div>
+        </div>
+        <div class="footer-item" (click)="agenda()" [class.activated-footer]="appGlobals.currentPageid=='agenda'">
+            <div class="footer-item-content">
+                <img *ngIf="appGlobals.currentPageid == 'agenda'" class="" id="agenda-footer" src="assets/imgs/icons/agendahover.png">
+                <img *ngIf="appGlobals.currentPageid != 'agenda'" id="agenda-footer" src="assets/imgs/icons/agenda.png">
+                <p> Agenda </p>
+            </div>
+        </div>
+        <div class="footer-item " (click)="goodplans()" [class.activated-footer]="appGlobals.currentPageid=='goodplans'">
+            <div class="footer-item-content">
+                <img *ngIf="appGlobals.currentPageid == 'goodplans'" class="" id="plans-footer" src="assets/imgs/icons/planshover.png">
+                <img *ngIf="appGlobals.currentPageid != 'goodplans'" id="plans-footer" src="assets/imgs/icons/plans.png">
+                <p> Bons Plans </p>
+            </div>
+        </div>
+        <div class="footer-item " (click)="mySpace()" [class.activated-footer]="appGlobals.currentPageid =='mySpace'">
+            <div class="footer-item-content">
+                <img *ngIf="appGlobals.currentPageid == 'mySpace'" class="" id="space-footer" src="assets/imgs/icons/spacehover.png">
+                <img *ngIf="appGlobals.currentPageid != 'mySpace'" id="space-footer" src="assets/imgs/icons/space.png">
+                <div class="number-notifications-mobile" *ngIf="appGlobals.nbrNotification != 0"><span>{{appGlobals.nbrNotification}}</span></div>
+                <p> Mon Espace </p>
+
+            </div>
+        </div>
+    </div>
+</ion-footer>
+<div class="overlay" *ngIf="appGlobals.appSearch || appGlobals.showBenevoleAgenda || appGlobals.showBenevoleWarning || appGlobals.showPutAgenda || appGlobals.themeFilter|| appGlobals.villeFilter || appGlobals.publicSearch || appGlobals.privateSearch || appGlobals.showproposeCarpooling || appGlobals.showNeedCarpooling || appGlobals.showAnswerCarpooling || appGlobals.showcontactBar"></div>
+
+
+<ion-datetime disabled #datePicker cancelText='Annuler' max="2038" min="{{startDate}}"  doneText='Valider' displayFormat="YYYY-MM-DD" pickerFormat="DD/MM/YYYY" (ionCancel)="resetDatePicker()" (ionChange)="submitDatePicker()" [(ngModel)]="startDate"></ion-datetime>
+ 
